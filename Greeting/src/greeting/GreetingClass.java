@@ -18,7 +18,12 @@ public class GreetingClass {
 	
 	public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 	{
-		
+		for (int i = 0; i < s.length(), i++)
+		{
+			String letterOne = keyword.substring(0,1);
+			String letterTwo = s.substring(i, i+1);
+			
+		}
 	}
 	
 	public static boolean noNegations(String s, int psn)
