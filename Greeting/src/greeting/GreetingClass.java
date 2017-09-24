@@ -67,7 +67,7 @@ public class GreetingClass {
 		
 		if ( negation == -1)
 		{
-			return true
+			return true;
 		} else
 		{
 			//find out if word is no or not
