@@ -51,5 +51,11 @@ public class GreetingClass {
 		/*returns true if there is not a negation ("no", "not") immediately in front of psn.
 		 * PRECONDITION : s is lowercase, psn is within bounds
 		 */
+		
+		//if String s == "not" || "no"
+		if (//no negation in front of psn)
+		{
+			return true;
+		}
 	}
 }
