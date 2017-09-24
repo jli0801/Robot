@@ -48,6 +48,8 @@ public class GreetingClass {
 	
 	public static boolean noNegations(String s, int psn)
 	{
-		
+		/*returns true if there is not a negation ("no", "not") immediately in front of psn.
+		 * PRECONDITION : s is lowercase, psn is within bounds
+		 */
 	}
 }
