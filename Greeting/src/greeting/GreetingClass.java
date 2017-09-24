@@ -18,12 +18,31 @@ public class GreetingClass {
 	
 	public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 	{
+		int numofS = s.indexOf(keyword);
+		
 		for (int i = 0; i < s.length(), i++)
 		{
 			String letterOne = keyword.substring(0,1);
 			String letterTwo = s.substring(i, i+1);
+			keywordIso = false; 
+			if(letterOne.contentEquals(letterTwo) && !keywordIso && numofS > -1) //if the first letter matches with any of the first 
+				//letters of the word
+			{
+				if(s.substring(i-1, i).equals(" "))
+				{
+					//if there's a space before it 
+					if(s.substring(s.length(),s.length() +1 ).compareTo("a") < 0))
+					{
+						//any puncuation 
+						return true; 
+					}
+				
+				}
+			}
 			
 		}
+		return false; 
+		
 	}
 	
 	public static boolean noNegations(String s, int psn)
