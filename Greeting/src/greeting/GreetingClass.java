@@ -11,7 +11,7 @@ public class GreetingClass {
 	 
 	private int helloCount;
 	
-	public Hello()
+	public void Hello()
 	{
 	 helloCount = 0;
 	}
