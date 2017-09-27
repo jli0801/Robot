@@ -62,7 +62,7 @@ public class GreetingClass {
 		
 		if ( negation == -1)
 		{
-			return true; // if "no" or "not" is not identified, return true
+			return true; // if "no" or "not" is not identified, return true ; there is no negation
 		} else // if "no" or "not" IS  identified, execute code
 		{
 			//find out if word is no or not
