@@ -1,3 +1,4 @@
+
 package greeting;
 
 public class GreetingClass {
@@ -63,12 +64,12 @@ public class GreetingClass {
 			return true;
 		}*/
 		
-		int negation = s.indexOf("no");
+		int negation = s.indexOf("no"); //find if there is "no" in the string - it gives a value besides -1 if there is "no" or "not"
 		
 		if ( negation == -1)
 		{
-			return true;
-		} else
+			return true; // if "no" or "not" is not identified, return true
+		} else // if "no" or "not" IS  identified, execute code
 		{
 			//find out if word is no or not
 			if (s.substring(negation+2, negation+3).compareTo("t") == 0) 
