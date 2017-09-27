@@ -58,12 +58,6 @@ public class GreetingClass {
 		 * nN("okay", 0) -> true
 		 */
 		
-		//if String s == "not" || "no"
-		/*if (//no negation in front of psn)
-		{
-			return true;
-		}*/
-		
 		int negation = s.indexOf("no"); //find if there is "no" in the string - it gives a value besides -1 if there is "no" or "not"
 		
 		if ( negation == -1)
@@ -73,26 +67,27 @@ public class GreetingClass {
 		{
 			//find out if word is no or not
 			if (s.substring(negation+2, negation+3).compareTo("t") == 0) 
+				//determines if there is a t at the end of the identified word 'no'
 			{
 				//the word is not
-				if (negation + 4 == psn)// it is +4 and not +3 b/c i included the space
+				if (negation + 4 == psn)// it is +4 because not has three letters and a space is included
 				{
-					return false;
+					return false; // there is a not (negation) right immediately b4 psn
 							
 				} else
 				{
-					return true;
+					return true;// there are no negations right immediately b4 psn
 				}
 			}else
 			{
 				//the word is no
 				if (negation + 3 == psn)
 				{
-					return false;
+					return false; // there is a no (negation) right immediately b4 psn
 							
 				} else
 				{
-					return true;
+					return true;// there are no negations right immediately b4 psn
 				}
 			}
 		}
