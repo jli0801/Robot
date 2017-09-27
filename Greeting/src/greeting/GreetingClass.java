@@ -21,7 +21,7 @@ public class GreetingClass {
 	{
 		int numofS = s.indexOf(keyword);
 		
-		for (int i = 0; i < s.length(), i++)
+		for (int i = 0; i < s.length(); i++)
 		{
 			String letterOne = keyword.substring(0,1);
 			String letterTwo = s.substring(i, i+1);
@@ -32,7 +32,7 @@ public class GreetingClass {
 				if(s.substring(i-1, i).equals(" "))
 				{
 					//if there's a space before it 
-					if(s.substring(s.length(),s.length() +1 ).compareTo("a") < 0))
+					if(s.substring(s.length(),s.length() +1 ).compareTo("a") < 0)
 					{
 						//any puncuation 
 						return true; 
