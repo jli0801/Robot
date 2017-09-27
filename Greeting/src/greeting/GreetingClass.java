@@ -83,7 +83,7 @@ public class GreetingClass {
 				//the word is no
 				if (negation + 3 == psn)
 				{
-					return false; // there is a no (negation) right immediately b4 psn
+					return false; // there is a no (negation) right immediately b4 psn.
 							
 				} else
 				{
