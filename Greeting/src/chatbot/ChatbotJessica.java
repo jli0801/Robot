@@ -1,13 +1,13 @@
 package chatbot;
 
-public class ChatbotJessicaL implements Topic {
+public class ChatbotJessica implements Topic {
 
 	private String[] keywords;
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
 	
-	public ChatbotJessicaL() {
+	public ChatbotJessica() {
 		String[] temp = {"stuff", "things", "whatever", "nothing"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
@@ -33,7 +33,7 @@ public class ChatbotJessicaL implements Topic {
 			}
 		}
 		ChatbotMain.print("Well it was nice talking to you" + ChatbotMain.chatbot.getUsername() + "!");
-		//ChatbotMain.chatbot.getJessicaL().talk("");;
+		//ChatbotMain.chatbot.getJessica().talk("");;
 		ChatbotMain.chatbot.startChatting();
 	}
 	

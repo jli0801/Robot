@@ -14,7 +14,7 @@ public class Chatbot {
 		return jessica;
 	}
 	public Chatbot() {
-		jessica = new ChatbotJessicaL();
+		jessica = new ChatbotJessica();
 		username = "Unknown User";
 		chatting = true;
 	}
