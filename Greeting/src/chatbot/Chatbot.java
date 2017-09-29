@@ -4,6 +4,9 @@ public class Chatbot {
 	private String username;
 	private boolean chatting;
 	private Topic jessica;
+	private Topic areej;
+	private Topic vickie;
+	private Topic ji;
 
 	public String getUsername ()
 	{
@@ -12,6 +15,18 @@ public class Chatbot {
 	public Topic getJessicaL()
 	{
 		return jessica;
+	}
+	public Topic getAreej()
+	{
+		return areej;
+	}
+	public Topic getVickie()
+	{
+		return vickie;
+	}
+	public Topic getJi()
+	{
+		return ji;
 	}
 	public Chatbot() {
 		jessica = new ChatbotJessica();
@@ -31,6 +46,21 @@ public class Chatbot {
 			{
 				chatting = false; //exits the while loop IMPORTANT
 				jessica.talk(response);
+			}
+			else if(areej.isTriggered(response))
+			{
+				chatting = false; //exits the while loop IMPORTANT
+				areej.talk(response);
+			}
+			else if(vickie.isTriggered(response))
+			{
+				chatting = false; //exits the while loop IMPORTANT
+				vickie.talk(response);
+			}
+			else if(ji.isTriggered(response))
+			{
+				chatting = false; //exits the while loop IMPORTANT
+				ji.talk(response);
 			}
 			else
 			{
