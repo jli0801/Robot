@@ -12,7 +12,7 @@ public class Chatbot {
 	{
 		return username;
 	}
-	public Topic getJessicaL()
+	public Topic getJessica()
 	{
 		return jessica;
 	}
