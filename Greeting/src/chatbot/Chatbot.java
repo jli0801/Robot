@@ -30,6 +30,9 @@ public class Chatbot {
 	}
 	public Chatbot() {
 		jessica = new ChatbotJessica();
+		areej = new ChatbotAreej();
+		vickie = new ChatbotVickie();
+		ji = new ChatbotJi();
 		username = "Unknown User";
 		chatting = true;
 	}
@@ -64,7 +67,7 @@ public class Chatbot {
 			}
 			else
 			{
-				ChatbotMain.print("I'm sorry. I don't understand. I never said I was perfect.");
+				ChatbotMain.print("I'm sorry. I don't understand. Please rephrase that.");
 			}
 		}
 	}
