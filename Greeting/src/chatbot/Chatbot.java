@@ -39,7 +39,7 @@ public class Chatbot {
 
 	public void startChatting() {
 		
-		ChatbotMain.print("Hi! I am an intelligence machiene that can respond to your input.");
+		ChatbotMain.print("Hi! I am an intelligence machiene that can respond to your input. What is your name");
 		username = ChatbotMain.getInput();
 		while (chatting)
 		{
