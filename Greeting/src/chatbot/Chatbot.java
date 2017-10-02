@@ -8,7 +8,7 @@ public class Chatbot {
 	private Topic vickie;
 	private Topic ji;
 
-	public String getUsername ()
+	/*public String getUsername ()
 	{
 		return username;
 	}
@@ -70,7 +70,7 @@ public class Chatbot {
 				ChatbotMain.print("I'm sorry. I don't understand. Please rephrase that.");
 			}
 		}
-	}
+	}*/
 	
 	public testing{
 		
