@@ -123,8 +123,8 @@ public static int findKeyword (String searchString, String keyword, int startPsn
 
 public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 
-
 {
+	boolean keywordIso; 
 	int numofS = s.indexOf(keyword);
 	
 	for (int i = 0; i < s.length(); i++)
@@ -132,7 +132,7 @@ public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 		String letterOne = keyword.substring(0,1);
 		String letterTwo = s.substring(i, i+1);
 		keywordIso = false; 
-		if(letterOne.contentEquals(letterTwo) && !keywordIso && numofS > -1) //if the first letter matches with any of the first 
+		if(letterOne.equals(letterTwo) && !keywordIso && numofS > -1) //if the first letter matches with any of the first 
 			//letters of the word
 		{
 			if(s.substring(i-1, i).equals(" "))
@@ -140,7 +140,7 @@ public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 				//if there's a space before it 
 				if(s.substring(s.length(),s.length() +1 ).compareTo("a") < 0)
 				{
-					//any puncuation 
+					//any punctuation 
 					return true; 
 				}
 			
