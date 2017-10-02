@@ -129,7 +129,7 @@ public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 	
 	for (int i = 0; i < s.length() - 1; i++)
 	{
-		String letterOne = keyword.substring(0,1);
+		String letterOne = keyword.substring(0,i+1);
 		String letterTwo = s.substring(i+1, i+2);
 		keywordIso = false; 
 		if(letterOne.equals(letterTwo) && !keywordIso && numofS > -1) //if the first letter matches with any of the first 
