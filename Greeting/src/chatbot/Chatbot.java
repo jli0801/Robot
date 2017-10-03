@@ -8,6 +8,7 @@ public class Chatbot {
 	private Topic areej;
 	private Topic vickie;
 	private Topic ji;
+	private int helloCount; //irritated when repeated
 
 	public String getUsername ()
 	{

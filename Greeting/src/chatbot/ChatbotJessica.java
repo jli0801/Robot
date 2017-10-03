@@ -12,6 +12,7 @@ public class ChatbotJessica implements Topic {
 	private String[] jokesAns;
 	private String[] gamesArr; 
 	
+	
 	public ChatbotJessica() {
 		String[] triggerM = {"joke", "story", "game"};
 		keywords = triggerM;
@@ -72,6 +73,7 @@ public class ChatbotJessica implements Topic {
 		
 		ChatbotMain.chatbot.startChatting();
 	}
+	
 	
 	public String getJoke()
 	{
