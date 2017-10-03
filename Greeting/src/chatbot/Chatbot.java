@@ -2,6 +2,7 @@ package chatbot;
 
 public class Chatbot {
 	private String username;
+	private static int grade;
 	private boolean chatting;
 	private Topic jessica;
 	private Topic areej;
@@ -35,16 +36,28 @@ public class Chatbot {
 		ji = new ChatbotJi();
 		username = "Unknown User";
 		chatting = true;
+		grade = 0;
 	}
 
 	public void startChatting() {
 		
-		ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name and grade?");
+		ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name?");
 		username = ChatbotMain.getInput();
+		ChatbotMain.print("What grade are you in?");
+		
+		while(grade == 0)
+		{
+			String stringWithGrade = ChatbotMain.getInput();
+			Chatbot.getGrade(stringWithGrade);	
+		}
+		
+		
+		
+		
 		
 		while (chatting)
 		{
-			ChatbotMain.print("What would you like to talk about?");
+			ChatbotMain.print("Hi " + username + " from grade " + grade + ". What would you like to talk about?");
 			String response = ChatbotMain.getInput();
 			if(jessica.isTriggered(response))
 			{
@@ -73,4 +86,43 @@ public class Chatbot {
 		}
 	}
 	
-}
+	private static void getGrade(String stringWithGrade) {
+		String gradeTen = "10";
+		String gradeNine = "9";
+		String gradeEleven = "11";
+		String gradeTwelve = "12";
+		
+		for (int i = 0; i>stringWithGrade.length()-2; i++)
+			{
+				String possibleGradeNum = stringWithGrade.substring(i,i+2);
+			//	String possibleGradeWord = stringWithGrade.substring(i,i+3);
+				
+				
+				if (possibleGradeNum.equals(gradeTen)) // || possibleGradeNum.equals("ten") || possibleGradeNum.equals("tenth"))
+				{
+					grade = 10;
+				}
+				if (possibleGradeNum.equals(gradeNine))
+				{
+					grade = 9;
+				}
+				if (possibleGradeNum.equals(gradeEleven))
+				{
+					grade = 11;
+				}
+				if (possibleGradeNum.equals(gradeTwelve))
+				{
+					grade = 12;
+				}
+				
+			}
+			System.out.println("Sorry, what is your grade?");
+		}
+		ChatbotMain.chatbot.startChatting();
+				
+	}
+		
+
+	
+	
+
