@@ -57,7 +57,7 @@ public class Chatbot {
 		
 		while (chatting)
 		{
-			ChatbotMain.print("Hi, what would you like to talk about?");
+			ChatbotMain.print("Hi " + ChatbotMain.chatbot.getUsername() + ", what would you like to talk about?");
 			String response = ChatbotMain.getInput();
 			if(jessica.isTriggered(response))
 			{

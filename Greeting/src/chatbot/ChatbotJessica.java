@@ -50,7 +50,12 @@ public class ChatbotJessica implements Topic {
 				{
 					if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
 					{
-						
+						ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
+
+						if (i == 0 )
+						{
+							
+						}
 						ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
 						
 					}
