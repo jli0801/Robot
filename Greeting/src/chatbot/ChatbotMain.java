@@ -138,7 +138,7 @@ public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 return false;
 	
 }
-//importedfrom Greeting Class 
+//importedfrom Greeting Class //
 public static boolean noNegations(String s, int psn)
 {
 	/*returns true if there isn't a negation ("no", "not") immediately in front of psn.
