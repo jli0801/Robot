@@ -43,21 +43,21 @@ public class Chatbot {
 		
 		ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name?");
 		username = ChatbotMain.getInput();
-		ChatbotMain.print("What grade are you in?");
+		/*ChatbotMain.print("What grade are you in?");
 		
 		while(grade == 0)
 		{
 			String stringWithGrade = ChatbotMain.getInput();
 			Chatbot.getGrade(stringWithGrade);	
 		}
-		
+		*/
 		
 		
 		
 		
 		while (chatting)
 		{
-			ChatbotMain.print("Hi " + username + " from grade " + grade + ". What would you like to talk about?");
+			ChatbotMain.print("Hi, what would you like to talk about?");
 			String response = ChatbotMain.getInput();
 			if(jessica.isTriggered(response))
 			{
@@ -86,7 +86,7 @@ public class Chatbot {
 		}
 	}
 	
-	private static void getGrade(String stringWithGrade) {
+	/*private static void getGrade(String stringWithGrade) {
 		String gradeTen = "10";
 		String gradeNine = "9";
 		String gradeEleven = "11";
@@ -117,10 +117,11 @@ public class Chatbot {
 				
 			}
 			System.out.println("Sorry, what is your grade?");
-		}
-		ChatbotMain.chatbot.startChatting();
-				
+			ChatbotMain.chatbot.startChatting();
+				*/
 	}
+	
+
 		
 
 	
