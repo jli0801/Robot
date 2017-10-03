@@ -39,8 +39,9 @@ public class Chatbot {
 
 	public void startChatting() {
 		
-		ChatbotMain.print("Hi! I am an intelligence machiene that can respond to your input. What is your name?");
+		ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name and grade?");
 		username = ChatbotMain.getInput();
+		
 		while (chatting)
 		{
 			ChatbotMain.print("What would you like to talk about?");
@@ -72,25 +73,4 @@ public class Chatbot {
 		}
 	}
 	
-	
-
-	
-
-	public static boolean keywordIsIsolated(int position ,String keyword ,String s)//keywordIsIsolated(4,"good","i'm good")
-
-	{
-
-		if(s.substring(position, position+keyword.length()).equals(keyword)) //found word
-		{
-			if( position == 0) //space infront or is in the front
-			{
-				return true;
-			}
-			if(s.substring(position-1, position).equals(" "))
-			{
-				return true;
-			}
-		}
-	return false;
-	}
 }
