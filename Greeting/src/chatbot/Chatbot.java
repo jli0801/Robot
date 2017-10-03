@@ -48,7 +48,7 @@ public class Chatbot {
 		while(grade == 0)
 		{
 			String stringWithGrade = ChatbotMain.getInput();
-			Chatbot.getGrade(stringWithGrade);	
+			Chatbot.getGrade(stringWithGrade);	//
 		}
 		*/
 		
