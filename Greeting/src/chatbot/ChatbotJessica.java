@@ -36,6 +36,8 @@ public class ChatbotJessica implements Topic {
 	public void talk(String response) {
 		
 		ChatbotMain.print("Great! You came to the right place.");
+		
+		
 		response = ChatbotMain.getInput();
 		while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 		{
@@ -70,7 +72,16 @@ public class ChatbotJessica implements Topic {
 		
 		ChatbotMain.chatbot.startChatting();
 	}
+	
+	public String getJoke()
+	{
+		return jokesArr[]
+	}
 
+	public String getGame()
+	{
+		return gamesArr[]
+	}
 
 	public boolean isTriggered(String response) {
 		
