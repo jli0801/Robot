@@ -11,7 +11,7 @@ public class ChatbotVickie implements Topic{
 		String[] temp = {"stuff", "things", "whatever", "nothing"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
-		secretKeyword = "corgi";
+		secretKeyword = "corgi"; //hahahahahahhahahaha
 		response = "";
 	}
 
