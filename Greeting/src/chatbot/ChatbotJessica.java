@@ -9,11 +9,11 @@ public class ChatbotJessica implements Topic {
 	
 	
 	public ChatbotJessica() {
-		String[] temp = {"stuff", "things", "whatever", "nothing"};
+		String[] temp = {"joke", "dumb", "smart", "life", "childhood"};
 		keywords = temp;
 		
 		goodbyeKeyword = "bye";
-		secretKeyword = "pug";
+		secretKeyword = "family";
 		response = "";
 	}
 
@@ -26,18 +26,18 @@ public class ChatbotJessica implements Topic {
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("I can't even. I love pugs so much. Wow. You are so cool");
+				ChatbotMain.print("");
 				response = ChatbotMain.getInput();
 			}else
 			{
-				ChatbotMain.print("Yeah. That's pretty cool. but there are things I like even more. Tell me something else");
+				ChatbotMain.print("");
 				response = ChatbotMain.getInput();
 			}
 		}
 		
 		//access variables from other classes
-		ChatbotMain.print("Well, it was nice talking to you," +ChatbotMain.chatbot.getUsername() + "!");
-		//ChatbotMain.chatbot.getVickie().talk("");
+		ChatbotMain.print("Well, it was nice talking to you," +ChatbotMain.chatbot.getUsername() + ". Come by again!");
+		
 		ChatbotMain.chatbot.startChatting();
 	}
 
