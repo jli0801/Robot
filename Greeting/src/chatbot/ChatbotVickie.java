@@ -1,6 +1,7 @@
 package chatbot;
 
-public class ChatbotVickie implements Topic{
+public class ChatbotVickie implements Topic{ //personal life
+
 
 	private String[] keywords;
 	private String goodbyeKeyword;

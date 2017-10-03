@@ -124,32 +124,18 @@ public static int findKeyword (String searchString, String keyword, int startPsn
 public static boolean keywordIsIsolated(int position ,String keyword ,String s)
 
 {
-	boolean keywordIso; 
-	int numofS = s.indexOf(keyword);
-	
-	for (int i = 0; i < s.length() - 1; i++)
+	if(s.substring(position, position+keyword.length()).equals(keyword)) //found word
 	{
-		String letterOne = keyword.substring(0,i+1);
-		String letterTwo = s.substring(i+1, i+2);
-		keywordIso = false; 
-		if(letterOne.equals(letterTwo) && !keywordIso && numofS > -1) //if the first letter matches with any of the first 
-			//letters of the word
+		if( position == 0) //space infront or is in the front
 		{
-			if(s.substring(i-1, i).equals(" "))
-			{
-				//if there's a space before it 
-				if(s.substring(s.length(),s.length() +1 ).compareTo("a") < 0)
-				{
-					//any punctuation 
-					return true; 
-				}
-			
-			}
+			return true;
 		}
-		
+		if(s.substring(position-1, position).equals(" "))
+		{
+			return true;
+		}
 	}
-	return false; 
-	//check
+return false;
 	
 }
 //importedfrom Greeting Class 
