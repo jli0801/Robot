@@ -31,7 +31,7 @@ public class ChatbotJi implements Topic{
 			}
 			else
 			{
-				if (ChatbotMain.findKeyword(response, keywords[0], 0) >= 0) { //colleges
+				if ((ChatbotMain.findKeyword(response, keywords[0], 0) >= 0) || (ChatbotMain.findKeyword(response, keywords[1], 0) >= 0) || (ChatbotMain.findKeyword(response, keywords[2], 0) >= 0)) { //colleges
 					ChatbotMain.print("What specific aspect of college do you have a question about?");
 					
 				}
@@ -51,6 +51,9 @@ public class ChatbotJi implements Topic{
 			}
 			//reference to academic if find keywords
 			//info on gpa/sat
+			
+			//annoyed if asks questions about keyword 5x
+			//after 6x quits conversation
 		}
 		ChatbotMain.print( ChatbotMain.chatbot.getUsername() + ", if you need more help about college, ask away!");
 		//ChatbotMain.chatbot.getJi().talk("");;
