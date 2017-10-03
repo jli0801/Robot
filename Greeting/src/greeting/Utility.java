@@ -20,7 +20,19 @@ public class Utility {
 	}
 
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
-		return true;
+		
+			if(s.substring(psn, psn+keyword.length()).equals(keyword)) //found word
+			{
+				if( psn == 0) //space infront or is in the front
+				{
+					return true;
+				}
+				if(s.substring(psn-1, psn).equals(" "))
+				{
+					return true;
+				}
+			}
+		return false;
 	}
 
 	public static boolean noNegations(String s, int psn){
