@@ -7,7 +7,7 @@ public class ChatbotJi implements Topic{
 	private String response;
 	
 	public ChatbotJi() {
-		String[] temp = {"college", "university", "school", "program", "degree", "reach", "safety", "match", "income", "application"};
+		String[] temp = {"college", "university", "school", "program", "reach", "safety", "match", "income", "application"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
 		secretKeyword = "scholarship";
