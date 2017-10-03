@@ -7,16 +7,15 @@ public class ChatbotJi implements Topic{
 	private String response;
 	
 	public ChatbotJi() {
-		String[] temp = {"stuff", "things", "whatever", "nothing"};
+		String[] temp = {"college", "university", "school", "program", "reach", "safety", "match", "income", "application"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
-		secretKeyword = "corgi";
+		secretKeyword = "scholarship";
 		response = "";
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("Hey! So you want to talk about generic boring things? "
-				+ "I love talking about that");
+		ChatbotMain.print("By any chance, are you interested in learning what colleges are available for you?");
 		response = ChatbotMain.getInput();
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
