@@ -6,27 +6,34 @@ public class ChatbotJessica implements Topic {
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
+	private String[] calmRes;
+	private String[] upsetRes;
 	
 	
 	public ChatbotJessica() {
-		String[] temp = {"joke", "", "", "", "game"};
-		keywords = temp;
+		String[] triggerM = {"joke", "fun", "", "", "game"};
+		keywords = triggerM;
+		String[] calmRes = {"Please answer my question.", "I don't think you get this. "
+				,"I don't understand.", "I don't think I can help you with that."};
+		String[] upsetRes = {"I can't understand you if you won't be specific. ", "Please explain further. "
+				,"I need more details. ", "Do you really understand? "};
+		
 		
 		goodbyeKeyword = "bye";
-		secretKeyword = "family";
+		secretKeyword = "funny";
 		response = "";
 	}
 
 	
 	public void talk(String response) {
 		
-		ChatbotMain.print("Hey! So you want to talk about generic boring things, huh? I love talking about that. So tell me something");
+		ChatbotMain.print("");
 		response = ChatbotMain.getInput();
 		while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("");
+				ChatbotMain.print("I'm glad you find ");
 				response = ChatbotMain.getInput();
 			}else
 			{
