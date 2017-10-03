@@ -9,7 +9,7 @@ public class ChatbotJessica implements Topic {
 	
 	
 	public ChatbotJessica() {
-		String[] temp = {"joke", "dumb", "smart", "life", "childhood"};
+		String[] temp = {"joke", "", "", "", "game"};
 		keywords = temp;
 		
 		goodbyeKeyword = "bye";
