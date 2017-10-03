@@ -9,10 +9,10 @@ public class ChatbotVickie implements Topic{ //personal life
 	private String response;
 	
 	public ChatbotVickie() {
-		String[] temp = {"stuff", "things", "whatever", "nothing"};
+		String[] temp = {"home", "life", "me", "nothing"};
 		keywords = temp;
 		goodbyeKeyword = "bye";
-		secretKeyword = "corgi";
+		secretKeyword = "dog";
 		response = "";
 	}
 
@@ -24,7 +24,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("I love corgris so much! So cool.");
+				ChatbotMain.print("I love dogs soo much! So cool.");
 			}
 			else
 			{
