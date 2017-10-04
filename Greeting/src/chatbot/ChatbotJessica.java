@@ -34,7 +34,7 @@ public class ChatbotJessica implements Topic {
  		//determines mood/emotion
   		String[] jokes = {"What makes oil boil?", ""};
   		jokesArr = jokes;
- 		String[] answerJ = {"The letter B!", };		
+	
  		String[] answerJ = {"Get it? The letter B!", "It's a play on words!"
  				, "Well, technically a play on letters!"};	
   		jokesAns = answerJ;
@@ -65,8 +65,7 @@ public class ChatbotJessica implements Topic {
   	
   	public void talk(String response) {
   		
- 		ChatbotMain.print("Great! You came to the right place.");
-  		
+ 		
   		
   		response = ChatbotMain.getInput();
   		while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
@@ -74,7 +73,7 @@ public class ChatbotJessica implements Topic {
   			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
   			{
  				ChatbotMain.print("I'm glad you find me funny! Would you like to here another joke?");
- 				ChatbotMain.print("I'm glad you find me funny! Would you like to talk about something else?");
+ 
   				response = ChatbotMain.getInput();
   			}
   			else
@@ -82,10 +81,9 @@ public class ChatbotJessica implements Topic {
   				{
   					if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
   					{
- 						ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
- 
- 						if (i == 0 )
+ 						
  						ChatbotMain.print("Great! You came to the right place.");
+						
  						for (int i = 0; i < keywords.length; i++)
   						{
  							
@@ -133,7 +131,7 @@ public class ChatbotJessica implements Topic {
  								
  							}
  						}
- 						ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
+ 					
  						
   						
   					}
