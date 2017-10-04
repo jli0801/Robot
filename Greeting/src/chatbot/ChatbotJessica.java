@@ -6,6 +6,7 @@ public class ChatbotJessica implements Topic {
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response; 
+	private String[]calmResArr;
 	
 	private String[] upsetResArr;
   	private String[] jokesArr;
@@ -25,8 +26,8 @@ public class ChatbotJessica implements Topic {
  		//in charge of entertainment
   		keywords = triggerM;
   		String[] calmRes = {"Please answer my question.", "I don't think you get this. "
- 				,"I don't understand.", "I don't think I can help you with that."};
- 				,"I don't understand.", "Come on! Just answer me."};
+ 				,"I don't understand.", "Come on! Just answer me!"};
+ 			
   		calmResArr = calmRes;
   		String[] upsetRes = {"I can't understand you if you won't be specific. ", "Please explain further. "
   				,"I need more details. ", "Do you really understand? "};
@@ -45,8 +46,8 @@ public class ChatbotJessica implements Topic {
  				"The answer was B! Gosh, you're such a stick in the mud."};
  		jokesWrong = answerWrongJ;
  		//ended jokes now onto games
-		String[] games = {"Let's play 20 questions! I'm thinking of something.. Guess it!"};
-  		gamesArr = games;
+		String[] games1 = {"Let's play 20 questions! I'm thinking of something.. Guess it!"};
+  		gamesArr = games1;
  		String[] answerG = {"Computer"};	
  		gamesAns = answerG;
  		String[] answerWrongG = {"Noo! Guess again.", "Are you even trying?", 
@@ -63,21 +64,20 @@ public class ChatbotJessica implements Topic {
   	}
   
   	
-  	public void talk(String response) {
-  		
  		
   		
-  		response = ChatbotMain.getInput();
-  		while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
-  		{
-  			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
-  			{
- 				ChatbotMain.print("I'm glad you find me funny! Would you like to here another joke?");
- 
-  				response = ChatbotMain.getInput();
-  			}
-  			else
+  		
   public void talk(String response) {
+			  response = ChatbotMain.getInput();
+				while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
+				{
+					if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
+					{
+						ChatbotMain.print("I'm glad you find me funny! Would you like to here another joke?");
+		
+						response = ChatbotMain.getInput();
+					}
+					else
   				{
   					if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
   					{
@@ -136,6 +136,7 @@ public class ChatbotJessica implements Topic {
   						
   					}
   				}
+				}
   				}
   				
 
