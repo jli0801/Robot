@@ -2,6 +2,11 @@
 
 public class ChatbotJessica implements Topic {
 
+	private String[] keywords;
+	private String goodbyeKeyword;
+	private String secretKeyword;
+	private String response; 
+	
 	private String[] upsetResArr;
   	private String[] jokesArr;
   	private String[] jokesAns;
