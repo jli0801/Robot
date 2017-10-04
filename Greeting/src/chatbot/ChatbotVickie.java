@@ -86,4 +86,13 @@ public class ChatbotVickie implements Topic{ //personal life
 		return false;
 
 }
+	public void conciseStr(){
+		int isItConcise = response.length();
+		
+		if (isItConcise > 50)
+		{
+			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. Be concise - you will need to be in college. Please respond CONCISELY!");
+		}
+		
+	}
 }

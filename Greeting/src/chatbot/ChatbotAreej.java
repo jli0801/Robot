@@ -7,6 +7,8 @@ public class ChatbotAreej implements Topic{
 	private String secretKeyword;
 	private String response;
 	private String[] worryingFactors;
+	private boolean advanced;
+	private boolean discussedGrades;
 	//private String[] worried;
 	//private int worry;
 	
@@ -35,7 +37,7 @@ public class ChatbotAreej implements Topic{
 				}
 				else
 				{
-					
+					discussHonorsAsNeeded();
 					//ChatbotMain.print("");
 					response = ChatbotMain.getInput();
 				} 
@@ -47,6 +49,14 @@ public class ChatbotAreej implements Topic{
 		ChatbotMain.chatbot.startChatting();
 	}
 	
+
+	private void discussHonorsAsNeeded() {
+		if(ChatbotMain.chatbot.getJi().hasDiscussedHonors()) {
+			//credentials for honors
+			//method for ji
+		}
+		
+	}
 
 	//reference to college
 	
@@ -62,4 +72,13 @@ public class ChatbotAreej implements Topic{
 		return false;
 
 }
+	
+	public boolean isAdvanced() {
+		return advanced;
+		
+	}
+	
+	public boolean isDiscussed() {
+		return discussedGrades;
+	}
 }
