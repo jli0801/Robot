@@ -2,41 +2,53 @@ package chatbot;
 
 public class ChatbotAreej implements Topic{
 	private String[] keywords;
+	private String[] kwords;
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
+	private String[] worryingFactors;
+	private String[] worried;
+	private int worry;
 	
 	public ChatbotAreej() {
-		String[] temp = {"stuff", "things", "whatever", "nothing"};
+		String[] temp = {"grades", "scores", "classes", "gpa", "program"};
+		String[] worryingFactors = {"bad", "low", "wrong"};
+		String[] worried = {"You may need some extra help", "Is there anything I can do?"};
 		keywords = temp;
+		kwords= worryingFactors;
 		goodbyeKeyword = "bye";
-		secretKeyword = "corgi";
+		//secretKeyword = "program";
 		response = "";
+		worry = 0;
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("Hey! So you want to talk about generic boring things? "
-				+ "I love talking about that");
+		ChatbotMain.print("Hm I see, what would you like to know? ");
 		response = ChatbotMain.getInput();
+	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
-			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
-			{
-				ChatbotMain.print("I love corgris so much! So cool.");
-			}
-			else
-			{
+				if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
+				{
+					ChatbotMain.print("oh no, what can i do to help?");
+					response = ChatbotMain.getInput();
+				}
+				else
+				{
+					
+					//ChatbotMain.print("");
+					response = ChatbotMain.getInput();
+				} 
 				
-				ChatbotMain.print("That's cool but there are other cooler things");
-				response = ChatbotMain.getInput();
-			}
 		}
-		ChatbotMain.print("Well it was nice talking to you" + ChatbotMain.chatbot.getUsername() + "!");
+		
+		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getAreej().talk("");;
 		ChatbotMain.chatbot.startChatting();
 	}
 	
 
+	//reference to college
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
