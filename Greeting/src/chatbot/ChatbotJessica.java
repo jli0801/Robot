@@ -19,6 +19,9 @@ public class ChatbotJessica implements Topic {
  	private String[] gamesRight;
  	private int numChances;
  	private int moodIncrease;
+ 	
+ 	private boolean gotCorrectJ;
+ 	private boolean gotCorrectG;
   	
   	public ChatbotJessica() {
  		String[] triggerM = {"joke", "game"};
@@ -61,6 +64,7 @@ public class ChatbotJessica implements Topic {
   		response = "";
  		moodIncrease = 0;
  		numChances = 0;
+ 		gotCorrectJ = false;
   	}
   
   	
@@ -68,8 +72,7 @@ public class ChatbotJessica implements Topic {
   		
   		
   public void talk(String response) {
-	  		ChatbotMain.print("Great! You came to the right place.");
-			response = ChatbotMain.getInput();
+	  		
 			
 				while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 				{
@@ -101,23 +104,28 @@ public class ChatbotJessica implements Topic {
  										ChatbotMain.print("No! You're being to literal!");
  									}
  									
+ 									if(!gotCorrectJ)
+ 									{
  									if(ChatbotMain.findKeyword(response, "B", 0) >= 0)
  									{
- 										ChatbotMain.print(jokesAns[(int) (Math.random()*4)]);
+ 										gotCorrectJ = true;
+ 										ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
+ 									}
  									}
  									else
  									{
- 										ChatbotMain.print(jokesWrong[(int) (Math.random()*4)]); //gradually gets worse 
+ 										gotCorrectJ = false;
+ 										ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
  									}
  									
  									moodIncrease++;
  									if(moodIncrease > 20)
  									{
- 										ChatbotMain.print(upsetResArr[(int) (Math.random()*4)]);
+ 										ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
  									}
  									else
  									{
- 										ChatbotMain.print(calmResArr[(int) (Math.random()*4)]);
+ 										ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
  									}
  									
  								}
