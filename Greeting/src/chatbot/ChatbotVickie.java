@@ -38,8 +38,9 @@ public class ChatbotVickie implements Topic{ //personal life
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("Can you elaborate more on your problem? How do you feel about it? ");
+		ChatbotMain.print("Can you elaborate more on your problem? How do you feel about it? "); //What about it??
 		response = ChatbotMain.getInput();
+		
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
