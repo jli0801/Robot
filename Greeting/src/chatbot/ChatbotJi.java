@@ -11,10 +11,11 @@ public class ChatbotJi implements Topic{
 	//if numAnnoyed reaches 3, will turn to mild reaction 
 	//else when reach to 1, will turn to annoyed reaction
 	
-	//link keyword such as grade/sat/ to other chat
+	//link keyword such as grade/scores
+	//
 	
 	public ChatbotJi() {
-		String[] temp = {"college", "university", "school", "program", "degree", "income", "application"};
+		String[] temp = {"college", "university", "school", "application"};
 		String[] mild = {"I'm glad you asked me for help.", "Thanks for showing your interest.", "Your future is bright."};
  		String[] annoyed = {"If you aren't here for college help, might as well google it.", "I have other students who need help, come back when you have prepared reasonable questions.", "I don't have all day."};
 		keywords = temp;
@@ -56,9 +57,9 @@ public class ChatbotJi implements Topic{
 		ChatbotMain.chatbot.startChatting();
 	}
 	
-	private void getBotReaction { //processes when a user repeats similar thing many times
+	//private void getBotReaction { //processes when a user repeats similar thing many times
 		
-	}
+	//}
 	
 	
 	public boolean isTriggered(String response) {
