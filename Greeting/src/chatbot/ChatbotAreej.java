@@ -48,7 +48,7 @@ public class ChatbotAreej implements Topic{
 	}
 	
 
-	//reference to college here
+	//reference to college
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
