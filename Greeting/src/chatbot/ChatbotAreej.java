@@ -7,8 +7,8 @@ public class ChatbotAreej implements Topic{
 	private String secretKeyword;
 	private String response;
 	private String[] worryingFactors;
-	private String[] worried;
-	private int worry;
+	//private String[] worried;
+	//private int worry;
 	
 	public ChatbotAreej() {
 		String[] temp = {"grades", "scores", "classes", "gpa", "program"};
