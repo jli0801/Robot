@@ -1,4 +1,4 @@
-package chatbot;
+ package chatbot;
 
 public class ChatbotJessica implements Topic {
 
@@ -15,8 +15,8 @@ public class ChatbotJessica implements Topic {
  	private int moodIncrease;
   	
   	public ChatbotJessica() {
- 		String[] triggerM = {"joke", "story", "game"};
  		String[] triggerM = {"joke", "game"};
+ 		
  		//in charge of entertainment
   		keywords = triggerM;
   		String[] calmRes = {"Please answer my question.", "I don't think you get this. "
