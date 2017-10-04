@@ -60,7 +60,7 @@ public class ChatbotJi implements Topic{
 		ChatbotMain.chatbot.startChatting();
 	}
 	
-	//private void
+	private void //helper method for annoyed/happy reactions
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
