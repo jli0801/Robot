@@ -68,7 +68,9 @@ public class ChatbotJessica implements Topic {
   		
   		
   public void talk(String response) {
-			  response = ChatbotMain.getInput();
+	  		ChatbotMain.print("Great! You came to the right place.");
+			response = ChatbotMain.getInput();
+			
 				while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1)
 				{
 					if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
@@ -79,17 +81,15 @@ public class ChatbotJessica implements Topic {
 					}
 					else
   				{
-  					if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
-  					{
+  				
  						
- 						ChatbotMain.print("Great! You came to the right place.");
-						
  						for (int i = 0; i < keywords.length; i++)
   						{
  							
  							if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
  							{
  								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
+ 								
  								
  								if (i == 0 )
  								{
@@ -107,7 +107,7 @@ public class ChatbotJessica implements Topic {
  									}
  									else
  									{
- 										ChatbotMain.print(jokesWrong[i]); //gradually gets worse 
+ 										ChatbotMain.print(jokesWrong[(int) (Math.random()*4)]); //gradually gets worse 
  									}
  									
  									moodIncrease++;
@@ -137,7 +137,7 @@ public class ChatbotJessica implements Topic {
   					}
   				}
 				}
-  				}
+  				
   				
 
  
