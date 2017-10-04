@@ -135,16 +135,19 @@ public class ChatbotJessica implements Topic {
   				}
   				}
   				
-/*  public void talk(String response) {
-  		ChatbotMain.chatbot.startChatting();
-  	}
-  	
- 	*/
+
  
   
   public boolean isTriggered(String response) {
-  		return false;
-  	}
+		for(int i = 0; i < keywords.length; i++)
+		{
+			//IMPORTANT (one the rubric) only if keyword is used
+			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
+			{
+				return true;
+			}
+		}
+		return false;
   	
  	
   
