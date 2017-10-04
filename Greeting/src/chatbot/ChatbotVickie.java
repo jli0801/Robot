@@ -6,8 +6,10 @@ public class ChatbotVickie implements Topic{ //personal life
 	private String[] keywords;
 	private String[] negativeFeelings;
 	private String[] positiveFeelings;
+	
 	private String[] negativeComments;
 	private String[] positiveComments;
+	
 	private String[] positiveFeedback;
 	private String[] negativeFeedback;
 	
@@ -19,10 +21,13 @@ public class ChatbotVickie implements Topic{ //personal life
 	public ChatbotVickie() {
 		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress"}; // worried?
 			keywords = temp;
+			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated"};
 			negativeFeelings = badEmotions;
 		String[] goodEmotions = {"happy", "great"};
 			positiveFeelings = goodEmotions;
+			
+		String[] negativeComments = {""};
 			
 		//make string of everybody's array keywords so if triggered, it can do to their class
 			
@@ -45,7 +50,7 @@ public class ChatbotVickie implements Topic{ //personal life
 			{
 				// WRITE ALL CODE HERE!!! // maybe make concise function
 				// find out what the emotion is in response : compare it to the pos||neg Array and reply apporopriately
-				if(positiveemotion) // mayb use while?
+				/*if(positiveemotion) // mayb use while?
 				{
 					ChatbotMain.print("That's good to hear!");
 					response = ChatbotMain.getInput();
@@ -59,7 +64,7 @@ public class ChatbotVickie implements Topic{ //personal life
 				{
 					ChatbotMain.print("What other words are synonymous to your emotion?");
 					response = ChatbotMain.getInput();
-				}
+				}*/
 			}
 		}
 		ChatbotMain.print("Well it was nice talking to you" + ChatbotMain.chatbot.getUsername() + "!");
