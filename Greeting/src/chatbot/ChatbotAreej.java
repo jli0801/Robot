@@ -19,7 +19,7 @@ public class ChatbotAreej implements Topic{
 		goodbyeKeyword = "bye";
 		//secretKeyword = "program";
 		response = "";
-		worry = 0;
+		//worry = 0;
 	}
 
 	public void talk(String response) {
