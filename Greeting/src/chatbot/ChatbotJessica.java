@@ -1,4 +1,4 @@
-package chatbot;
+ package chatbot;
 
 public class ChatbotJessica implements Topic {
 
@@ -15,8 +15,8 @@ public class ChatbotJessica implements Topic {
  	private int moodIncrease;
   	
   	public ChatbotJessica() {
- 		String[] triggerM = {"joke", "story", "game"};
  		String[] triggerM = {"joke", "game"};
+ 		
  		//in charge of entertainment
   		keywords = triggerM;
   		String[] calmRes = {"Please answer my question.", "I don't think you get this. "
@@ -135,16 +135,19 @@ public class ChatbotJessica implements Topic {
   				}
   				}
   				
-/*  public void talk(String response) {
-  		ChatbotMain.chatbot.startChatting();
-  	}
-  	
- 	*/
+
  
   
   public boolean isTriggered(String response) {
-  		return false;
-  	}
+		for(int i = 0; i < keywords.length; i++)
+		{
+			//IMPORTANT (one the rubric) only if keyword is used
+			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
+			{
+				return true;
+			}
+		}
+		return false;
   	
  	
   
