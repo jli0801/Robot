@@ -7,7 +7,9 @@ public class Chatbot {
 	private Topic areej;
 	private Topic vickie;
 	private Topic ji;
-
+	private int helloCount;
+	private String[] upsetResArr;
+	
 	public String getUsername ()
 	{
 		return username;
@@ -35,6 +37,12 @@ public class Chatbot {
 		ji = new ChatbotJi();
 		username = "Unknown User";
 		chatting = true;
+		helloCount = 0;
+	
+		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?"
+				,"Please stop saying hi. ", "Do you really understand? "};
+		upsetResArr = upsetRes;
+
 	}
 
 	public void startChatting() {
@@ -45,6 +53,16 @@ public class Chatbot {
 		{
 			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about?");
 			String response = ChatbotMain.getInput();
+			
+			if(ChatbotMain.findKeyword(response, "hello" , 0) >= 0)
+			{
+				helloCount++;
+				if(helloCount > 5)
+				{
+				ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
+				}
+			}
+			
 			if(jessica.isTriggered(response))
 			{
 				chatting = false; //exits the while loop IMPORTANT

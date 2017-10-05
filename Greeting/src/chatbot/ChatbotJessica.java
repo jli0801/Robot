@@ -92,48 +92,21 @@ public class ChatbotJessica implements Topic {
  							if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
  							{
  								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
- 								
- 								
- 								if (i == 0 )
- 								{
- 									ChatbotMain.print(jokesArr[0]);
- 									response = ChatbotMain.getInput();
- 									
- 									if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
- 									{
- 										ChatbotMain.print("No! You're being to literal!");
- 									}
- 									
- 									if(!gotCorrectJ)
- 									{
- 									if(ChatbotMain.findKeyword(response, "B", 0) >= 0)
- 									{
- 										gotCorrectJ = true;
- 										ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
- 									}
- 									}
- 									else
- 									{
- 										gotCorrectJ = false;
- 										ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
- 									}
- 									
- 									moodIncrease++;
- 									if(moodIncrease > 20)
- 									{
- 										ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
- 									}
- 									else
- 									{
- 										ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
- 									}
- 									
- 								}
+ 								tellAJoke(response);
+ 						
+ 							}
  								else
  								{
- 									ChatbotMain.print(gamesArr[0]);
+ 									ChatbotMain.print("Would you like to play a game?" );
  									response = ChatbotMain.getInput();
- 									
+ 									if (response.equals("yes"))
+ 									{
+ 									ChatbotMain.print(gamesArr[0]);
+ 									}
+ 									else
+ 									{
+ 										
+ 									}
  								}
  								
  								
@@ -144,10 +117,52 @@ public class ChatbotJessica implements Topic {
   						
   					}
   				}
+				
+  				
+  				
+public void tellAJoke (String response)
+{
+	
+		while(!gotCorrectJ)
+		{
+			ChatbotMain.print(jokesArr[0]);
+			response = ChatbotMain.getInput();
+			
+			if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
+			{
+				ChatbotMain.print("No! You're being to literal!");
+			}
+			
+			
+			if(ChatbotMain.findKeyword(response, "B", 0) >= 0)
+			{
+				if(!gotCorrectJ)
+				{
+				
+				ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
 				}
-  				
-  				
-
+				gotCorrectJ = true;
+				
+			}
+			else
+			{
+				gotCorrectJ = false;
+					ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
+			}
+			
+			
+			moodIncrease++;
+			if(moodIncrease > 20)
+			{
+				ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
+			}
+			else
+			{
+				ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
+			}
+			
+		}
+}
  
   
   public boolean isTriggered(String response) {

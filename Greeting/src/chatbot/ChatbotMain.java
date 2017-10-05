@@ -84,19 +84,14 @@ public class ChatbotMain {
 
 	
 //importedfrom Greeting Class 
-public static final String[] gRes = {"That's good to hear.","Great!",
+/*public static final String[] gRes = {"That's good to hear.","Great!",
 		"Wow. Tell me more.","I'm glad it went well.", "That's amazing!"};
 public static final String[] bRes = {"That's bad news.","I'm so sorry.",
 		"Would you like to talk more about it?",
-		"That's too bad. ", "Your day will get better."};
-private String userInput;
- 
-private int helloCount;
+		"That's too bad. ", "Your day will get better."}; */
 
-public void Hello()
-{
- helloCount = 0;
-}
+ 
+
 
 //index of keyword after startpsn is isolated, has no negation or -1 otherwise
 public static int findKeyword (String searchString, String keyword, int startPsn)
