@@ -75,11 +75,11 @@ public class ChatbotJi implements Topic{
 	//private void getBotReaction { //processes when a user repeats similar thing many times
 	//	if (numAnnoyed > 1 && < 4) { //mild
 			//generate random mild response
-		}
+	//	}
 	
 	//	if (numAnnoyed <= 1) { //annoyed
 			//generate random annoyed response
-		}
+	//	}
 	//}
 	
 	
