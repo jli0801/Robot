@@ -2,11 +2,12 @@ package chatbot;
 
 public class ChatbotAreej implements Topic{
 	private String[] keywords;
-	private String[] kwords;
+	//private String[] kwords;
+	private String[] hc;
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
-	private String[] worryingFactors;
+	//private String[] worryingFactors;
 	private boolean advanced;
 	private boolean discussedGrades;
 	//private String[] worried;
@@ -14,13 +15,16 @@ public class ChatbotAreej implements Topic{
 	
 	public ChatbotAreej() {
 		String[] temp = {"grades", "scores", "classes", "gpa", "program"};
-		String[] worryingFactors = {"bad", "low", "wrong"};
-		String[] worried = {"You may need some extra help", "Is there anything I can do?"};
 		keywords = temp;
-		kwords= worryingFactors;
+		String[] hardClasses = {"ap", "honors"};
+		hc = hardClasses;
+		
 		goodbyeKeyword = "bye";
-		//secretKeyword = "program";
+		secretKeyword = "dumb";
 		response = "";
+		//String[] worryingFactors = {"bad", "low", "wrong"};
+		//String[] worried = {"You may need some extra help", "Is there anything I can do?"};
+		//kwords= worryingFactors;
 		//worry = 0;
 	}
 
@@ -30,7 +34,13 @@ public class ChatbotAreej implements Topic{
 	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
-				if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
+			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
+			{
+				ChatbotMain.print("Don't say that, that's not nice.");
+				response = ChatbotMain.getInput();
+			}
+
+				/*if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
 				{
 					ChatbotMain.print("oh no, what can i do to help?");
 					response = ChatbotMain.getInput();
@@ -41,7 +51,10 @@ public class ChatbotAreej implements Topic{
 					//ChatbotMain.print("");
 					response = ChatbotMain.getInput();
 				} 
-				
+				*/
+			
+			if                                                           
+			
 		}
 		
 		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
