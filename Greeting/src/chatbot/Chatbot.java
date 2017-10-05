@@ -54,14 +54,7 @@ public class Chatbot {
 			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about?");
 			String response = ChatbotMain.getInput();
 			
-			if(ChatbotMain.findKeyword(response, "hello" , 0) >= 0)
-			{
-				helloCount++;
-				if(helloCount > 5)
-				{
-				ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
-				}
-			}
+		
 			
 			if(jessica.isTriggered(response))
 			{
@@ -85,6 +78,14 @@ public class Chatbot {
 			}
 			else
 			{
+				if(ChatbotMain.findKeyword(response, "hello" , 0) >= 0)
+				{
+					helloCount++;
+					if(helloCount > 5)
+					{
+					ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
+					}
+				}
 				ChatbotMain.print("I'm sorry. I don't understand. Please rephrase that.");
 			}
 		}

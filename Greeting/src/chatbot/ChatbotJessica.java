@@ -133,7 +133,8 @@ public void tellAJoke (String response)
 				ChatbotMain.print("No! You're being to literal!");
 			}
 			
-			
+			while (ChatbotMain.findKeyword(response, "B", 0) == -1)
+			{
 			if(ChatbotMain.findKeyword(response, "B", 0) >= 0)
 			{
 				if(!gotCorrectJ)
@@ -144,13 +145,11 @@ public void tellAJoke (String response)
 				gotCorrectJ = true;
 				
 			}
-			else
-			{
-				gotCorrectJ = false;
-					ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
+			
 			}
 			
-			
+			gotCorrectJ = false;
+			ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
 			moodIncrease++;
 			if(moodIncrease > 20)
 			{
