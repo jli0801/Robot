@@ -136,10 +136,8 @@ public void tellAJoke (String response)
 			
 			for(int i = 0; i < response.length(); i++)
 			{
-			if(ChatbotMain.findKeyword(response, "B", i) >= 0 )
+			if(ChatbotMain.findKeyword(response, "b", i) >= 0 )
 			{
-			
-				
 				
 				gotCorrectJ = true;
 				
