@@ -13,27 +13,33 @@ public class ChatbotVickie implements Topic{ //personal life
 	private String[] positiveFeedback;
 	private String[] negativeFeedback;
 	
+	//private boolean concise;
+	private boolean beginning;
+	
 	//private String[] concise;
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
 	
 	public ChatbotVickie() {
-		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress"}; // worried?
+		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death"}; // worried?
 			keywords = temp;
 			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated"};
 			negativeFeelings = badEmotions;
-		String[] goodEmotions = {"happy", "great"};
+		String[] goodEmotions = {"happy", "great", "excited", "relaxed"};
 			positiveFeelings = goodEmotions;
 			
-		String[] negativeComments = {""};
+		String[] negComments = {""};
+			negativeComments = negComments;
+		String[] posComments = {""};
+			positiveComments = posComments;
 			
 		//make string of everybody's array keywords so if triggered, it can do to their class
 			
 		//String[] shortResponsePlz = {"Sorry, can you shorten your response and identify the immediate problem? Being concise will also help in school and in communication", "Please 	
 		goodbyeKeyword = "bye";
-		secretKeyword = "family";
+		secretKeyword = "family"; //death // died
 		response = "";
 	}
 
@@ -41,11 +47,18 @@ public class ChatbotVickie implements Topic{ //personal life
 		ChatbotMain.print("Can you elaborate more on your problem? How do you feel about it? "); //What about it??
 		response = ChatbotMain.getInput();
 		
-		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
+		beginning = true;
+		
+		if (response.length() > 60)
+		{
+			conciseStr();
+			//concise = true;
+		}
+		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!");
+				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
 			}
 			else
 			{
@@ -68,9 +81,9 @@ public class ChatbotVickie implements Topic{ //personal life
 				}*/
 			}
 		}
-		ChatbotMain.print("Well it was nice talking to you" + ChatbotMain.chatbot.getUsername() + "!");
+		ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getVickie().talk("");;
-		ChatbotMain.chatbot.startChatting();
+		//ChatbotMain.chatbot.startChatting();
 	}
 	
 
@@ -88,12 +101,10 @@ public class ChatbotVickie implements Topic{ //personal life
 
 }
 	public void conciseStr(){
-		int isItConcise = response.length();
 		
-		if (isItConcise > 50)
-		{
-			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. Be concise - you will need to be in college. Please respond CONCISELY!");
-		}
+			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. You are going to have to be concise in college so why not start now? Please respond CONCISELY!");
+			response = ChatbotMain.getInput();
+			beginning = false;
 		
 	}
 }
