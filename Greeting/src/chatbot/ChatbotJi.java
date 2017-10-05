@@ -8,6 +8,7 @@ public class ChatbotJi implements Topic{
 	private String[] happy;
 	private String[] mild;
  	private String[] annoyed;
+ 	private boolean discussedHonors;
  	private int numAnnoyed = 5;
 	//if numAnnoyed reaches 3, will turn to mild reaction 
 	//else when reach to 1, will turn to annoyed reaction
@@ -17,8 +18,8 @@ public class ChatbotJi implements Topic{
 	//
 	
 	public ChatbotJi() {
-		String[] temp = {"college", "university", "school", "application", "essay", "a", "b"}; //first three links to college chatbot
-		String[] happy = {"I'm glad you asked me for help.", "Thanks for showing your interest.", "Your future is bright."};
+		String[] temp = {"college", "university", "school", "application", "essay", "app"}; //first three links to college chatbot
+		String[] happy = {"I'm glad you asked me for help.", "Thanks for showing your interest.", "Your future is bright.", "No problem."};
  		String[] mild = {"Be more specific.", "Something else you want to say?", "I think we have gone over that. Let's talk about something else."};
 		String[] annoyed = {"If you aren't here for college help, might as well google it.", "I have other students who need help, come back when you have prepared reasonable questions.", "I don't have all day."};
 		keywords = temp;
@@ -28,40 +29,55 @@ public class ChatbotJi implements Topic{
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("By any chance, are you interested in applying for college? If so, what?");
+		ChatbotMain.print("By any chance, are you interested in applying for college? If so, what step in the application do you want help with?");
 		response = ChatbotMain.getInput();
 		
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("If you are lacking financially, applying for scholarships are very crucial in your application process!");
-				//mention income, grades
+				ChatbotMain.print("If you are lacking financially, applying for scholarships are very crucial in your application process!!!");
+				response = ChatbotMain.getInput();
+				if(ChatbotMain.findKeyword(response, "", 0) >= 0) {
+					
+				}
+
 			}
 			else
 			{
 				if (ChatbotMain.findKeyword(response, keywords[4], 0) >= 0) { //colleges
  					ChatbotMain.print("Would you like to have advice on writing your essay?");
+ 					response = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 						ChatbotMain.print("Great! What are you struggling with?"); 
-						//
-					} else {
-						if(ChatbotMain.findKeyword(response, "no", 0) >= 0) {
-							ChatbotMain.print("Well.. if you need help, you can always me.");
-						}
+						response = ChatbotMain.getInput();
+						if(ChatbotMain.findKeyword(response, "topic", 0) >= 0) {
+							ChatbotMain.print("Think about moments that impacted your personality or characteristic you highly value. If you are still stuck, try looking at the essay prompts. Hopefully an idea will spark!");
+							if(ChatbotMain.findKeyword(response, "thanks", 0) >= 0) {//if user say thanks generate random happy comment
+								ChatbotMain.print("");
+							}
+						}		
+					} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+							ChatbotMain.print("Well.. if you need help, you can always contact me.");
+							
+				} else if ((ChatbotMain.findKeyword(response, keywords[3], 0) >= 0) || ChatbotMain.findKeyword(response, keywords[5], 0) >= 0) { //assist with college app
+					ChatbotMain.print("What part of the college application do you need help with?");
+					response = ChatbotMain.getInput();
+					if(ChatbotMain.findKeyword(response, keywords[4], 0) >= 0) {
+						//go to essay or paste code
 					}
- 				} else if (ChatbotMain.findKeyword(response, keywords[6], 0) >= 0) { //link scores/gpa
- 					ChatbotMain.print("According to your scores, your eligibility is determined by the percentage your college accepts based on your score ranges.");
-					//essay
-					//extracurriculars
- 				} else if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0) { //assist with college app
- 					ChatbotMain.print("What part of the college app do you need help with?");
 					
- 				} else {
-	 				ChatbotMain.print("I'm not quite sure what you need help with. Would you mind rephrasing your question?");
+					if((ChatbotMain.findKeyword(response, "gpa", 0) >= 0) || (ChatbotMain.findKeyword(response, "scores", 0) >= 0) || (ChatbotMain.findKeyword(response, "grades", 0) >= 0)) {
+						//link to chatbotAreej if ask help to improve else inform
+					}
+						
+				} else {
+				 	ChatbotMain.print("I'm not quite sure what you need help with. Would you mind rephrasing your question?");
+				 				
  				}
 				
 				response = ChatbotMain.getInput();
+				}
 			}
 		}
 		ChatbotMain.print(ChatbotMain.chatbot.getUsername() + ", if you need more help about college, ask away!");
@@ -77,6 +93,10 @@ public class ChatbotJi implements Topic{
 	//	if (numAnnoyed <= 1) { //annoyed
 			//generate random annoyed response
 	//	}
+	//}
+	
+	//private void generateHappy {
+		
 	//}
 	
 	
