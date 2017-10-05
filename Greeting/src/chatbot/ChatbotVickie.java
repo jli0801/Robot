@@ -78,7 +78,7 @@ public class ChatbotVickie implements Topic{ //personal life
 				{
 					ChatbotMain.print("What other words are synonymous to your emotion?");
 					response = ChatbotMain.getInput();
-				}*/
+				}*///
 			}
 		}
 		ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
