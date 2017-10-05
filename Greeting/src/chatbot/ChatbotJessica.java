@@ -122,7 +122,8 @@ public class ChatbotJessica implements Topic {
   				
 public void tellAJoke (String response)
 {
-	
+		boolean continueJoke;
+		continueJoke = false;
 		while(!gotCorrectJ)
 		{
 			ChatbotMain.print(jokesArr[0]);
@@ -133,34 +134,43 @@ public void tellAJoke (String response)
 				ChatbotMain.print("No! You're being to literal!");
 			}
 			
-			while (ChatbotMain.findKeyword(response, "B", 0) == -1)
+			for(int i = 0; i < response.length(); i++)
 			{
-			if(ChatbotMain.findKeyword(response, "B", 0) >= 0)
+			if(ChatbotMain.findKeyword(response, "B", i) >= 0 )
 			{
-				if(!gotCorrectJ)
-				{
+			
 				
-				ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
-				}
+				
 				gotCorrectJ = true;
 				
 			}
+			else
+			{
+				gotCorrectJ = false;
+			}
 			
 			}
 			
-			gotCorrectJ = false;
-			ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
-			moodIncrease++;
-			if(moodIncrease > 20)
+			if(gotCorrectJ)
 			{
-				ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
+				ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
 			}
 			else
 			{
-				ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
+				ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); 
 			}
-			
 		}
+		
+	//	ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
+	/*	moodIncrease++;
+		if(moodIncrease > 20)
+		{
+			ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
+		}
+		else
+		{
+			ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
+		}*/
 }
  
   
