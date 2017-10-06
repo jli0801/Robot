@@ -24,7 +24,7 @@ public class ChatbotJessica implements Topic {
  	private boolean gotCorrectG;
   	
   	public ChatbotJessica() {
- 		String[] triggerM = {"joke", "game"};
+ 		String[] triggerM = {"joke", "game", "pun"};
  		
  		//in charge of entertainment
   		keywords = triggerM;
