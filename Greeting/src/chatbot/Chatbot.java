@@ -40,7 +40,7 @@ public class Chatbot {
 		helloCount = 0;
 	
 		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?"
-				,"Please stop saying hi. ", "Do you really understand? "};
+				,"Please stop saying hi. ", "Do you really understand? ", "You have to say something else!"};
 		upsetResArr = upsetRes;
 
 	}
@@ -49,9 +49,10 @@ public class Chatbot {
 		
 		ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name?");
 		username = ChatbotMain.getInput();
+		ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Classes, colleges, any personal things, or a joke?");
 		while (chatting)
 		{
-			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Classes, colleges, any personal things, or a joke? ");
+			
 			String response = ChatbotMain.getInput();
 			
 		
@@ -78,7 +79,7 @@ public class Chatbot {
 			}
 			else
 			{
-				if(ChatbotMain.findKeyword(response, "hello" , 0) >= 0)
+				if(response.indexOf("hello") >= 0)
 				{
 					helloCount++;
 					if(helloCount > 5)
@@ -86,7 +87,8 @@ public class Chatbot {
 					ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
 					}
 				}
-				ChatbotMain.print("I'm sorry. I don't understand. Please rephrase that.");
+				ChatbotMain.print("I'm sorry. I don't understand. Do you want to talk about classes, colleges, any personal things, "
+						+ "or maybe even a joke?");
 			}
 		}
 	}
