@@ -68,9 +68,9 @@ public class ChatbotVickie implements Topic{ //personal life
 				{
 					ChatbotMain.print("That's good to hear!");
 					response = ChatbotMain.getInput();
-				}
-				
-				if (negemotion)
+				}*/
+								
+				/*if (negemotion)
 				{
 					ChatbotMain.print("Sorry to hear that!");
 					response = ChatbotMain.getInput();
@@ -86,7 +86,22 @@ public class ChatbotVickie implements Topic{ //personal life
 		//ChatbotMain.chatbot.startChatting();
 	}
 	
-
+	public void emotionTriggers(String response)
+	{
+		for(int i = 0; i < positiveFeelings.length; i++)
+		{
+			//IMPORTANT (one the rubric) only if keyword is used
+			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
+			{
+				ChatbotMain.print("That's good to hear!");
+				response = ChatbotMain.getInput();
+			} else
+			{
+				//
+			}
+		}
+		//return false;
+	}
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
