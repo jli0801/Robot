@@ -10,20 +10,18 @@ public class ChatbotAreej implements Topic{
 	//private String[] worryingFactors;
 	private boolean advanced;
 	private boolean discussedGrades;
-	//private String[] worried;
 	//private int worry;
 	
 	public ChatbotAreej() {
-		String[] temp = {"grades", "scores", "classes", "gpa", "program"};
+		String[] temp = {"grades", "gpa", "classes"};
 		keywords = temp;
 		String[] hardClasses = {"ap", "honors"};
 		hc = hardClasses;
 		
 		goodbyeKeyword = "bye";
-		secretKeyword = "dumb";
+		secretKeyword = "program";
 		response = "";
 		//String[] worryingFactors = {"bad", "low", "wrong"};
-		//String[] worried = {"You may need some extra help", "Is there anything I can do?"};
 		//kwords= worryingFactors;
 		//worry = 0;
 	}
@@ -36,8 +34,18 @@ public class ChatbotAreej implements Topic{
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
-				ChatbotMain.print("Don't say that, that's not nice.");
+				ChatbotMain.print("Ah so you need a program change?");
 				response = ChatbotMain.getInput();
+				
+				for(int i = 0; i < response.length()-3; i ++) {
+					if(response.substring(i, i+3).equals("yes")) {
+						ChatbotMain.print("Ok, would you like to change classes or the period you end?");
+						response = ChatbotMain.getInput();
+					}
+					}
+				ChatbotMain.print("So what do you need?");
+				response = ChatbotMain.getInput();
+				}
 			}
 
 				/*if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
@@ -53,9 +61,7 @@ public class ChatbotAreej implements Topic{
 				} 
 				*/
 			
-			if                                                           
-			
-		}
+
 		
 		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getAreej().talk("");;
@@ -71,7 +77,6 @@ public class ChatbotAreej implements Topic{
 		
 	}
 
-	//reference to college
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
