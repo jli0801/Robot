@@ -40,8 +40,8 @@ public class ChatbotJessica implements Topic {
   		String[] jokes = {"What makes oil boil?", ""};
   		jokesArr = jokes;
 	
- 		String[] answerJ = {"Get it? The letter B!", "It's a play on words!"
- 				, "Well, technically a play on letters!"};	
+ 		String[] answerJ = {"Get it? The letter B!", "It's a play on words/letters!"
+ 				, "It's genius isn't it?"};	
   		jokesAns = answerJ;
  		goodbyeKeyword = "bye";
  		
@@ -52,7 +52,7 @@ public class ChatbotJessica implements Topic {
  		//ended jokes now onto games
 		String[] games1 = {"Let's play, GUESS THAT NUMBER!"}; //thinking of a number from 1 to 100. guess it to win~
   		gamesArr = games1;
- 		gamesAns =(int) (Math.random()*100);
+ 		gamesAns = (int) (Math.random()*100);
  		
  		String[] answerWrongG = {"Noo!", "Are you even trying?", 
  				"You use it all the time!", "You've asked more than 20 questions now! The answer was computer!"};
@@ -79,25 +79,22 @@ public class ChatbotJessica implements Topic {
 				{
 					if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 					{
-						ChatbotMain.print("I'm glad you find me funny! Would you like to here another joke?");
+						ChatbotMain.print("I'm glad you find me funny! What else would you like to hear? We can play a game, "
+								+ "tell puns or jokes?");
 		
 						response = ChatbotMain.getInput();
 					}
 					else
   				{
-  				
- 						
- 						for (int i = 0; i < keywords.length; i++)
-  						{
+  			
  							
- 							if (ChatbotMain.findKeyword(response, keywords[i], 0) >= 0 )
+ 							if (ChatbotMain.findKeyword(response, keywords[0], 0) >= 0 )
  							{
- 								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[i]+ ". ");
+ 								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[0]+ ". ");
  								tellAJoke(response);
  								
  								if(gotCorrectJ)
  								{
- 									
  									continueJokeConvo();
  								}
  								else
@@ -106,7 +103,7 @@ public class ChatbotJessica implements Topic {
  								}
  								
  							}
- 								else //use same method for JOKE 
+ 							if (ChatbotMain.findKeyword(response, keywords[1], 0) >= 0 )//use same method for JOKE 
  								{
  									ChatbotMain.print("Oh, I heard the word game! Would you like to play with me?" );
  									response = ChatbotMain.getInput();
@@ -120,8 +117,22 @@ public class ChatbotJessica implements Topic {
  									}
  								}
  								
+ 							if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0 )
+ 							{
+ 								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[0]+ ". ");
+ 								tellAJoke(response);
+ 								
+ 								if(gotCorrectJ)
+ 								{
+ 									continueJokeConvo();
+ 								}
+ 								else
+ 								{
+ 									ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); 
+ 								}
  								
  							}
+ 							
  						}
  					
  						
@@ -195,7 +206,7 @@ public void tellAJoke (String response)
 	{
 		//for(int i = 0; i < response.length(); i++)
 	//	{
-		if(ChatbotMain.findKeyword(response, " b", 0) >= 0 )
+		if(response.indexOf("b") >= 0 )
 		{
 			return true;
 		}
