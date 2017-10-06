@@ -30,7 +30,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		String[] goodEmotions = {"happy", "great", "excited", "relaxed"};
 			positiveFeelings = goodEmotions;
 			
-		String[] negComments = {""};
+		String[] negComments = {"Come on, stop whining", "You're annoying, stop talking to me"};
 			negativeComments = negComments;
 		String[] posComments = {""};
 			positiveComments = posComments;
@@ -49,7 +49,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		
 		beginning = true;
 		
-		if (response.length() > 60)
+		if (response.length() > 40)
 		{
 			conciseStr();
 			//concise = true;
@@ -105,6 +105,8 @@ public class ChatbotVickie implements Topic{ //personal life
 			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. You are going to have to be concise in college so why not start now? Please respond CONCISELY!");
 			response = ChatbotMain.getInput();
 			beginning = false;
+			
+			//keep track of how often they trigger this function
 		
 	}
 }
