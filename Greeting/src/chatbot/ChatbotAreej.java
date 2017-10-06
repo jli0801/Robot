@@ -48,7 +48,8 @@ public class ChatbotAreej implements Topic{
 				}
 			}
 
-				/*if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
+				/*
+				 * if (response.equals(kwords[0]) || response.equals(kwords[1]) || response.equals(kwords[2]))
 				{
 					ChatbotMain.print("oh no, what can i do to help?");
 					response = ChatbotMain.getInput();
@@ -89,7 +90,7 @@ public class ChatbotAreej implements Topic{
 			}
 		}
 		return false;
-//
+
 }
 	
 	public boolean isAdvanced() {
