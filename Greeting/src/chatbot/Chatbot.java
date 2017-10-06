@@ -87,8 +87,10 @@ public class Chatbot {
 					ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
 					}
 				}
+				else {
 				ChatbotMain.print("I'm sorry. I don't understand. Do you want to talk about classes, colleges, any personal things, "
 						+ "or maybe even a joke?");
+				}
 			}
 		}
 	}
