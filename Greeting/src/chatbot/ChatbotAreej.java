@@ -73,6 +73,7 @@ public class ChatbotAreej implements Topic{
 		if(ChatbotMain.chatbot.getJi().hasDiscussedHonors()) {
 			//credentials for honors
 			//method for ji
+			//needs same method 
 		}
 		
 	}

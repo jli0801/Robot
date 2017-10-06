@@ -4,9 +4,9 @@ public class Chatbot {
 	private String username;
 	private boolean chatting;
 	private Topic jessica;
-	private Topic areej;
+	private ChatbotAreej areej;
 	private Topic vickie;
-	private Topic ji;
+	private ChatbotJi ji;
 	private int helloCount;
 	private String[] upsetResArr;
 	
@@ -18,7 +18,7 @@ public class Chatbot {
 	{
 		return jessica;
 	}
-	public Topic getAreej()
+	public ChatbotAreej getAreej()
 	{
 		return areej;
 	}
@@ -26,7 +26,7 @@ public class Chatbot {
 	{
 		return vickie;
 	}
-	public Topic getJi()
+	public ChatbotJi getJi()
 	{
 		return ji;
 	}
