@@ -22,7 +22,7 @@ public class ChatbotVickie implements Topic{ //personal life
 	private String response;
 	
 	public ChatbotVickie() {
-		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death"}; // worried?
+		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"}; // worried?
 			keywords = temp;
 			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated"};
@@ -44,7 +44,7 @@ public class ChatbotVickie implements Topic{ //personal life
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("Can you elaborate more on your problem? How do you feel about it? "); //What about it??
+		ChatbotMain.print("What about it? How do you feel about it? "); //What about it?? Can you elaborate more on your problem?
 		response = ChatbotMain.getInput();
 		
 		beginning = true;
@@ -56,7 +56,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		}
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
-			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
+			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
 				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
 			}

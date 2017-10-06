@@ -51,7 +51,7 @@ public class Chatbot {
 		username = ChatbotMain.getInput();
 		while (chatting)
 		{
-			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Grades, colleges, any personal things, or jokes? ");
+			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Classes, colleges, any personal things, or jokes? ");
 			String response = ChatbotMain.getInput();
 			
 		
