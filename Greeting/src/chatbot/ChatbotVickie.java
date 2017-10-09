@@ -66,12 +66,15 @@ public class ChatbotVickie implements Topic{ //personal life
 			//concise = true;
 		}
 	//make new function called talk?
-	
+		if(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == 0) 
+		{ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");}
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
 				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
+				response = ChatbotMain.getInput();
+				emotionTriggers(response);
 			}
 			else
 			{
@@ -95,8 +98,10 @@ public class ChatbotVickie implements Topic{ //personal life
 				
 				emotionTriggers(response);
 			}
+			if(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == 0) 
+				{ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");}
 		}
-		ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
+		
 		//ChatbotMain.chatbot.getVickie().talk("");;
 		//ChatbotMain.chatbot.startChatting();
 	}
@@ -107,24 +112,27 @@ public class ChatbotVickie implements Topic{ //personal life
 		{
 			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
 			{
-				ChatbotMain.print("That's good to hear!");
+				ChatbotMain.print("That's good to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
 				talk( response);
 			} else
 			{
 				for(int n = 0; n < negativeFeelings.length; n++)
 				{
-					if(ChatbotMain.findKeyword(response, negativeFeelings[i], 0) >= 0)
+					if(ChatbotMain.findKeyword(response, negativeFeelings[n], 0) >= 0)
 					{
-						ChatbotMain.print("Sorry to hear!");
+						ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
 						response = ChatbotMain.getInput();
 						talk( response);
 					}
 				}
 			}
+			
 		}
 		//return false;
-	
+		ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
+		response = ChatbotMain.getInput();
+		talk(response);
 	}
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
