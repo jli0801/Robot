@@ -38,7 +38,7 @@ public class ChatbotVickie implements Topic{ //personal life
 			
 		String[] negComments = {"Come on, stop whining", "You're annoying, stop talking to me", "Sorry to hear that!"};
 			negativeComments = negComments;
-		String[] posComments = {"That's good to hear!!"};
+		String[] posComments = {"That's good ", "How wonderful ", "It's great "};
 			positiveComments = posComments;
 			
 			
@@ -115,7 +115,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		{
 			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
 			{
-				ChatbotMain.print("That's good to hear that you are " + positiveFeelings[i] + "!");
+				ChatbotMain.print(positiveComments[(int) (Math.random()*3)] + "to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
 				talk( response);
 			} else
