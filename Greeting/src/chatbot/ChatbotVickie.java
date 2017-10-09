@@ -69,7 +69,7 @@ public class ChatbotVickie implements Topic
 			response = ChatbotMain.getInput();
 			beginning = false;
 		}
-		if (response.length() > 40)
+		if (response.length() > 50)
 		{
 			conciseStr();
 			//concise = true;
@@ -142,7 +142,7 @@ public class ChatbotVickie implements Topic
 		for(int i = 0; i < positiveFeelings.length; i++)
 		{
 			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
-			{
+			{//because function here? determine if there is a because: maybe bolean helper method
 				ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
 				
@@ -156,6 +156,7 @@ public class ChatbotVickie implements Topic
 					if(ChatbotMain.findKeyword(response, negativeFeelings[n], 0) >= 0)
 					{
 						ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
+						//is there anything else you want to take off your chest?
 						response = ChatbotMain.getInput();
 						
 						reasonNeg = response;
