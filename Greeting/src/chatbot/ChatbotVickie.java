@@ -35,7 +35,7 @@ public class ChatbotVickie implements Topic
 		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"}; // worried?
 			keywords = temp;
 			
-		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible"};
+		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible", "bad", "scared", "terrified", "worried"};
 			negativeFeelings = badEmotions;
 		String[] goodEmotions = {"happy", "great", "excited", "relaxed","good"};
 			positiveFeelings = goodEmotions;
@@ -139,35 +139,67 @@ public class ChatbotVickie implements Topic
 	
 	public void emotionTriggers(String response)
 	{
-		for(int i = 0; i < positiveFeelings.length; i++)
+		int no = response.indexOf("no"); 
+		System.out.println(no);
+		if (no == -1)
 		{
-			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
-			{//because function here? determine if there is a because: maybe bolean helper method
+			for(int i = 0; i < positiveFeelings.length; i++)
+			{
+				if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
+			
+				{
 				ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
-				
 				reasonPos = response;
-				
 				talk( response);
-			} else
-			{
-				for(int n = 0; n < negativeFeelings.length; n++)
+				}
+				else
 				{
-					if(ChatbotMain.findKeyword(response, negativeFeelings[n], 0) >= 0)
+					for(int n = 0; n < negativeFeelings.length; n++)
 					{
-						ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
-						//is there anything else you want to take off your chest?
-						response = ChatbotMain.getInput();
-						
-						reasonNeg = response;
-						
-						talk( response);
+						if(ChatbotMain.findKeyword(response, negativeFeelings[n], 0) >= 0)
+						{
+							ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
+							//is there anything else you want to take off your chest?
+							response = ChatbotMain.getInput();
+							
+							reasonNeg = response;
+							
+							talk( response);
+						}
 					}
 				}
 			}
-			
 		}
-		//return false;
+			else
+			{if (no >= 0) {
+				String newResponse = response.substring(no+1,response.length());
+				for(int i = 0; i < positiveFeelings.length; i++) {
+				if (ChatbotMain.findKeyword(newResponse, positiveFeelings[i], 0) >= 0)
+				{
+					ChatbotMain.print("Sorry to hear that you are not happy!");
+					//is there anything else you want to take off your chest?
+					response = ChatbotMain.getInput();
+					reasonNeg = response;
+					talk( response);
+				} else
+				{
+					for(int n = 0; n < negativeFeelings.length; n++)
+					{
+						if(ChatbotMain.findKeyword(newResponse, negativeFeelings[n], 0) >= 0)
+						{
+							ChatbotMain.print("Good to hear that you are okay!");
+							//is there anything else you want to take off your chest?
+							response = ChatbotMain.getInput();
+							
+							reasonNeg = response;
+							
+							talk( response);
+						}
+					}
+				}
+			}
+		}}
 		ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
 		response = ChatbotMain.getInput();
 		talk(response);
