@@ -31,7 +31,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"}; // worried?
 			keywords = temp;
 			
-		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted"};
+		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible"};
 			negativeFeelings = badEmotions;
 		String[] goodEmotions = {"happy", "great", "excited", "relaxed"};
 			positiveFeelings = goodEmotions;
@@ -44,6 +44,9 @@ public class ChatbotVickie implements Topic{ //personal life
 			
 		//negEmotions = 0;
 		//posEmtions = 0;
+		
+			
+		String 
 			
 		//make string of everybody's array keywords so if triggered, it can do to their class
 			
