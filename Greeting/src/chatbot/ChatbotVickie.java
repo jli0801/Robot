@@ -3,8 +3,8 @@ package chatbot;
 import chatbot.ChatbotMain;
 import chatbot.Topic;
 
-public class ChatbotVickie implements Topic{ //personal life
-
+public class ChatbotVickie implements Topic
+{ //personal life
 
 	private String[] keywords;
 	private String[] negativeFeelings;
@@ -23,30 +23,34 @@ public class ChatbotVickie implements Topic{ //personal life
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String response;
+	private String reasonPos;
+	private String reasonNeg;
 	
+	private int conciseResponse;
 	//private int negEmotions;
 	//private int posEmotions;
 	
-	public ChatbotVickie() {
+	public ChatbotVickie() 
+	{
 		String[] temp = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"}; // worried?
 			keywords = temp;
 			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible"};
 			negativeFeelings = badEmotions;
-		String[] goodEmotions = {"happy", "great", "excited", "relaxed"};
+		String[] goodEmotions = {"happy", "great", "excited", "relaxed","good"};
 			positiveFeelings = goodEmotions;
 			
-		String[] negComments = {"Come on, stop whining", "You're annoying, stop talking to me", "Sorry to hear that!"};
+		String[] negComments = {"Come on, stop whining", "You're annoying, stop talking to me", "Sorry "};
 			negativeComments = negComments;
 		String[] posComments = {"That's good ", "How wonderful ", "It's great "};
 			positiveComments = posComments;
 			
-			
-		//negEmotions = 0;
+		conciseResponse = 0;
+		//negEmotions = 0; if more than 3, say ur worried and ask if they'd like to 
 		//posEmtions = 0;
 		
 			
-		String 
+	
 			
 		//make string of everybody's array keywords so if triggered, it can do to their class
 			
@@ -57,9 +61,11 @@ public class ChatbotVickie implements Topic{ //personal life
 		beginning = true;
 	}
 
-	public void talk(String response) {//call this function beginning?
+	public void talk(String response)
+	{//call this function beginning?
 		if(beginning == true)
 		{	ChatbotMain.print("What about it? How do you feel about it? "); //What about it?? Can you elaborate more on your problem?
+								//how do you feel about it and why do you feel this way?
 			response = ChatbotMain.getInput();
 			beginning = false;
 		}
@@ -68,16 +74,40 @@ public class ChatbotVickie implements Topic{ //personal life
 			conciseStr();
 			//concise = true;
 		}
-	//make new function called talk?
+
+
+	/* maybe make new function where if the number of emotions are triggered (possibly 3-5 times) in the last response, if there is a because, 
+	 * determine whether there is a period, and then take the reason of sad emotion and say "since you are (negemotion) because of (reason) I will 
+	 * recommend you to see a therapist"
+	 * 
+	 * And, b4 all this, you can ask "are you (negEmotion) bc of (reason)?
+	 * 
+	 * 
+	 * For posEmtion, ask "Since it seems you dont have many problems, do you want to talk about (other three topics)
+	 * and if yes, show options again and let it trigger
+	 * 
+	 * 
+	 * reasons will only get response if there is a because
+	 * 
+	 * if because is not found, print why are you "neg/pos emotion)?
+	*/	
+		
 		if(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == 0) 
-		{ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");}
+		{
+			ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
+			
+			if(conciseResponse >= 3)
+			{
+				ChatbotMain.print("And btw, you really ought to work on your responses. Remember, being short and to the point is key to wonderful conversations! ");
+			}
+		}
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
 				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
 				response = ChatbotMain.getInput();
-				emotionTriggers(response);
+				talk(response);
 			}
 			else
 			{
@@ -101,8 +131,6 @@ public class ChatbotVickie implements Topic{ //personal life
 				
 				emotionTriggers(response);
 			}
-			if(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == 0) 
-				{ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");}
 		}
 		
 		//ChatbotMain.chatbot.getVickie().talk("");;
@@ -115,8 +143,11 @@ public class ChatbotVickie implements Topic{ //personal life
 		{
 			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
 			{
-				ChatbotMain.print("Good to hear that you are " + positiveFeelings[i] + "!");
+				ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
+				
+				reasonPos = response;
+				
 				talk( response);
 			} else
 			{
@@ -126,6 +157,9 @@ public class ChatbotVickie implements Topic{ //personal life
 					{
 						ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
 						response = ChatbotMain.getInput();
+						
+						reasonNeg = response;
+						
 						talk( response);
 					}
 				}
@@ -137,7 +171,8 @@ public class ChatbotVickie implements Topic{ //personal life
 		response = ChatbotMain.getInput();
 		talk(response);
 	}
-	public boolean isTriggered(String response) {
+	public boolean isTriggered(String response) 
+	{
 		for(int i = 0; i < keywords.length; i++)
 		{
 			//IMPORTANT (one the rubric) only if keyword is used
@@ -149,8 +184,9 @@ public class ChatbotVickie implements Topic{ //personal life
 		return false;
 
 }
-	public void conciseStr(){
-		
+	public void conciseStr()
+	{
+			conciseResponse++;
 			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. You are going to have to be concise in college so why not start now? Please respond CONCISELY!");
 			response = ChatbotMain.getInput();
 			talk(response);
