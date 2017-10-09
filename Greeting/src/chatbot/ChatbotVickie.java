@@ -115,7 +115,7 @@ public class ChatbotVickie implements Topic{ //personal life
 		{
 			if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
 			{
-				ChatbotMain.print(positiveComments[(int) (Math.random()*3)] + "to hear that you are " + positiveFeelings[i] + "!");
+				ChatbotMain.print("Good to hear that you are " + positiveFeelings[i] + "!");
 				response = ChatbotMain.getInput();
 				talk( response);
 			} else
