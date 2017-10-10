@@ -132,7 +132,7 @@ public class ChatbotJessica implements Topic {
 											{
 											level++;
 											ChatbotMain.print("Do you want to play again with a harder level?");
-											tellAGame(numInt, level)
+											tellAGame(numInt, level);
 											}		
 	 									}
 	 									else
@@ -143,7 +143,7 @@ public class ChatbotJessica implements Topic {
  									}
  									else //finds no
  									{
- 									ChatbotMain.ChatbotJessica.talk(); //be more sassy before you let user go
+ 									ChatbotMain.chatbot.startChatting(); //be more sassy before you let user go
 									//should it go to main or jessica?	
  									}
  								}
@@ -169,6 +169,7 @@ public class ChatbotJessica implements Topic {
  						
   						
   					}
+				
 				ChatbotMain.chatbot.startChatting(); 
   				}
 				
@@ -187,9 +188,11 @@ public class ChatbotJessica implements Topic {
 			    return true;
 			
 	}
-	public int getInterger(String response)
+	public int getInteger(String response)
 	{
-			int responseInt = Integer.parseInt(response);
+			int responseInt;
+			responseInt = 0;
+			return responseInt = Integer.parseInt(response);
 	}	
 
 	public void tellAJoke(String response)
@@ -235,7 +238,8 @@ public class ChatbotJessica implements Topic {
 
 	public void tellAGame(int response , int level) //currently stuck after you give an integer
 	{
-		
+			int responseInt;
+			responseInt = getInteger(response);
 			gamesAns = (int) (Math.random()*(level*20)); //range increases
 			while(!gotCorrectG) 
 			{
