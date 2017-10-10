@@ -72,7 +72,7 @@ public class Chatbot {
 				}
 				else if(areej.isTriggered(response))
 				{
-					chatting = false; //exits the while loop IMPORTANT
+					chatting = false; //exits the while loop IMPORTANT.
 					areej.talk(response);
 				}
 				else if(vickie.isTriggered(response))

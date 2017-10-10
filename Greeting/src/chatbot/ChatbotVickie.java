@@ -293,7 +293,10 @@ public class ChatbotVickie implements Topic
 		}
 	}
 	
-	//public otherTopicTrigger()
+	public otherTopicTrigger()
+	{
+		
+	}
 	
 	public boolean isTriggered(String response) 
 	{
