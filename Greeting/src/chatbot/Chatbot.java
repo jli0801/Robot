@@ -8,10 +8,10 @@ public class Chatbot {
 	private Topic vickie;
 	private ChatbotJi ji;
 	
-	private boolean endOfJess;
-	private boolean endOfVickie;
-	private boolean endOfAreej;
-	private boolean endOfJi;
+//	private boolean endOfJess;
+//	private boolean endOfVickie;
+//	private boolean endOfAreej;
+//	private boolean endOfJi;
 	
 	private boolean noRepeat;
 
@@ -47,10 +47,10 @@ public class Chatbot {
 		chatting = true;
 		noRepeat = true;
 	
-		endOfJess = false;
-		endOfVickie = false;
-		endOfAreej = false;
-		endOfJi = false;
+	//	endOfJess = false;
+//		endOfVickie = false;
+//		endOfAreej = false;
+//		endOfJi = false;
 		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?" 
 				,"Please stop saying hi. ", "Do you really understand? ", "You have to say something else!"};
 		upsetResArr = upsetRes;
@@ -74,10 +74,9 @@ public class Chatbot {
 				
 				String response = ChatbotMain.getInput();
 
-				if(jessica.isTriggered(response) && !endOfJess)
+				if(jessica.isTriggered(response))
 				{
 					chatting = false; //exits the while loop IMPORTANT
-					endOfJess = true;
 					jessica.talk(response);
 				}
 				else if(areej.isTriggered(response))

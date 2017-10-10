@@ -12,16 +12,11 @@ public class ChatbotVickie implements Topic
 	
 	private String[] annoyedComments; //can correspond with annoyed
 	private String[] positiveComments;
-	
-	//private String[] positiveFeedback;
-	//private String[] negativeFeedback;
-	
+
 	private String [] anythingElse;
 	
-	//private boolean concise;
 	private boolean beginning;
 	
-	//private String[] concise;
 	private String goodbyeKeyword;
 	private String secretKeyword;
 	private String respond;
@@ -56,11 +51,6 @@ public class ChatbotVickie implements Topic
 		conciseResponse = 0;
 		negEmotions = 0; 
 		posEmotions = 0;
-		
-			
-	
-			
-		//make string of everybody's array keywords so if triggered, it can do to their class
 			
 		//String[] shortResponsePlz = {"Sorry, can you shorten your response and identify the immediate problem? Being concise will also help in school and in communication", "Please 	
 		goodbyeKeyword = "bye";
