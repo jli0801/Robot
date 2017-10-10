@@ -158,7 +158,7 @@ public class ChatbotVickie implements Topic
 							if (negEmotions == 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
-								//trigger function
+								ChatbotMain.chatbot.startChatting();
 							}else
 							{
 								
@@ -291,11 +291,6 @@ public class ChatbotVickie implements Topic
 				 reasonWhy = response.substring(bec + 7, reasLength);
 			}
 		}
-	}
-	
-	public otherTopicTrigger()
-	{
-		
 	}
 	
 	public boolean isTriggered(String response) 

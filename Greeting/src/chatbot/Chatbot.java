@@ -55,11 +55,11 @@ public class Chatbot {
 		{
 			ChatbotMain.print("Hi! I am a guidance counselor, and here to help you through your years at high school! What is your name?");
 			username = ChatbotMain.getInput();
-			noRepeat = false;
-		}
-		else 
-		{
+			noRepeat = false; 
 			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Classes, colleges, any personal things, or a joke?");
+		}
+			
+
 			while (chatting)
 			{
 				
@@ -102,5 +102,5 @@ public class Chatbot {
 				}
 			}
 		}
-	}
+	
 }
