@@ -78,7 +78,7 @@ public class ChatbotJessica implements Topic {
  		moodIncrease = 0;
  		numChancesJ = 0;
  		numChancesG = 0;
- 		gotCorrectJ = false;
+ 		
  		gotCorrectG = false;
  		answersCorrectly = false;
  		
@@ -112,6 +112,7 @@ public class ChatbotJessica implements Topic {
  								if(gotCorrectJ)
  								{
  									continueJokeConvo();
+ 									
  								}
  								else
  								{
@@ -175,7 +176,7 @@ public class ChatbotJessica implements Topic {
   					}
 				endOfJess = true;
 				ChatbotMain.chatbot.startChatting(); 
-  				}
+ }
 				
   				
   				
@@ -201,21 +202,14 @@ public class ChatbotJessica implements Topic {
 
 	public void tellAJoke(String response)
 	{
-			
+		gotCorrectJ = false;
 			ChatbotMain.print(jokesArr[0]);
 			while(!gotCorrectJ)
 			{
 				
 				response = ChatbotMain.getInput();
 				
-				if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
-				{
-					ChatbotMain.print("No! You're being too literal!");
-				}
-				if((ChatbotMain.findKeyword(response, "bees", 0) >= 0)||(ChatbotMain.findKeyword(response, "bee", 0) >= 0) )
-				{
-					ChatbotMain.print("You're getting close! Try again.");
-				}
+				
 				
 				if(testAnsTrue(response))
 				{
@@ -223,6 +217,16 @@ public class ChatbotJessica implements Topic {
 				}
 				else
 				{
+					if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
+					{
+						ChatbotMain.print("No! You're being too literal!");
+					}
+					
+					if((ChatbotMain.findKeyword(response, "bees", 0) >= 0)||(ChatbotMain.findKeyword(response, "bee", 0) >= 0) )
+					{
+						ChatbotMain.print("You're getting close! Try again.");
+					}
+					
 					numChancesJ++;
 					if(numChancesJ > 5 )
 					{
@@ -292,7 +296,7 @@ public class ChatbotJessica implements Topic {
 	public boolean testAnsTrue(String response)
 	{
 		
-		if(response.indexOf("b") >= 0 || response.indexOf("B") >= 0)
+		if(ChatbotMain.findKeyword(response, " b " , 0) >= 0 || ChatbotMain.findKeyword(response, " B ", 0) >= 0)
 		{
 			return true;
 		}
