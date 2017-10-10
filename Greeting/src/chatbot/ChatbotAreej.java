@@ -18,7 +18,7 @@ public class ChatbotAreej implements Topic{
 		tempW = temp;
 		String[] hardClasses = {"ap", "honors"};
 		hc = hardClasses;
-		//String[] affirimative = {"yes", "please", "mhm"};
+		//String[] affirmative = {"yes", "please", "mhm"};
 		questionResponse = "can you?";
 		goodbyeKeyword = "bye";
 		//secretKeyword = "program";
