@@ -13,7 +13,7 @@ public class ChatbotJessica implements Topic {
   	private String[] jokesArr;
   	private String[] jokesAns;
   	private String[] jokesWrong;
-  	private String[] gamesArr; 
+ // 	private String[] gamesArr; 
  	
  	int gamesAns;
  	private String[] gamesWrong;
@@ -58,19 +58,21 @@ public class ChatbotJessica implements Topic {
  				"The answer was B! Gosh, you're such a stick in the mud."};
  		jokesWrong = answerWrongJ;
  		//ended jokes now onto games
-		String[] games1 = {"Let's play, GUESS THAT NUMBER!"}; //thinking of a number from 1 to 100. guess it to win~
-  		gamesArr = games1;
-  		gamesAns = (int) (Math.random()*100);
+		/*String[] games1 = {"Let's play, GUESS THAT NUMBER!"}; //thinking of a number from 1 to 100. guess it to win~
+  		gamesArr = games1;*/
+  		gamesAns = (int) (Math.random()*50);
  		
- 		String[] answerWrongG = {"Nopee! Try again!", "Are you even trying?", 
+ 		String[] answerWrongG = {"Nope! Try again!", "Are you even trying?", 
  				"The answer is too low.", "Come on! You got to try harder than that."
- 						+  ""};
+ 				+  "Your answer is too high.", "Try something lower than that."
+				+ "Come on! The game can't last forever.", "Guess again!"};
  		gamesWrong = answerWrongG;
  		
- 	//	String[] puns = {"You came at an eggcellent time!", "Isn't this egglastic?", ""};
+ 	//	String[] puns = {"You came at an eggcellent time!", "Isn't this egglastic?", "Aren't you being a but eggtreme?"
+	//	+ "");
  		
  		goodbyeKeyword = "bye";
- 		secretKeyword = "funny";
+ 		secretKeyword = "funny"; 
   		response = "";
  		moodIncrease = 0;
  		numChancesJ = 0;
@@ -81,8 +83,7 @@ public class ChatbotJessica implements Topic {
   	}
   
   	
- 		//are you with ?
-  		//is with ?
+ 		
   		
   public void talk(String response) {
 	  		
@@ -125,7 +126,15 @@ public class ChatbotJessica implements Topic {
  									response = ChatbotMain.getInput();
 	 									if(isInteger(response))
 	 									{
-	 									tellAGame(response);
+										int numInt = getInteger(response);
+										int level = 1;
+	 									tellAGame(numInt, level);
+											if(gotCorrectG)
+											{
+											level++;
+											ChatbotMain.print("Do you want to play again with a harder level?");
+											tellAGame(numInt, level)
+											}		
 	 									}
 	 									else
 	 									{
@@ -133,9 +142,10 @@ public class ChatbotJessica implements Topic {
 	 										ChatbotMain.print("You must enter an integer. Play the game correctly!");
 	 									}
  									}
- 									else
+ 									else //finds no
  									{
- 									ChatbotMain.chatbot.startChatting(); //be more sassy before you let user go	
+ 									ChatbotMain.ChatbotJessica.talk(); //be more sassy before you let user go
+									//should it go to main or jessica?	
  									}
  								}
  								
@@ -166,29 +176,7 @@ public class ChatbotJessica implements Topic {
   				
   				
 	private boolean isInteger(String response) {
-	/*	boolean isInteger = false;
-		String integerString = response;
-			int value = 0;
-			while(!isInteger){
-				try{
-					value = Integer.parseInt(response);
-					//will not continue if an error above is thrown
-					isInteger = true;//exits loop if entry is valid
-					
-				}catch(NumberFormatException e){
-					
-					integerString = response;
-				}
-			}
-			if(isInteger)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}*/
-			
+
 			 try { 
 			        Integer.parseInt(response); 
 			    } catch(NumberFormatException e) { 
@@ -199,8 +187,11 @@ public class ChatbotJessica implements Topic {
 			    // only got here if we didn't return false
 			    return true;
 			
-}
-
+	}
+	public int getInterger(String response)
+	{
+			int responseInt = Integer.parseInt(response);
+	}	
 
 	public void tellAJoke(String response)
 	{
@@ -243,24 +234,25 @@ public class ChatbotJessica implements Topic {
 	}
 
 
-	public void tellAGame(String response) //currently stuck after you give an integer
+	public void tellAGame(int response , int level) //currently stuck after you give an integer
 	{
-			int responseInt = Integer.parseInt(response);
-	
-			gamesAns = (int) (Math.random()*50); //can add levels when done
+		
+			gamesAns = (int) (Math.random()*(level*20)); //range increases
 			while(!gotCorrectG) 
 			{
 				
 				if(responseInt > gamesAns)
 				{
 					numChancesG++;
-					ChatbotMain.print(gamesWrong[(int) (Math.random()*6)]);
+					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
+					gotCorrectG = false;
 				}
 				
 				if(responseInt < gamesAns)
 				{
 					numChancesG++;
-					ChatbotMain.print(gamesWrong[(int) (Math.random()*6)]);
+					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four
+					gotCorrectG = false;
 				}
 				
 				if(responseInt == gamesAns)
@@ -281,47 +273,28 @@ public class ChatbotJessica implements Topic {
 		
 	}
 	
-		
-	//	ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
-	/*	moodIncrease++;
-		if(moodIncrease > 20)
-		{
-			ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
-		}
-		else
-		{
-			ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
-		}*/
+
 
  
   
 	public void continueJokeConvo()
 	{
 		ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
+		//check if answer is acceptable; could contain funny, make an array of "good words" 
 		
 	}
 	
 	public boolean testAnsTrue(String response)
 	{
-		//for(int i = 0; i < response.length(); i++)
-	//	{
+		
 		if(response.indexOf("b") >= 0 || response.indexOf("B") >= 0)
 		{
 			return true;
 		}
-		
-	//	}
+
 		return false;
 	}
-	/*moodIncrease++;
-		if(moodIncrease > 20)
-		{
-			ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);
-		}
-		else
-		{
-			ChatbotMain.print(calmResArr[(int) (Math.random()*3)]);
-		}*/
+	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
 		{
