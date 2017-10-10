@@ -134,7 +134,7 @@ public class ChatbotVickie implements Topic
 					if (posEmotions >= 3)
 					{
 						ChatbotMain.print("You don't seem to have many problems - let's talk about something else: grades, colleges, or maybe a joke? ");
-						//trigger function
+						ChatbotMain.chatbot.startChatting();
 					}else
 					{
 					reasonBehindEmotion(response);
@@ -192,7 +192,7 @@ public class ChatbotVickie implements Topic
 							if (negEmotions >= 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
-								//trigger function..
+								ChatbotMain.chatbot.startChatting();
 							} else {
 							
 							ChatbotMain.print("Sorry to hear that you are not happy!");
@@ -213,7 +213,7 @@ public class ChatbotVickie implements Topic
 									if (posEmotions >= 3)
 									{
 										ChatbotMain.print("You don't seem to have many problems because you are " + reasonPos + " - let's talk about something else: grades, colleges, or maybe a joke? ");
-										//trigger function
+										ChatbotMain.chatbot.startChatting();
 									} else {
 									reasonBehindEmotion(response);
 									ChatbotMain.print("Good to hear that you are okay!");
