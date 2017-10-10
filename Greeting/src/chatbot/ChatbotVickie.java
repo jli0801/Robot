@@ -141,8 +141,9 @@ public class ChatbotVickie implements Topic
 					ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
 					ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 					respond = ChatbotMain.getInput();
+					conciseStr(respond);
 					//reasonPos = response;
-					talk( respond);
+					//talk( respond);
 					}
 				}
 				else
@@ -168,7 +169,8 @@ public class ChatbotVickie implements Topic
 								respond = ChatbotMain.getInput();
 							//reasonNeg = response;
 							//System.out.println(negEmotions);
-								talk(respond);
+								conciseStr(respond);
+								//talk(respond);
 							}
 						}
 					}
@@ -197,7 +199,9 @@ public class ChatbotVickie implements Topic
 							ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 							//is there anything else you want to take off your chest?
 							respond = ChatbotMain.getInput();
-							talk(respond);}
+							conciseStr(respond);
+							//talk(respond);
+							}
 						} else
 						{
 							for(int n = 0; n < negativeFeelings.length; n++)
@@ -216,10 +220,10 @@ public class ChatbotVickie implements Topic
 									ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 									//is there anything else you want to take off your chest?
 									respond = ChatbotMain.getInput();
-							
+									conciseStr(respond);
 									//reasonNeg = response;
 							
-									talk(respond);}
+									//talk(respond);}
 								}
 							}
 						}
@@ -233,12 +237,15 @@ public class ChatbotVickie implements Topic
 			if (annoyed > 5)
 			{
 				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
-			}else {
+			}else 
+			{
 			ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
 			ChatbotMain.print("Say what you feel and why you feel that way.");// CHECK SPELLING!
 			}
 			respond = ChatbotMain.getInput();
-			talk(respond);
+			conciseStr(respond);
+			}
+			//talk(respond); //do i really need this?
 	}
 	
 	public void conciseStr(String response)
