@@ -16,8 +16,9 @@ public class ChatbotJessica implements Topic {
  	
  	int gamesAns;
  	private String[] gamesWrong;
- 	private String[] gamesRight;
- 	private int numChances;
+ 
+ 	private int numChancesJ;
+ 	private int numChancesG;
  	private int moodIncrease;
  	
  	private boolean gotCorrectJ;
@@ -54,20 +55,21 @@ public class ChatbotJessica implements Topic {
  		//ended jokes now onto games
 		String[] games1 = {"Let's play, GUESS THAT NUMBER!"}; //thinking of a number from 1 to 100. guess it to win~
   		gamesArr = games1;
- 		gamesAns = (int) (Math.random()*100);
+  		gamesAns = (int) (Math.random()*100);
  		
- 		String[] answerWrongG = {"Noo!", "Are you even trying?", 
- 				"You use it all the time!", "You've asked more than 20 questions now! The answer was computer!"};
+ 		String[] answerWrongG = {"Nopee! Try again!", "Are you even trying?", 
+ 				"The answer is too low.", "Come on! You got to try harder than that."
+ 						+  ""};
  		gamesWrong = answerWrongG;
- 		String[] answerRightG = {"Yes, you're getting closer.", "You're almost there!", 
- 				"You did it! You answered within" + numChances + "questions!"};
- 		gamesRight = answerRightG;
+ 		
  		goodbyeKeyword = "bye";
  		secretKeyword = "funny";
   		response = "";
  		moodIncrease = 0;
- 		numChances = 0;
+ 		numChancesJ = 0;
+ 		numChancesG = 0;
  		gotCorrectJ = false;
+ 		gotCorrectG = false;
   	}
   
   	
@@ -111,7 +113,16 @@ public class ChatbotJessica implements Topic {
  									response = ChatbotMain.getInput();
  									if ((ChatbotMain.findKeyword(response, "yes", 0) >= 0) || (ChatbotMain.findKeyword(response, "yeah", 0) >= 0)) //check
  									{
- 									tellAGame(response);
+ 									ChatbotMain.print("You must type in an integer! It's a number guessing game.");
+ 									response = ChatbotMain.getInput();
+	 									if(isInteger(response))
+	 									{
+	 									tellAGame(response);
+	 									}
+	 									else
+	 									{
+	 										ChatbotMain.print("You must enter an integer. Play the game correctly!");
+	 									}
  									}
  									else
  									{
@@ -119,7 +130,7 @@ public class ChatbotJessica implements Topic {
  									}
  								}
  								
- 							if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0 )
+ 					/*		if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0 )
  							{
  								ChatbotMain.print("Sure, I'll tell you a great " + keywords[0]+ ". ");
  								tellAPun(response);
@@ -133,57 +144,110 @@ public class ChatbotJessica implements Topic {
  									ChatbotMain.print(angryRes[(int) (Math.random()*3)]); 
  								}
  								
- 							}
+ 							}*/
  							
  						}
  					
  						
   						
   					}
+				ChatbotMain.chatbot.startChatting(); 
   				}
 				
   				
   				
-public void tellAJoke (String response)
-{
-		boolean continueJoke;
-		continueJoke = false;
-		ChatbotMain.print(jokesArr[0]);
-		while(!gotCorrectJ)
-		{
+	private boolean isInteger(String response) {
+		boolean isInteger = false;
+		String integerString = response;
+			int value = 0;
+			while(!isInteger){
+				try{
+					value = Integer.parseInt(response);
+					//will not continue if an error above is thrown
+					isInteger = true;//exits loop if entry is valid
+					return true;
+				}catch(NumberFormatException e){
+					
+					integerString = response;
+					return false;
+					
+				}
 			
-			response = ChatbotMain.getInput();
+}
+
+
+	public void tellAJoke(String response)
+	{
 			
-			if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
+			ChatbotMain.print(jokesArr[0]);
+			while(!gotCorrectJ)
 			{
-				ChatbotMain.print("No! You're being too literal!");
-			}
-			if(ChatbotMain.findKeyword(response, "bees", 0) >= 0)
-			{
-				ChatbotMain.print("You're getting close! Try again.");
-			}
-			
-			if(testAnsTrue(response))
-			{
-				gotCorrectJ = true;
-			}
-			else
-			{
-				numChances++;
-				if(numChances > 5 )
+				
+				response = ChatbotMain.getInput();
+				
+				if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
 				{
-				ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
+					ChatbotMain.print("No! You're being too literal!");
+				}
+				if(ChatbotMain.findKeyword(response, "bees", 0) >= 0)
+				{
+					ChatbotMain.print("You're getting close! Try again.");
+				}
+				
+				if(testAnsTrue(response))
+				{
+					gotCorrectJ = true;
 				}
 				else
 				{
-				ChatbotMain.print(upsetResArr[(int) (Math.random()*6)]);
+					numChancesJ++;
+					if(numChancesJ > 5 )
+					{
+					ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
+					}
+					else
+					{
+					ChatbotMain.print(upsetResArr[(int) (Math.random()*6)]);
+					}
 				}
-			}
-			
-			}
-			
-			
-		}
+				
+				}
+				
+				
+	}
+
+
+	public void tellAGame(String response)
+	{
+			int responseInt = Integer.parseInt(response);
+	
+			gamesAns = (int) (Math.random()*50); //can add levels when done
+			while(!gotCorrectG)
+			{
+				
+				if(responseInt > gamesAns)
+				{
+					numChancesG++;
+					ChatbotMain.print(gamesWrong[(int) (Math.random()*6)]);
+				}
+				if(responseInt < gamesAns)
+				{
+					numChancesG++;
+					ChatbotMain.print(gamesWrong[(int) (Math.random()*6)]);
+				}
+				
+				if(responseInt == gamesAns)
+				{
+					ChatbotMain.print("You did it! You answered within" + numChancesG + "tries!");
+					
+				}
+				
+				
+				}
+				
+				
+	}
+	
 		
 	//	ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); //gradually gets worse 
 	/*	moodIncrease++;
@@ -208,7 +272,7 @@ public void tellAJoke (String response)
 	{
 		//for(int i = 0; i < response.length(); i++)
 	//	{
-		if(response.indexOf("b") >= 0 )
+		if(response.indexOf("b") >= 0 || response.indexOf("B") >= 0)
 		{
 			return true;
 		}

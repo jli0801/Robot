@@ -7,8 +7,9 @@ public class Chatbot {
 	private ChatbotAreej areej;
 	private Topic vickie;
 	private ChatbotJi ji;
-	private int helloCount;
+
 	private String[] upsetResArr;
+	
 	
 	public String getUsername ()
 	{
@@ -37,11 +38,11 @@ public class Chatbot {
 		ji = new ChatbotJi();
 		username = "Unknown User";
 		chatting = true;
-		helloCount = 0;
 	
-		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?"
+		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?" 
 				,"Please stop saying hi. ", "Do you really understand? ", "You have to say something else!"};
 		upsetResArr = upsetRes;
+	
 
 	}
 
@@ -54,9 +55,7 @@ public class Chatbot {
 		{
 			
 			String response = ChatbotMain.getInput();
-			
-		
-			
+
 			if(jessica.isTriggered(response))
 			{
 				chatting = false; //exits the while loop IMPORTANT
@@ -79,13 +78,12 @@ public class Chatbot {
 			}
 			else
 			{
-				if((ChatbotMain.findKeyword(response, "hello" , 0) >= 0) || (ChatbotMain.findKeyword(response, "hi" , 0) >= 0))
+				//if((ChatbotMain.findKeyword(response, "hello" , 0) >= 0) || (ChatbotMain.findKeyword(response, "hi" , 0) >= 0))
+				if(response.indexOf("hello") >= 0|| response.indexOf("hi") >= 0)
 				{
-					helloCount++;
-					if(helloCount > 5)
-					{
+					
 					ChatbotMain.print(upsetResArr[(int) (Math.random()*3)]);	
-					}
+					
 				}
 				else {
 				ChatbotMain.print("I'm sorry. I don't understand. Do you want to talk about classes, colleges, any personal things, "
