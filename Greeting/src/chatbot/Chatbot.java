@@ -79,7 +79,7 @@ public class Chatbot {
 			}
 			else
 			{
-				if(response.indexOf("hello") >= 0)
+				if((ChatbotMain.findKeyword(response, "hello" , 0) >= 0) || (ChatbotMain.findKeyword(response, "hi" , 0) >= 0))
 				{
 					helloCount++;
 					if(helloCount > 5)
