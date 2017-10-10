@@ -10,11 +10,13 @@ public class ChatbotVickie implements Topic
 	private String[] negativeFeelings;
 	private String[] positiveFeelings;
 	
-	private String[] negativeComments;
+	private String[] annoyedComments; //can correspond with annoyed
 	private String[] positiveComments;
 	
-	private String[] positiveFeedback;
-	private String[] negativeFeedback;
+	//private String[] positiveFeedback;
+	//private String[] negativeFeedback;
+	
+	private String [] anythingElse;
 	
 	//private boolean concise;
 	private boolean beginning;
@@ -22,7 +24,7 @@ public class ChatbotVickie implements Topic
 	//private String[] concise;
 	private String goodbyeKeyword;
 	private String secretKeyword;
-	private String response;
+	private String respond;
 	private String reasonPos;
 	private String reasonNeg;
 	
@@ -40,16 +42,19 @@ public class ChatbotVickie implements Topic
 			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible", "bad", "scared", "terrified", "worried"};
 			negativeFeelings = badEmotions;
-		String[] goodEmotions = {"happy", "great", "excited", "relaxed","good"};//find more synonyms
+		String[] goodEmotions = {"happy", "great", "excited", "relaxed", "good", "fine", "wonderful", "terrific"};//find more synonyms
 			positiveFeelings = goodEmotions;
 			
-		String[] negComments = {"Come on, stop whining", "You're annoying, stop talking to me", "Sorry "};
-			negativeComments = negComments;
-		String[] posComments = {"That's good ", "How wonderful ", "It's great "};
+		String[] negComments = {"JUST STATE WHAT YOU FEEL AND WHY YOU FEEL THAT WAY!!", "!!! STATE.YOUR.FEELING.AND.WHY.", "IN YOUR ANSWER INCLUDE YOUR FEELING AND WHY YOU FEEL THAT WAY! "};
+			annoyedComments = negComments;
+		String[] posComments = {"That's good ", "How wonderful ", "It's great ", "It makes me happy "};
 			positiveComments = posComments;
 			
+		String [] more = {"What else do you want to mention?", "What else do you want to take off your chest?", "Tell me more about your feelings."};
+			anythingElse = more;
+			
 		conciseResponse = 0;
-		negEmotions = 0; //if more than 3, say ur worried and ask if they'd like to 
+		negEmotions = 0; 
 		posEmotions = 0;
 		
 			
@@ -60,7 +65,7 @@ public class ChatbotVickie implements Topic
 		//String[] shortResponsePlz = {"Sorry, can you shorten your response and identify the immediate problem? Being concise will also help in school and in communication", "Please 	
 		goodbyeKeyword = "bye";
 		secretKeyword = "family"; //death // died
-		response = ""; //s
+		respond = ""; //s
 		beginning = true;
 	}
 
@@ -69,8 +74,8 @@ public class ChatbotVickie implements Topic
 		if(beginning == true)
 		{	ChatbotMain.print("What about it? How do you feel about it? "); //What about it?? Can you elaborate more on your problem?
 								//how do you feel about it and why do you feel this way?
-			response = ChatbotMain.getInput();
-			conciseStr(response);
+			respond = ChatbotMain.getInput();
+			conciseStr(respond);
 			beginning = false;
 		}
 		
@@ -90,7 +95,7 @@ public class ChatbotVickie implements Topic
 	 * if because is not found, print why are you "neg/pos emotion)?
 	*/	
 		
-		if(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == 0) 
+		if(ChatbotMain.findKeyword(respond, goodbyeKeyword, 0) == 0) 
 		{
 			ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
 			
@@ -99,17 +104,17 @@ public class ChatbotVickie implements Topic
 				ChatbotMain.print("And btw, you really ought to work on your responses. Remember, being short and to the point is key to wonderful conversations! ");
 			}
 		}
-		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1 && beginning == false);
+		while(ChatbotMain.findKeyword(respond, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
 				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
 				response = ChatbotMain.getInput();
-				talk(response);
+				talk(respond);
 			}
 			else
 			{
-				emotionTriggers(response);
+				emotionTriggers(respond);
 			}
 		}
 	}
@@ -134,9 +139,10 @@ public class ChatbotVickie implements Topic
 					{
 					reasonBehindEmotion(response);
 					ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
-					response = ChatbotMain.getInput();
+					ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
+					respond = ChatbotMain.getInput();
 					//reasonPos = response;
-					talk( response);
+					talk( respond);
 					}
 				}
 				else
@@ -147,20 +153,22 @@ public class ChatbotVickie implements Topic
 						{
 							negEmotions++;
 							reasonNeg = negativeFeelings[n];
+							reasonBehindEmotion(response);
 							if (negEmotions == 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
 								//trigger function
 							}else
 							{
-								reasonBehindEmotion(response);
+								
 								System.out.println(negEmotions);
 								ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
+								ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 							//is there anything else you want to take off your chest? what else do you want to mention?
-								response = ChatbotMain.getInput();
+								respond = ChatbotMain.getInput();
 							//reasonNeg = response;
 							//System.out.println(negEmotions);
-								talk( response);
+								talk(respond);
 							}
 						}
 					}
@@ -177,17 +185,19 @@ public class ChatbotVickie implements Topic
 						if (ChatbotMain.findKeyword(newResponse, positiveFeelings[i], 0) >= 0)
 						{
 							negEmotions++;
+							reasonBehindEmotion(response);
 							reasonNeg = "not" + positiveFeelings[i];
 							if (negEmotions >= 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
 								//trigger function..
 							} else {
-							reasonBehindEmotion(response);
+							
 							ChatbotMain.print("Sorry to hear that you are not happy!");
+							ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 							//is there anything else you want to take off your chest?
-							response = ChatbotMain.getInput();
-							talk( response);}
+							respond = ChatbotMain.getInput();
+							talk(respond);}
 						} else
 						{
 							for(int n = 0; n < negativeFeelings.length; n++)
@@ -203,12 +213,13 @@ public class ChatbotVickie implements Topic
 									} else {
 									reasonBehindEmotion(response);
 									ChatbotMain.print("Good to hear that you are okay!");
+									ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 									//is there anything else you want to take off your chest?
-									response = ChatbotMain.getInput();
+									respond = ChatbotMain.getInput();
 							
 									//reasonNeg = response;
 							
-									talk( response);}
+									talk(respond);}
 								}
 							}
 						}
@@ -218,10 +229,16 @@ public class ChatbotVickie implements Topic
 			
 		//add count everytime this is triggered
 		//if it reaches a certain count, then it will get increasingly annoyed
-		annoyed++;
-			ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");// CHECK SPELLING!
-			response = ChatbotMain.getInput();
-			talk(response);
+			annoyed++;
+			if (annoyed > 5)
+			{
+				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
+			}else {
+			ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
+			ChatbotMain.print("Say what you feel and why you feel that way.");// CHECK SPELLING!
+			}
+			respond = ChatbotMain.getInput();
+			talk(respond);
 	}
 	
 	public void conciseStr(String response)
@@ -230,8 +247,8 @@ public class ChatbotVickie implements Topic
 		{
 			conciseResponse++;
 			ChatbotMain.print("Hold on, hold on, hold on. Your response is toooo long. You are going to have to be concise in college so why not start now? Please respond CONCISELY!");
-			response = ChatbotMain.getInput();
-			talk(response);
+			respond = ChatbotMain.getInput();
+			talk(respond);
 		}
 			//keep track of how often they trigger this function;
 		
@@ -243,8 +260,15 @@ public class ChatbotVickie implements Topic
 		
 		if(bec == -1)
 		{
+			annoyed++;
 			//print response
+			if (annoyed > 5)
+			{
+				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
+			}else
+			{
 			ChatbotMain.print("Why do u feel this way? What's your reason behind feeling this way?");
+			}
 			 String reason = ChatbotMain.getInput();
 			 emotionTriggers(reason);//fix
 		}else
@@ -258,7 +282,6 @@ public class ChatbotVickie implements Topic
 			}else
 			{
 				 reasonWhy = response.substring(bec + 7, reasLength);
-				//String respond = ChatbotMain.getInput();
 			}
 		}
 	}
