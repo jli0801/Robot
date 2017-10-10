@@ -58,9 +58,8 @@ public class ChatbotJessica implements Topic {
  				"The answer was B! Gosh, you're such a stick in the mud."};
  		jokesWrong = answerWrongJ;
  		//ended jokes now onto games
-		/*String[] games1 = {"Let's play, GUESS THAT NUMBER!"}; //thinking of a number from 1 to 100. guess it to win~
-  		gamesArr = games1;*/
-  		gamesAns = (int) (Math.random()*50);
+		
+  	
  		
  		String[] answerWrongG = {"Nope! Try again!", "Are you even trying?", 
  				"The answer is too low.", "Come on! You got to try harder than that."
@@ -206,7 +205,7 @@ public class ChatbotJessica implements Topic {
 				{
 					ChatbotMain.print("No! You're being too literal!");
 				}
-				if(ChatbotMain.findKeyword(response, "bees", 0) >= 0)
+				if((ChatbotMain.findKeyword(response, "bees", 0) >= 0)||(ChatbotMain.findKeyword(response, "bee", 0) >= 0) )
 				{
 					ChatbotMain.print("You're getting close! Try again.");
 				}
