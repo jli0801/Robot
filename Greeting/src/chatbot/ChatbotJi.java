@@ -8,15 +8,16 @@ public class ChatbotJi implements Topic{
 	//private String[] happy;
 	private String[] mild;
  	private String[] annoyed;
- 	private boolean discussedHonors;
+ 	private boolean discussedHonors = false;
  	private int numAnnoyed = 5;
 	//if numAnnoyed reaches 3, will turn to mild reaction 
 	//else when reach to 1, will turn to annoyed reaction
 	
+ 	//connect essay = true sat = true etc
 	private String[] negWords;
 
 	public ChatbotJi() {
-		String[] temp = {"college", "university", "school", "scores", "essay"}; //first three links to college chatbot
+		String[] temp = {"college", "university", "school", "sat", "essay", "honors"}; //first three links to college chatbot
 		String[] negWords = {"stop", "bad", "unhelpful"};
 		//String[] happy = {"I'm glad you asked me for help.", "Thanks for showing your interest.", "Your future is bright.", "No problem."};
  		String[] mild = {"Be more specific.", "Something else you want to say?", "I think we have gone over that. Let's talk about something else."};
@@ -36,19 +37,22 @@ public class ChatbotJi implements Topic{
 			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
 				findNegWords();
-				ChatbotMain.print("If you are lacking financially, applying for scholarships are very crucial in your application process!!!");
+				ChatbotMain.print("If you are lacking financially, applying for scholarships is very crucial in your application process!!!");
 				response = ChatbotMain.getInput();
 				findNegWords();
 				if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
-					response = ChatbotMain.getInput();
-					ChatbotMain.print("Research your college and see what requirements are needed to be eligible.");
-					//cont
+					if(ChatbotMain.chatbot.getAreej().isAdvanced()) {
+						ChatbotMain.print("Great! You are on your way to getting a scholarship!");
+					}
+					else {
+						ChatbotMain.print("Maybe you'll have better chances if you study harder.");
+					}
 				}
 				
 				if(ChatbotMain.findKeyword(response, "no", 0) >= 0) {
 					findNegWords();
 					ChatbotMain.print("Let me know if you need anything else.");
-					//cont
+					
 				}
 
 			}
@@ -75,20 +79,36 @@ public class ChatbotJi implements Topic{
 					} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
 							findNegWords();
 							ChatbotMain.print("Well.. if you need help, you can always contact me.");
-							//continue chat
+							
 				} else if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0) {
 					findNegWords();
-					ChatbotMain.print("What kind of scores are you looking to have help with?");
+					ChatbotMain.print("Do you need help with sending your SAT score?");
 					response = ChatbotMain.getInput();
 					findNegWords();
 					
-					if((ChatbotMain.findKeyword(response, "gpa", 0) >= 0) || (ChatbotMain.findKeyword(response, "grades", 0) >= 0)) {
-						//link
+					if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
+						ChatbotMain.print("On college board you can find an option to see which colleges you want to send to.");
 					}
-						
+					
+					if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+						ChatbotMain.print("Oh well.");
+					}
+				} else if (ChatbotMain.findKeyword(response, keywords[5], 0) >= 0) {
+					findNegWords();
+					ChatbotMain.print("Are you taking honors or AP classes?");
+					if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
+						ChatbotMain.print("That's good. You are taking a step towards college.");
+						hasDiscussedHonors();	
+					}
+					
+					if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+						ChatbotMain.print("You should, it prepares you for college.");
+						discussedHonors = false;
+					}
+					
 				} else {
 				 	ChatbotMain.print("I'm not quite sure what you need help with. Would you mind rephrasing your question?");
-				 	//continue chat	
+				 		
  				}
 				
 				response = ChatbotMain.getInput();
@@ -101,7 +121,7 @@ public class ChatbotJi implements Topic{
 	}
 	
 	private void getBotReaction() {
-		if (numAnnoyed > 1 && < 4) { //mild
+		if ((numAnnoyed > 1) && (numAnnoyed < 4)) { //mild
 			ChatbotMain.print(mild[(int) Math.floor(Math.random()* 4)]);
 		}
 	
@@ -109,20 +129,25 @@ public class ChatbotJi implements Topic{
 			ChatbotMain.print(annoyed[(int) Math.floor(Math.random()* 3)]);
 		}
 		
-		//if -1 end
+		//if -1 end discussion?
 	}
 	
 	private void findNegWords() {
-		if (response.contains(negWord[0]) {
+		if (response.contains(negWords[0])) {
 			numAnnoyed--;
 			
-		} else if (response.contains(negWord[1]) {
+		} else if (response.contains(negWords[1])) {
 			numAnnoyed--;
 			
-		} else if (response.contains(negWord[2]) {
+		} else if (response.contains(negWords[2])) {
 			numAnnoyed--;
 		}
 		getBotReaction();
+	}
+	
+	private boolean hasDiscussedHonors() {
+		discussedHonors = true;
+		return discussedHonors;
 	}
 	
 	//private void generateHappy {
