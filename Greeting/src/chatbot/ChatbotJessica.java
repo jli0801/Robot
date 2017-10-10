@@ -2,6 +2,8 @@
 
 public class ChatbotJessica implements Topic {
 
+	boolean endOfJess;
+	
 	private String[] keywords;
 	private String goodbyeKeyword;
 	private String secretKeyword;
@@ -79,6 +81,8 @@ public class ChatbotJessica implements Topic {
  		gotCorrectJ = false;
  		gotCorrectG = false;
  		answersCorrectly = false;
+ 		
+ 		endOfJess = false;
   	}
   
   	
@@ -169,13 +173,13 @@ public class ChatbotJessica implements Topic {
  						
   						
   					}
-				
+				endOfJess = true;
 				ChatbotMain.chatbot.startChatting(); 
   				}
 				
   				
   				
-	private boolean isInteger(String response) {
+	public boolean isInteger(String response) {
 
 			 try { 
 			        Integer.parseInt(response); 
@@ -238,27 +242,26 @@ public class ChatbotJessica implements Topic {
 
 	public void tellAGame(int response , int level) //currently stuck after you give an integer
 	{
-			int responseInt;
-			responseInt = getInteger(response);
+			
 			gamesAns = (int) (Math.random()*(level*20)); //range increases
 			while(!gotCorrectG) 
 			{
 				
-				if(responseInt > gamesAns)
+				if(response > gamesAns)
 				{
 					numChancesG++;
 					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
 					gotCorrectG = false;
 				}
 				
-				if(responseInt < gamesAns)
+				if(response < gamesAns)
 				{
 					numChancesG++;
 					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four
 					gotCorrectG = false;
 				}
 				
-				if(responseInt == gamesAns)
+				if(response == gamesAns)
 				{
 					ChatbotMain.print("You did it! You answered within" + numChancesG + "tries!");
 					gotCorrectG = true;

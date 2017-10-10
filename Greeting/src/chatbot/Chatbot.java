@@ -8,6 +8,11 @@ public class Chatbot {
 	private Topic vickie;
 	private ChatbotJi ji;
 	
+	private boolean endOfJess;
+	private boolean endOfVickie;
+	private boolean endOfAreej;
+	private boolean endOfJi;
+	
 	private boolean noRepeat;
 
 	private String[] upsetResArr;
@@ -65,9 +70,10 @@ public class Chatbot {
 				
 				String response = ChatbotMain.getInput();
 
-				if(jessica.isTriggered(response))
+				if(jessica.isTriggered(response) && !endOfJess)
 				{
 					chatting = false; //exits the while loop IMPORTANT
+					endOfJess = true;
 					jessica.talk(response);
 				}
 				else if(areej.isTriggered(response))
