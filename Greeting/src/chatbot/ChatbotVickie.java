@@ -102,7 +102,7 @@ public class ChatbotVickie implements Topic
 				response = ChatbotMain.getInput();
 				talk(respond);
 			}
-			else
+			else//
 			{
 				emotionTriggers(respond);
 			}

@@ -40,7 +40,7 @@ public class Chatbot {
 	}
 	public Chatbot() {
 		jessica = new ChatbotJessica();
-		areej = new ChatbotAreej();
+		areej = new ChatbotAreej();//
 		vickie = new ChatbotVickie();
 		ji = new ChatbotJi();
 		username = "Unknown User";
