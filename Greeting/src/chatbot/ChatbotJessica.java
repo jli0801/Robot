@@ -36,6 +36,8 @@ public class ChatbotJessica implements Topic {
   				,"I need more details. ", "Do you really understand? ", "Please answer my question.", "I don't think you get this. "
  				,"I don't understand.", "Come on! Just answer me!"};
   		upsetResArr = upsetRes;
+		String[] angryRes = {"Wow, you don't get it?", "Wasn't that a good pun!?", 
+				     "Fine, we can go back to serious business if you don't enjoy this."};
  		//determines mood/emotion
   		String[] jokes = {"What makes oil boil?", ""};
   		jokesArr = jokes;
@@ -107,9 +109,9 @@ public class ChatbotJessica implements Topic {
  								{
  									ChatbotMain.print("Oh, I heard the word game! Would you like to play with me?" );
  									response = ChatbotMain.getInput();
- 									if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) //check
+ 									if ((ChatbotMain.findKeyword(response, "yes", 0) >= 0) || (ChatbotMain.findKeyword(response, "yeah", 0) >= 0)) //check
  									{
- 									ChatbotMain.print(gamesArr[0]);
+ 									tellAGame(response);
  									}
  									else
  									{
@@ -119,16 +121,16 @@ public class ChatbotJessica implements Topic {
  								
  							if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0 )
  							{
- 								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[0]+ ". ");
- 								tellAJoke(response);
+ 								ChatbotMain.print("Sure, I'll tell you a great " + keywords[0]+ ". ");
+ 								tellAPun(response);
  								
- 								if(gotCorrectJ)
+ 								if(answersCorrect)
  								{
  									continueJokeConvo();
  								}
  								else
  								{
- 									ChatbotMain.print(jokesWrong[(int) (Math.random()*3)]); 
+ 									ChatbotMain.print(angryRes[(int) (Math.random()*3)]); 
  								}
  								
  							}
