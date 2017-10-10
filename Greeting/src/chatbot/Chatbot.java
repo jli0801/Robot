@@ -47,6 +47,10 @@ public class Chatbot {
 		chatting = true;
 		noRepeat = true;
 	
+		endOfJess = false;
+		endOfVickie = false;
+		endOfAreej = false;
+		endOfJi = false;
 		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?" 
 				,"Please stop saying hi. ", "Do you really understand? ", "You have to say something else!"};
 		upsetResArr = upsetRes;
