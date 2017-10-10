@@ -6,12 +6,11 @@ public class ChatbotAreej implements Topic{
 	private String goodbyeKeyword;
 	//private String secretKeyword;
 	private String response;
-	//private String[] worryingFactors;
 	//private String[] affirmative;
 	private boolean advanced;
 	private boolean discussedGrades;
 	private String questionResponse;
-	
+	private int num;
 	
 	public ChatbotAreej() {
 		String[] temp = {"school stuff", "academic things", "classes", "transcript"};
@@ -23,7 +22,7 @@ public class ChatbotAreej implements Topic{
 		goodbyeKeyword = "bye";
 		//secretKeyword = "program";
 		response = "";
-		//String[] worryingFactors = {"bad", "low", "wrong"};
+		num = 0;
 	
 	}
 
@@ -40,13 +39,13 @@ public class ChatbotAreej implements Topic{
 					
 				}
 				if (ChatbotMain.findKeyword(response, tempW[3], 0) >= 0 )
-					{
+				{
 						ChatbotMain.print("Do you need a copy of your transcript?" );
 						transcript(response);
 						
-					}
-		
-			
+				}
+				
+				
 			/*if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 			{
 				ChatbotMain.print("Ah, what do you want to ");
@@ -62,20 +61,16 @@ public class ChatbotAreej implements Topic{
 				}
 			}
 			*/
-				/*for(int i = 0; i < worryingFactors.length; i ++)
 				
-				  if (response.equals(worryingFactors[i]))
+				if (ChatbotMain.findKeyword(response, hc[0], 0) >= 0 || ChatbotMain.findKeyword(response, hc[1], 0) >= 0)
 				{
-					helpingOut();
+					ChatbotMain.print("Oh so you're interested in taking some advanced classes? What is your gpa?");
 					response = ChatbotMain.getInput();
+					honors(response);
+					
 				}
-				else
-				{
-					discussHonorsAsNeeded();
-					//ChatbotMain.print("");
-					response = ChatbotMain.getInput();
-				} 
-				*/
+				
+				
 		
 		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getAreej().talk("");;
@@ -83,6 +78,31 @@ public class ChatbotAreej implements Topic{
 		}
 	}
 	
+	private void honors(String response) {
+		if (isInteger(response))
+		{
+			int num = getInteger(response);
+			if(num < 3.0)
+			{
+				ChatbotMain.print("Ok, hee!");
+			//helpingOut();
+			response = ChatbotMain.getInput();
+			}
+			
+			else
+			{
+			discussHonorsAsNeeded();
+			response = ChatbotMain.getInput();
+			}
+			} 
+		ChatbotMain.print("I need a number please");
+	}
+
+	private void helpingOut() {
+		ChatbotMain.print("bloop");
+		
+	}
+
 	private void transcript(String re) {
 		
 		for(int i = 0; i < re.length()-5; i++) {
@@ -124,6 +144,7 @@ public class ChatbotAreej implements Topic{
 			//credentials for honors
 			//method for ji
 			//needs same method 
+			ChatbotMain.print("I see you're interested in taking honor classes");
 		}
 		
 	}
@@ -139,8 +160,7 @@ public class ChatbotAreej implements Topic{
 		}
 		return false;
 
-}
-	
+}	
 	public boolean isAdvanced() {
 		return advanced;
 		
@@ -150,4 +170,24 @@ public class ChatbotAreej implements Topic{
 		return discussedGrades;
 	}
 	
+	private boolean isInteger(String response) {
+
+		 try { 
+		        Integer.parseInt(response); 
+		    } catch(NumberFormatException e) { 
+		        return false; 
+		    } catch(NullPointerException e) {
+		        return false;
+		    }
+		    // only got here if we didn't return false
+		    return true;
+		
+}
+	public int getInteger(String response)
+	{
+		int responseInt;
+		responseInt = 0;
+		return responseInt = Integer.parseInt(response);
+	}	
+
 }
