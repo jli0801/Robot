@@ -181,7 +181,7 @@ public class ChatbotVickie implements Topic
 							if (negEmotions >= 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
-								//trigger function
+								//trigger function..
 							} else {
 							reasonBehindEmotion(response);
 							ChatbotMain.print("Sorry to hear that you are not happy!");
