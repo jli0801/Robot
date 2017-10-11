@@ -9,17 +9,22 @@ public class ChatbotAreej implements Topic{
 	private String[] af;
 	private boolean advanced;
 	private boolean discussedGrades;
-	
+	//private double gpa;
+	private String[] classes;
+	private String[] clas;
 	
 	public ChatbotAreej() {
 		String[] temp = {"school stuff", "academic things", "classes", "transcript"};
 		tempW = temp;
 		String[] hardClasses = {"ap", "honors","ap's", "honor"};
 		hc = hardClasses;
-		String[] affirmative = {"ok", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", ""};
+		String[] affirmative = {"ok", "k", "okay", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", "yes", "yeah"};
 		af = affirmative;
 		goodbyeKeyword = "bye";
 		response = "";
+		//gpa = 0;
+		String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
+		clas = classes;
 	}
 
 	public void talk(String response) {
@@ -38,8 +43,10 @@ public class ChatbotAreej implements Topic{
 			//transcript	
 				if (ChatbotMain.findKeyword(response, tempW[3], 0) >= 0 )
 				{
-						ChatbotMain.print("Do you need a copy of your transcript?" );
+						//ChatbotMain.print("Do you need a copy of your transcript?" );
+						//response = ChatbotMain.getInput();
 						transcript(response);
+						
 						
 				}
 			//honors classes
@@ -48,7 +55,7 @@ public class ChatbotAreej implements Topic{
 					{
 						ChatbotMain.print("Oh so you're interested in taking some advanced classes? What is your gpa?");
 						response = ChatbotMain.getInput();
-						honors(response);
+						recHonors(response);
 						
 					}					
 				}
@@ -58,8 +65,42 @@ public class ChatbotAreej implements Topic{
 		}
 	}
 	
-	private void honors(String response) {
-		if (isDouble(response))
+	/*private double generateTranscript(String a) {
+		for(int i = 0; i < classes.length; i++) {
+			double avr = (Math.random() * 50) + 50;
+		}
+		return avr;
+	}
+	*/
+	private void assignValues() {
+		
+		String s = "";
+		
+		for(int i = 0; i < clas.length; i++) {
+			int avr = (int) ((Math.random() * 50) + 50);
+			s+= clas[i]+ "     "+ avr + "\n";
+		}
+		
+		
+		System.out.println(s);
+
+	}
+	
+	//private void generateGPA(String response) {
+	//}
+	private void transcript(String re) {
+		
+		for(int i = 0; i < re.length()-4; i++) {
+		//if(re.substring(i, i + 3).equals("yes")) {
+			ChatbotMain.print("Ok, here you are!");
+			assignValues();
+			response = ChatbotMain.getInput();
+		//}
+		}
+	}
+	
+	private void recHonors(String response) {
+		/*if (isDouble(response))
 		{
 			double num = getDouble(response);
 			if(num < 3.0)
@@ -80,6 +121,7 @@ public class ChatbotAreej implements Topic{
 		discussedGrades = true;
 		ChatbotMain.print("I need a number please");
 		response = ChatbotMain.getInput();
+		*/
 	}
 
 	private void helpingOut() {
@@ -88,16 +130,6 @@ public class ChatbotAreej implements Topic{
 		response = ChatbotMain.getInput();
 		reply(response);
 		
-	}
-
-	private void transcript(String re) {
-		
-		for(int i = 0; i < re.length()-5; i++) {
-		if(re.substring(i, i + 3).equals("yes") ||re.substring(i, i + 4).equals("yeah") || re.substring(i, i + 10).equals("yes please")) {
-			ChatbotMain.print("Ok, here you are!");
-			response = ChatbotMain.getInput();
-		}
-		}
 	}
 
 	private void program(String r) {
@@ -156,7 +188,7 @@ public class ChatbotAreej implements Topic{
 		return discussedGrades;
 	}
 	
-	private boolean isDouble(String response) {
+	/*private boolean isDouble(String response) {
 
 		 try { 
 		        Double.parseDouble(response); 
@@ -175,7 +207,7 @@ public class ChatbotAreej implements Topic{
 		rd = 0;
 		return rd = Double.parseDouble(response);
 	}	
-	
+	*/
 	public void reply(String s) {
 		for(int i = 0; i < af.length; i ++) {
 			
@@ -191,4 +223,16 @@ public class ChatbotAreej implements Topic{
 		
 	}
 
+/*	
+
+ 
+	public String space(String s, int length) {
+		 
+		 while(s.length() < length) {
+			 s += " ";
+		 }
+		 
+		 return s;
+	 }
+	 */
 }
