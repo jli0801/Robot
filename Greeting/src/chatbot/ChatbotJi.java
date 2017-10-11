@@ -6,9 +6,10 @@ public class ChatbotJi implements Topic{
 	private String secretKeyword;
 	private String response;
 	//private String[] happy;
+	private boolean startedEssay = false;
 	private String[] mild;
  	private String[] annoyed;
- 	private boolean discussedHonors = false;
+ 	public boolean discussedHonors = false;
  	private int numAnnoyed = 5;
 	//if numAnnoyed reaches 3, will turn to mild reaction 
 	//else when reach to 1, will turn to annoyed reaction
@@ -43,6 +44,9 @@ public class ChatbotJi implements Topic{
 				if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 					if(ChatbotMain.chatbot.getAreej().isAdvanced()) {
 						ChatbotMain.print("Great! You are on your way to getting a scholarship!");
+						if(startedEssay==true) {
+							ChatbotMain.print("Not only that, you also started your essay. Kudos to you.");
+						}
 					}
 					else {
 						ChatbotMain.print("Maybe you'll have better chances if you study harder.");
@@ -54,31 +58,38 @@ public class ChatbotJi implements Topic{
 					ChatbotMain.print("Let me know if you need anything else.");
 					
 				}
-
+  
 			}
 			else
 			{
 				if (ChatbotMain.findKeyword(response, keywords[4], 0) >= 0) { //colleges
 					findNegWords();
- 					ChatbotMain.print("Would you like to have advice on writing your essay?");
- 					response = ChatbotMain.getInput();
-					findNegWords();
+					ChatbotMain.print("Have you started on your college essay?");
+					response = ChatbotMain.getInput();
 					if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
-						findNegWords();
-						ChatbotMain.print("Great! What are you struggling with?"); 
+						startedEssay = true;
+						ChatbotMain.print("Would you like to have advice on writing your essay?");
 						response = ChatbotMain.getInput();
 						findNegWords();
-						if(ChatbotMain.findKeyword(response, "topic", 0) >= 0) {
+						if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 							findNegWords();
-							ChatbotMain.print("Think about moments that impacted your personality or characteristic you highly value. If you are still stuck, try looking at the essay prompts. Hopefully an idea will spark!");
-							if(ChatbotMain.findKeyword(response, "thanks", 0) >= 0) {
+							ChatbotMain.print("Great! What are you struggling with?"); 
+							response = ChatbotMain.getInput();
+							findNegWords();
+							if(ChatbotMain.findKeyword(response, "topic", 0) >= 0) {
 								findNegWords();
-								ChatbotMain.print("No problem.");
-							}
-						}		
-					} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
-							findNegWords();
-							ChatbotMain.print("Well.. if you need help, you can always contact me.");
+								ChatbotMain.print("Think about moments that impacted your personality or characteristic you highly value. If you are still stuck, try looking at the essay prompts. Hopefully an idea will spark!");
+								if(ChatbotMain.findKeyword(response, "thanks", 0) >= 0) {
+									findNegWords();
+									ChatbotMain.print("No problem.");
+								}
+							}		
+						} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+								findNegWords();
+								ChatbotMain.print("Well.. if you need help, you can always contact me.");
+					}else {
+						ChatbotMain.print("The sooner you start, the better your progress.");	
+					}
 							
 				} else if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0) {
 					findNegWords();
@@ -145,7 +156,7 @@ public class ChatbotJi implements Topic{
 		getBotReaction();
 	}
 	
-	private boolean hasDiscussedHonors() {
+	public boolean hasDiscussedHonors() {
 		discussedHonors = true;
 		return discussedHonors;
 	}
