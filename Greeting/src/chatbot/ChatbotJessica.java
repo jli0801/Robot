@@ -21,7 +21,8 @@ public class ChatbotJessica implements Topic {
  	private String[] gamesWrong;
  	
  //	private String[] puns;
- 
+ 	private boolean firstPlay;
+ 	
  	private int numChancesJ;
  	private int numChancesG;
  	private int moodIncrease;
@@ -47,17 +48,17 @@ public class ChatbotJessica implements Topic {
 				     "Fine, we can go back to serious business if you don't enjoy this."};
 		angryResArr = angryRes;
  		//determines mood/emotion
-  		String[] jokes = {"What makes oil boil?", ""};
+  		String[] jokes = {"What type of clothing does a house wear?"};
   		jokesArr = jokes;
 	
- 		String[] answerJ = {"Get it? The letter B!", "It's a play on words/letters!"
- 				, "It's genius isn't it?"};	
+ 		String[] answerJ = {"Get it? Address!", "Address! It's a play on words!"
+ 				, "It's a combination of dress and a so it's address!"};	
   		jokesAns = answerJ;
  		goodbyeKeyword = "bye";
  		
  		String[] answerWrongJ = {"Noo! Guess again.", "Are you even trying?", 
- 				"Come on! What makes oil boil?", "The answer is one letter!!",
- 				"The answer was B! Gosh, you're such a stick in the mud."};
+ 				"Come on! What clothes does a house wear?", "The answer is one word!",
+ 				"The answer was address! Gosh, you're such a stick in the mud."};
  		jokesWrong = answerWrongJ;
  		//ended jokes now onto games
 		
@@ -81,6 +82,7 @@ public class ChatbotJessica implements Topic {
  		
  		gotCorrectG = false;
  		answersCorrectly = false;
+ 		firstPlay = false;
  		
  		endOfJess = false;
   	}
@@ -106,13 +108,13 @@ public class ChatbotJessica implements Topic {
  							
  							if (ChatbotMain.findKeyword(response, keywords[0], 0) >= 0 )
  							{
- 								ChatbotMain.print("Yes of course. I'll tell you a " + keywords[0]+ ". ");
+ 								
  								tellAJoke(response);
  								
  								if(gotCorrectJ)
  								{
- 									continueJokeConvo();
- 									
+ 									ChatbotMain.print("No more jokes! Would you like to play a game?");
+ 								//	ChatbotMain.chatbot.startChatting();  //idk if this works
  								}
  								else
  								{
@@ -120,11 +122,12 @@ public class ChatbotJessica implements Topic {
  								}
  								
  							}
+ 							
  							if (ChatbotMain.findKeyword(response, keywords[1], 0) >= 0 )//use same method for JOKE 
  								{
  									ChatbotMain.print("Oh, I heard the word game! Would you like to play with me?" );
  									response = ChatbotMain.getInput();
- 									if ((ChatbotMain.findKeyword(response, "yes", 0) >= 0) || (ChatbotMain.findKeyword(response, "yeah", 0) >= 0)) //check
+ 									if (saidYes(response)) //check
  									{
  									ChatbotMain.print("It's a number guessing game to play. You must type in an integer! ");
  									response = ChatbotMain.getInput();
@@ -137,8 +140,15 @@ public class ChatbotJessica implements Topic {
 											{
 											level++;
 											ChatbotMain.print("Do you want to play again with a harder level?");
+											if(saidYes(response))
+											{
 											tellAGame(numInt, level);
 											}		
+											else
+											{
+												ChatbotMain.chatbot.startChatting(); 
+											}
+											}
 	 									}
 	 									else
 	 									{
@@ -179,7 +189,11 @@ public class ChatbotJessica implements Topic {
  }
 				
   				
-  				
+  	public boolean saidYes(String response)
+  	{
+  		return (ChatbotMain.findKeyword(response, "yes", 0) >= 0) || (ChatbotMain.findKeyword(response, "yeah", 0) >= 0 ||
+  				ChatbotMain.findKeyword(response, "sure", 0) >= 0);
+  	}
 	public boolean isInteger(String response) {
 
 			 try { 
@@ -203,7 +217,13 @@ public class ChatbotJessica implements Topic {
 	public void tellAJoke(String response)
 	{
 		gotCorrectJ = false;
+		firstPlay = false;
+		if(!firstPlay)
+		{
+			ChatbotMain.print("Yes of course. I'll tell you a great joke!");
 			ChatbotMain.print(jokesArr[0]);
+		}
+		
 			while(!gotCorrectJ)
 			{
 				
@@ -214,18 +234,16 @@ public class ChatbotJessica implements Topic {
 				if(testAnsTrue(response))
 				{
 					gotCorrectJ = true;
+					firstPlay = true;
 				}
 				else
 				{
-					if(ChatbotMain.findKeyword(response, "heat", 0) >= 0)
+					if(ChatbotMain.findKeyword(response, "dress", 0) >= 0)
 					{
-						ChatbotMain.print("No! You're being too literal!");
+						ChatbotMain.print("No, don't be silly! They can't wear a dress!");
 					}
 					
-					if((ChatbotMain.findKeyword(response, "bees", 0) >= 0)||(ChatbotMain.findKeyword(response, "bee", 0) >= 0) )
-					{
-						ChatbotMain.print("You're getting close! Try again.");
-					}
+				
 					
 					numChancesJ++;
 					if(numChancesJ > 5 )
@@ -295,12 +313,11 @@ public class ChatbotJessica implements Topic {
 	
 	public boolean testAnsTrue(String response)
 	{
-		
-		if(ChatbotMain.findKeyword(response, " b " , 0) >= 0 || ChatbotMain.findKeyword(response, " B ", 0) >= 0)
+		if(ChatbotMain.findKeyword(response, "address", 0) >= 0 || ChatbotMain.findKeyword(response, "Address", 0) >= 0)
 		{
 			return true;
 		}
-
+		
 		return false;
 	}
 	
