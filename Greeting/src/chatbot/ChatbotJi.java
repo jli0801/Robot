@@ -44,7 +44,7 @@ public class ChatbotJi implements Topic{
 				if(ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 					if(ChatbotMain.chatbot.getAreej().isAdvanced()) {
 						ChatbotMain.print("Great! You are on your way to getting a scholarship!");
-						if(startedEssay.equals(true)) {
+						if(startedEssay==true) {
 							ChatbotMain.print("Not only that, you also started your essay. Kudos to you.");
 						}
 					}
