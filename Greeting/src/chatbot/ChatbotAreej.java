@@ -28,7 +28,7 @@ public class ChatbotAreej implements Topic{
 	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
-			//regular classes
+			//regular classes/
 				if (ChatbotMain.findKeyword(response, tempW[2], 0) >= 0 )
 				{
 					ChatbotMain.print("Hm let me see");
