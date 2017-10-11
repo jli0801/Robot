@@ -114,7 +114,7 @@ public class ChatbotJi implements Topic{
 					
 					if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
 						ChatbotMain.print("You should, it prepares you for college.");
-						discussedHonors = false;
+						hasDiscussedHonors();
 					}
 					
 				} else {
