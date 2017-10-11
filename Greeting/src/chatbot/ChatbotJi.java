@@ -8,7 +8,7 @@ public class ChatbotJi implements Topic{
 	//private String[] happy;
 	private String[] mild;
  	private String[] annoyed;
- 	private boolean discussedHonors = false;
+ 	public boolean discussedHonors = false;
  	private int numAnnoyed = 5;
 	//if numAnnoyed reaches 3, will turn to mild reaction 
 	//else when reach to 1, will turn to annoyed reaction
@@ -145,7 +145,7 @@ public class ChatbotJi implements Topic{
 		getBotReaction();
 	}
 	
-	private boolean hasDiscussedHonors() {
+	public boolean hasDiscussedHonors() {
 		discussedHonors = true;
 		return discussedHonors;
 	}
