@@ -10,7 +10,7 @@ public class ChatbotAreej implements Topic{
 	private boolean advanced;
 	private boolean discussedGrades;
 	
-	//
+	
 	public ChatbotAreej() {
 		String[] temp = {"school stuff", "academic things", "classes", "transcript"};
 		tempW = temp;
