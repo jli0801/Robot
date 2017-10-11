@@ -4,26 +4,22 @@ public class ChatbotAreej implements Topic{
 	private String[] tempW;
 	private String[] hc;
 	private String goodbyeKeyword;
-	//private String secretKeyword;
 	private String response;
-	//private String[] affirmative;
+	private String[] affirmative;
+	private String[] af;
 	private boolean advanced;
 	private boolean discussedGrades;
-	private String questionResponse;
-	private int num;
+	
 	
 	public ChatbotAreej() {
 		String[] temp = {"school stuff", "academic things", "classes", "transcript"};
 		tempW = temp;
-		String[] hardClasses = {"ap", "honors"};
+		String[] hardClasses = {"ap", "honors","ap's", "honor"};
 		hc = hardClasses;
-		//String[] affirmative = {"yes", "please", "mhm"};
-		questionResponse = "can you?";
+		String[] affirmative = {"ok", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", ""};
+		af = affirmative;
 		goodbyeKeyword = "bye";
-		//secretKeyword = "program";
 		response = "";
-		num = 0;
-	
 	}
 
 	public void talk(String response) {
@@ -32,46 +28,30 @@ public class ChatbotAreej implements Topic{
 	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
-			if (ChatbotMain.findKeyword(response, tempW[2], 0) >= 0 )
+			//regular classes
+				if (ChatbotMain.findKeyword(response, tempW[2], 0) >= 0 )
 				{
 					ChatbotMain.print("Hm let me see");
 					program(response);
 					
 				}
+			//transcript	
 				if (ChatbotMain.findKeyword(response, tempW[3], 0) >= 0 )
 				{
 						ChatbotMain.print("Do you need a copy of your transcript?" );
 						transcript(response);
 						
 				}
-				
-				
-			/*if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
-			{
-				ChatbotMain.print("Ah, what do you want to ");
-				response = ChatbotMain.getInput();
-				
-				for(int i = 0; i < response.length()-3; i ++) {
-					if(response.substring(i, i+3).equals("yes")) {
-						discussProgram();
-					}
-					}
-				ChatbotMain.print("So what do you need?");
-				response = ChatbotMain.getInput();
+			//honors classes
+				for(int i = 0; i < hc.length; i ++) {
+					if (ChatbotMain.findKeyword(response, hc[i], 0) >= 0 )
+					{
+						ChatbotMain.print("Oh so you're interested in taking some advanced classes? What is your gpa?");
+						response = ChatbotMain.getInput();
+						honors(response);
+						
+					}					
 				}
-			}
-			*/
-				
-				if (ChatbotMain.findKeyword(response, hc[0], 0) >= 0 || ChatbotMain.findKeyword(response, hc[1], 0) >= 0)
-				{
-					ChatbotMain.print("Oh so you're interested in taking some advanced classes? What is your gpa?");
-					response = ChatbotMain.getInput();
-					honors(response);
-					
-				}
-				
-				
-		
 		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getAreej().talk("");;
 		ChatbotMain.chatbot.startChatting();
@@ -79,39 +59,45 @@ public class ChatbotAreej implements Topic{
 	}
 	
 	private void honors(String response) {
-		if (isInteger(response))
+		if (isDouble(response))
 		{
-			int num = getInteger(response);
+			double num = getDouble(response);
 			if(num < 3.0)
 			{
-				ChatbotMain.print("Ok, hee!");
-			//helpingOut();
+			ChatbotMain.print("I don't recommend you take honors classes");
+			helpingOut();
 			response = ChatbotMain.getInput();
+			
 			}
 			
 			else
 			{
 			discussHonorsAsNeeded();
 			response = ChatbotMain.getInput();
+			advanced= true;
 			}
-			} 
+			}
+		discussedGrades = true;
 		ChatbotMain.print("I need a number please");
+		response = ChatbotMain.getInput();
 	}
 
 	private void helpingOut() {
-		ChatbotMain.print("bloop");
+		
+		ChatbotMain.print("In fact, I'm worried about how you're doing, I really recommend you go to tutoring.");
+		response = ChatbotMain.getInput();
+		reply(response);
 		
 	}
 
 	private void transcript(String re) {
 		
 		for(int i = 0; i < re.length()-5; i++) {
-		if(re.substring(i, i + 3).equals("yes") ||re.substring(i, i + 4).equals("yeah")) {
+		if(re.substring(i, i + 3).equals("yes") ||re.substring(i, i + 4).equals("yeah") || re.substring(i, i + 10).equals("yes please")) {
 			ChatbotMain.print("Ok, here you are!");
 			response = ChatbotMain.getInput();
 		}
 		}
-		
 	}
 
 	private void program(String r) {
@@ -146,8 +132,8 @@ public class ChatbotAreej implements Topic{
 			//needs same method 
 			ChatbotMain.print("I see you're interested in taking honor classes");
 		}
-		
 	}
+
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < tempW.length; i++)
@@ -170,10 +156,10 @@ public class ChatbotAreej implements Topic{
 		return discussedGrades;
 	}
 	
-	private boolean isInteger(String response) {
+	private boolean isDouble(String response) {
 
 		 try { 
-		        Integer.parseInt(response); 
+		        Double.parseDouble(response); 
 		    } catch(NumberFormatException e) { 
 		        return false; 
 		    } catch(NullPointerException e) {
@@ -183,11 +169,26 @@ public class ChatbotAreej implements Topic{
 		    return true;
 		
 }
-	public int getInteger(String response)
+	public double getDouble(String response)
 	{
-		int responseInt;
-		responseInt = 0;
-		return responseInt = Integer.parseInt(response);
+		double rd;
+		rd = 0;
+		return rd = Double.parseDouble(response);
 	}	
+	
+	public void reply(String s) {
+		for(int i = 0; i < af.length; i ++) {
+			
+			if (ChatbotMain.findKeyword(s, af[i], 0) >= 0 )
+			{
+				ChatbotMain.print("Goodluck! I'm here if you need anything else.");
+				response = ChatbotMain.getInput();
+				
+			}					
+		}
+		ChatbotMain.print("Up to you, I'm only trying to help");
+		response = ChatbotMain.getInput();
+		
+	}
 
 }
