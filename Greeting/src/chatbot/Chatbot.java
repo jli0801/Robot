@@ -4,9 +4,9 @@ public class Chatbot {
 	private String username;
 	private boolean chatting;
 	public static ChatbotJessica jessica;
-	private ChatbotAreej areej;
-	private ChatbotVickie vickie;
-	private ChatbotJi ji;
+	public static ChatbotAreej areej;
+	public static ChatbotVickie vickie;
+	public static ChatbotJi ji;
 	
 //	private boolean endOfJess;
 //	private boolean endOfVickie;
@@ -45,6 +45,11 @@ public class Chatbot {
 		ji = new ChatbotJi();
 		
 		ji.setJessica(jessica);
+		//ji.setVickie(vickie);
+		//ji.setAreej(areej);
+		//ji.setJi(ji);
+		
+		
 		
 		
 		username = "Unknown User";
