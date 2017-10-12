@@ -161,6 +161,7 @@ public class ChatbotJessica implements Topic {
 	 											level++;
 	 											firstPlayG = false; //so they can play again
 	 			 								tellAGame(response, level);
+	 			 								gotCorrectG = false;
 		 									}
 		 									else
 		 									{
@@ -179,12 +180,14 @@ public class ChatbotJessica implements Topic {
 		 									if(saidYes(response))
 		 									{
 	 											firstPlayG = false; //so they can play again
+	 											gotCorrectG = false;
 	 			 								tellAGame(response, level);
 		 									}
 		 									else
 		 									{
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
+		 										response = ChatbotMain.getInput();	
 	 											ChatbotMain.chatbot.startChatting(); 
 	 											doneGame = false;
 		 									}
@@ -311,22 +314,26 @@ public class ChatbotJessica implements Topic {
 			}		
 			else
 			{
-						if(isInteger(response))
+					/*	if(isInteger(response))
 						{	
-							response = ChatbotMain.getInput();
+						//	response = ChatbotMain.getInput();
 							int gamesAns = (int) (Math.random()*(level*25)); //range increases
-							int responseI = getInteger(response); 
-						
+							
+							*/
+				int gamesAns = (int) (Math.random()*(level*25)); //range increases
 							while(!gotCorrectG) 
 							{
+								response = ChatbotMain.getInput();
 								
-						
+								if(isInteger(response))
+								{
+								int responseI = getInteger(response); 
+							//	response = ChatbotMain.getInput();
 								if(responseI == gamesAns)
 								{
-								
 									gotCorrectG = true;
 									numChancesG++;
-									ChatbotMain.print("You did it! You answered within" + numChancesG + "tries!");
+									ChatbotMain.print("You did it! You answered within " + numChancesG + " tries!");
 								} 
 								else
 								{
@@ -335,18 +342,18 @@ public class ChatbotJessica implements Topic {
 										
 										//doneGame = true;
 										numChancesG++;
-										//ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
-										ChatbotMain.print("needs to be higher" + gamesAns);
-										response = ChatbotMain.getInput();
+										ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
+									//	ChatbotMain.print("needs to be higher" + gamesAns);
+								//		response = ChatbotMain.getInput();
 									}
 									
 									if(responseI > gamesAns) //more than
 									{
 										
 										numChancesG++;
-									//	ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four	
-										ChatbotMain.print("needs to be lower" + gamesAns);
-										response = ChatbotMain.getInput();
+										ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four	
+								//		ChatbotMain.print("needs to be lower" + gamesAns);
+								//		response = ChatbotMain.getInput();
 									}
 								
 									
@@ -357,16 +364,24 @@ public class ChatbotJessica implements Topic {
 								}
 								
 							} //ends while loop
+								else
+								{
+									
+									ChatbotMain.print("You must enter an integer. Play the game correctly!");
+							//		response = ChatbotMain.getInput();
+									tellAGame(response, level);
+								}
 						}
-						else
+						}
+					/*	else
 						{
 							
 							ChatbotMain.print("You must enter an integer. Play the game correctly!");
 							response = ChatbotMain.getInput();
 							tellAGame(response, level);
-						}
+						}*/
 			}
-	}
+	
 					
 					
 			
