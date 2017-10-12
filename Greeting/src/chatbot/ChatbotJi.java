@@ -94,9 +94,6 @@ public class ChatbotJi implements Topic {
 			} else {
 				ChatbotMain.print("You'll have better chances when you take rigorous courses.");
 			}
-		} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
-			//findNegWords();
-			ChatbotMain.print("You should.");
 		} else {
 			ChatbotMain.print("If you haven't, you should.");
 		}
@@ -129,7 +126,7 @@ public class ChatbotJi implements Topic {
 					}
 				}
 
-			} else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+			} else {
 				// findNegWords();
 				ChatbotMain.print("Well.. if you need help, you can always contact me.");
 			}
@@ -147,14 +144,11 @@ public class ChatbotJi implements Topic {
 				ChatbotMain.print("That's good. You are taking a big step towards college.");
 				hasDiscussedHonors();
 			} 
-			else if (ChatbotMain.findKeyword(response, "no", 0) >= 0) {
+			else {
 				ChatbotMain.print("You should, it prepares you for college.");
 				hasDiscussedHonors();
-			} else {
-			ChatbotMain.print("No..? Oh, make sure you try to.");
 			}
-		}
-	
+	}
 
 	public void getBotReaction() {
 		if ((numAnnoyed > 1) && (numAnnoyed < 4)) { // mild
