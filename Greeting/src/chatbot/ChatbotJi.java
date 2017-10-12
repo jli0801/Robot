@@ -141,7 +141,7 @@ public class ChatbotJi implements Topic {
 			response = ChatbotMain.getInput();
 			findNegWords();
 			if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
-				ChatbotMain.print("That's good. You are taking a big step towards college.");
+				ChatbotMain.print("That's good, you are taking a big step towards college. Maybe we can talk about your potential grade-wise.");
 				hasDiscussedHonors();
 			} 
 			else {
