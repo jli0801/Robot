@@ -1,7 +1,10 @@
 package chatbot;
 
 public class ChatbotAreej implements Topic{
-	
+	private ChatbotJessica jessica;//////////////
+	private ChatbotAreej areej;		////////////////
+	private ChatbotVickie vickie;/////////////////
+	private ChatbotJi ji;///////////////////////
 	
 	
 	private String[] tempW;
