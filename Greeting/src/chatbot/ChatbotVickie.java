@@ -7,9 +7,9 @@ public class ChatbotVickie implements Topic
 { //personal life
 
 	
-	private ChatbotJessica jessica;
+	/*private ChatbotJessica jessica;
 	private ChatbotAreej areej;		
-	private ChatbotJi ji;
+	private ChatbotJi ji;*/
 
 	private String[] keywords;
 	private String[] negativeFeelings;
@@ -35,7 +35,7 @@ public class ChatbotVickie implements Topic
 	private int posEmotions;
 	private int annoyed;
 	
-	public ChatbotJessica getJessica()//////////////////////////////////////////////////////////////////////////////
+	/*public ChatbotJessica getJessica()//////////////////////////////////////////////////////////////////////////////
 	{
 		return jessica;
 	}
@@ -46,14 +46,14 @@ public class ChatbotVickie implements Topic
 	public ChatbotJi getJi()
 	{
 		return ji;
-	}
+	}*/
 	///////////////GOT THIS FROM CHATBOT
 	public ChatbotVickie() 
 	{
 		
-		jessica = new ChatbotJessica();
+		/*jessica = new ChatbotJessica();
 		areej = new ChatbotAreej();//
-		ji = new ChatbotJi();
+		ji = new ChatbotJi();*/
 		////////////////////////////// GOT THIS FROM CHATBOT
 		
 		
@@ -164,11 +164,11 @@ public class ChatbotVickie implements Topic
 								if (negEmotions == 3)
 								{
 									ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because" + reasonWhy + ".");
-								
-									ChatbotMain.print("Instead, lets talk about something else: Do you want to talk about your academics, colleges, or hear a joke?");
-									respond = ChatbotMain.getInput();
+									ChatbotMain.chatbot.omgTriggers();
+									//ChatbotMain.print("Instead, lets talk about something else: Do you want to talk about your academics, colleges, or hear a joke?");
+									//respond = ChatbotMain.getInput();
 									//ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
-									triggerOtherClasses(respond);
+									//triggerOtherClasses(respond);
 								}
 								else
 								{
@@ -337,7 +337,7 @@ public class ChatbotVickie implements Topic
 	}
 	
 	
-	public void  triggerOtherClasses(String response)
+	/*public void  triggerOtherClasses(String response)
 	{
 		if(jessica.isTriggered(response))
 		{
@@ -349,14 +349,14 @@ public class ChatbotVickie implements Topic
 		}
 		else if(ji.isTriggered(response))
 		{
-			ji.talk(response);
+			ji.talk(response);	
 		}else 
 		{
 			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
 			respond = ChatbotMain.getInput();
 			triggerOtherClasses(respond);
 		}
-	}
+	}*/
 	
 	public boolean isTriggered(String response) 
 	{

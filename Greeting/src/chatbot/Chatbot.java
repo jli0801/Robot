@@ -7,6 +7,7 @@ public class Chatbot {
 	public static ChatbotAreej areej;
 	public static ChatbotVickie vickie;
 	public static ChatbotJi ji;
+	private int trigger;
 	
 //	private boolean endOfJess;
 //	private boolean endOfVickie;
@@ -44,13 +45,13 @@ public class Chatbot {
 		vickie = new ChatbotVickie();
 		ji = new ChatbotJi();
 		
-		ji.setJessica(jessica);
+		//ji.setJessica(jessica);
 		//ji.setVickie(vickie);
 		//ji.setAreej(areej);
 		//ji.setJi(ji);
 		
 		
-		
+		trigger = 0;
 		
 		username = "Unknown User";
 		chatting = true;
@@ -75,16 +76,25 @@ public class Chatbot {
 			username = ChatbotMain.getInput();
 			noRepeat = false; 
 			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Academics, colleges, any personal things, or a joke?");
+			omgTriggers();
 		}
-		else
+		
+	}
+	
+	public void omgTriggers() {
+		
+		chatting = true;
+		
+		while (chatting)
 		{
-			ChatbotMain.print("What would you like to talk about? Classes, college, personal things or a joke?");
-		}
-			while (chatting)
+			
+			if(trigger > 0)
 			{
-				
+				ChatbotMain.print("What would you like to talk about? Classes, college, personal things or a joke?");
+			}
 				String response = ChatbotMain.getInput();
-
+				trigger++;
+					
 				if(jessica.isTriggered(response))
 				{
 					chatting = false; //exits the while loop IMPORTANT
