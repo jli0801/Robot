@@ -2,10 +2,10 @@ package chatbot;
 
 public class ChatbotJi implements Topic {
 	
-	private ChatbotJessica jessica; //= new ChatbotJessica();
-	private ChatbotAreej areej; //= new ChatbotAreej();		
-	private ChatbotVickie vickie; //= new ChatbotVickie();
-	private ChatbotJi ji; //= new ChatbotJi();
+	//private ChatbotJessica jessica; //= new ChatbotJessica();
+	//private ChatbotAreej areej; //= new ChatbotAreej();		
+	//private ChatbotVickie vickie; //= new ChatbotVickie();
+	//private ChatbotJi ji; //= new ChatbotJi();
 	
 	private String[] keywords;
 	private String goodbyeKeyword;
@@ -68,7 +68,8 @@ public class ChatbotJi implements Topic {
 				if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 					ChatbotMain.print("What do you want to talk about?");
 					response = ChatbotMain.getInput();
-					triggerOtherClasses(response);
+					emotionTriggers(response);
+					//triggerOtherClasses(response);
 				} else {
 					ChatbotMain.print("Ok then let's keep talking about college.");
 				}
@@ -194,7 +195,7 @@ public class ChatbotJi implements Topic {
 		discussedHonors = true;
 		return discussedHonors;
 	}
-
+/*
 	public void triggerOtherClasses(String response) {
 		if(jessica.isTriggered(response))
 		{
@@ -221,7 +222,7 @@ public class ChatbotJi implements Topic {
 			triggerOtherClasses(response);
 		}
 	}
-	
+*/	
 	//public void setJessica(ChatbotJessica jessica) {
 	//	this.jessica = jessica;
 	//}
