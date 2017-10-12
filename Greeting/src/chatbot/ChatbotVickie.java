@@ -32,7 +32,7 @@ public class ChatbotVickie implements Topic
 	
 	public ChatbotVickie() 
 	{
-		String[] trigger = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"}; // worried?
+		String[] trigger = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"};
 			keywords = trigger;
 			
 		String[] badEmotions = {"sad", "stressed", "tired", "frustrated", "exhausted", "horrible", "terrible", "bad", "scared", "terrified", "worried"};
@@ -69,22 +69,6 @@ public class ChatbotVickie implements Topic
 			beginning = false;
 		}
 		
-	/* maybe make new function where if the number of emotions are triggered (possibly 3-5 times) in the last response, if there is a because, 
-	 * determine whether there is a period, and then take the reason of sad emotion and say "since you are (negemotion) because of (reason) I will 
-	 * recommend you to see a therapist"
-	 * 
-	 * And, b4 all this, you can ask "are you (negEmotion) bc of (reason)?
-	 * 
-	 * 
-	 * For posEmtion, ask "Since it seems you dont have many problems, do you want to talk about (other three topics)
-	 * and if yes, show options again and let it trigger
-	 * 
-	 * 
-	 * reasons will only get response if there is a because
-	 * 
-	 * if because is not found, print why are you "neg/pos emotion)?
-	*/	
-		
 		if(ChatbotMain.findKeyword(respond, goodbyeKeyword, 0) == 0) 
 		{
 			ChatbotMain.print("Well it was nice talking to you " + ChatbotMain.chatbot.getUsername() + "!");
@@ -102,10 +86,9 @@ public class ChatbotVickie implements Topic
 				respond = ChatbotMain.getInput();
 				talk(respond);
 			}
-			else//
+			else
 			{
 					emotionTriggers(respond);
-				
 			}
 		}
 	}
@@ -114,6 +97,7 @@ public class ChatbotVickie implements Topic
 	{
 		int no = response.indexOf("no"); 
 		System.out.println(no);
+		
 		if (no == -1)
 		{
 			for(int i = 0; i < positiveFeelings.length; i++)
@@ -123,19 +107,20 @@ public class ChatbotVickie implements Topic
 					reasonPos = positiveFeelings[i];
 					reasonBehindEmotion(response);
 					posEmotions++;
+					
 					if (posEmotions >= 3)
 					{
 						ChatbotMain.print("You don't seem to have many problems - let's talk about something else: grades, colleges, or maybe a joke? ");
 						ChatbotMain.chatbot.startChatting();
-					}else
+					}
+					else
 					{
-					
-					ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
-					ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
-					respond = ChatbotMain.getInput();
-					conciseStr(respond);
-					//reasonPos = response;
-					//talk( respond);
+						ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
+						ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
+						respond = ChatbotMain.getInput();
+						conciseStr(respond);
+						//reasonPos = response;
+						//talk( respond);
 					}
 				}
 				else
@@ -149,37 +134,47 @@ public class ChatbotVickie implements Topic
 							reasonBehindEmotion(response);
 							negEmotions = negEmotions + 1;
 							System.out.println(negEmotions);
-							if (negEmotions == 3)
-							{
-								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because" + reasonWhy + ".");
+								if (negEmotions == 3)
+								{
+									ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because" + reasonWhy + ".");
 								
-								ChatbotMain.print("So lets talk about something else: Do you want to talk about your academics, colleges, or a joke?");
-								//respond = ChatbotMain.getInput();
-								ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
-							}
-							else
-							{
-								ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
-								ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
-							//is there anything else you want to take off your chest? what else do you want to mention?
-								respond = ChatbotMain.getInput();
-							//reasonNeg = response;
-							//System.out.println(negEmotions);
-								if (respond.length() > 50)
+									ChatbotMain.print("So lets talk about something else: Do you want to talk about your academics, colleges, or a joke?");
+									//respond = ChatbotMain.getInput();
+									ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
+								}
+								else
+								{
+									ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
+									ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
+									//is there anything else you want to take off your chest? what else do you want to mention?
+									respond = ChatbotMain.getInput();
+									//reasonNeg = response;
+									//System.out.println(negEmotions);
+									if (respond.length() > 50)
 									{
 										conciseStr(respond);
-									}else
+									}
+									else
 									{
 										talk(respond);
 									}
 								
-							}
+								}
 						}
 					}
 				}
 			}
 			
-			ChatbotMain.print("Sorry, I don't understand. Please rephrase your response - what are you feeling and why do you feel this way?");
+			annoyed++;
+			if (annoyed > 5)
+			{
+				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
+			}
+			else 
+			{
+				ChatbotMain.print("Sorry, I don't understand. Please rephrase your response - what are you feeling and why do you feel this way?");
+			}
+			
 			respond = ChatbotMain.getInput();
 			talk(respond);
 		}
@@ -188,6 +183,7 @@ public class ChatbotVickie implements Topic
 				if (no >= 0) 
 				{
 					String newResponse = response.substring(no+1,response.length());
+					
 					for(int i = 0; i < positiveFeelings.length; i++) 
 					{
 						if (ChatbotMain.findKeyword(newResponse, positiveFeelings[i], 0) >= 0)
@@ -196,15 +192,17 @@ public class ChatbotVickie implements Topic
 							reasonBehindEmotion(response);
 							negEmotions++;
 							reasonNeg = "not" + positiveFeelings[i];
+							
 							if (negEmotions == 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
 								ChatbotMain.chatbot.startChatting();
 							} 
+							
 							if (negEmotions<3)
 							{
 							
-							ChatbotMain.print("Sorry to hear that you are not happy!");
+								ChatbotMain.print("Sorry to hear that you are not happy!");
 							ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 							//is there anything else you want to take off your chest?
 							respond = ChatbotMain.getInput();
