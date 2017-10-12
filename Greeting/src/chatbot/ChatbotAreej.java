@@ -1,6 +1,12 @@
 package chatbot;
 
 public class ChatbotAreej implements Topic{
+	private ChatbotJessica jessica;
+	private ChatbotAreej areej;		
+	private ChatbotVickie vickie;
+	private ChatbotJi ji;
+	
+	
 	private String[] tempW;
 	private String[] hc;
 	private String goodbyeKeyword;
@@ -9,22 +15,24 @@ public class ChatbotAreej implements Topic{
 	private String[] af;
 	private boolean advanced;
 	private boolean discussedGrades;
-	//private double gpa;
-	private String[] classes;
-	private String[] clas;
+	private int gpa;
+	//private String[] classes;
+	//private String[] clases;
+	//private double result;
 	
 	public ChatbotAreej() {
-		String[] temp = {"school stuff", "academic things", "classes", "transcript"};
+		String[] temp = {"school stuff", "academic things", "classes", "transcript", "academics"};
 		tempW = temp;
 		String[] hardClasses = {"ap", "honors","ap's", "honor"};
 		hc = hardClasses;
-		String[] affirmative = {"ok", "k", "okay", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", "yes", "yeah"};
+		String[] affirmative = {"ok", "k", "okay", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", "yes", "yeah", "okay thanks"};
 		af = affirmative;
 		goodbyeKeyword = "bye";
 		response = "";
-		//gpa = 0;
-		String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
-		clas = classes;
+		gpa = 0;
+		//String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
+		//clases = classes;
+		//result = 0;
 	}
 
 	public void talk(String response) {
@@ -33,7 +41,7 @@ public class ChatbotAreej implements Topic{
 	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
 		{
-			//regular classes/
+			//regular classes
 				if (ChatbotMain.findKeyword(response, tempW[2], 0) >= 0 )
 				{
 					ChatbotMain.print("Hm let me see");
@@ -43,8 +51,8 @@ public class ChatbotAreej implements Topic{
 			//transcript	
 				if (ChatbotMain.findKeyword(response, tempW[3], 0) >= 0 )
 				{
-						//ChatbotMain.print("Do you need a copy of your transcript?" );
-						//response = ChatbotMain.getInput();
+						ChatbotMain.print("So you need a copy of your transcript?" );
+						response = ChatbotMain.getInput();
 						transcript(response);
 						
 						
@@ -65,14 +73,8 @@ public class ChatbotAreej implements Topic{
 		}
 	}
 	
-	/*private double generateTranscript(String a) {
-		for(int i = 0; i < classes.length; i++) {
-			double avr = (Math.random() * 50) + 50;
-		}
-		return avr;
-	}
-	*/
-	private void assignValues() {
+
+	/*private void assignTranscript() {
 		
 		String s = "";
 		
@@ -80,34 +82,45 @@ public class ChatbotAreej implements Topic{
 			int avr = (int) ((Math.random() * 50) + 50);
 			s+= clas[i]+ "     "+ avr + "\n";
 		}
-		
-		
 		System.out.println(s);
 
 	}
 	
-	//private void generateGPA(String response) {
-	//}
-	private void transcript(String re) {
+	private void generateGPA() {
+		double avr = 0;
+		for(int i = 0; i < clas.length; i++) {
+			avr = ((Math.random() * 50) + 50);
+		}
+		result = divide(avr + gpa, clas.length*4.1);
+		System.out.println(result);
+	}
+*/
+	private void transcript(String res) {
 		
-		for(int i = 0; i < re.length()-4; i++) {
-		//if(re.substring(i, i + 3).equals("yes")) {
-			ChatbotMain.print("Ok, here you are!");
-			assignValues();
+		for(int i = 0; i < res.length(); i++) {
+		if(res.substring(i, i + 3).equals("yes")) {
+			//these are too specific
+			//ChatbotMain.print("Here you go!");
+			//assignTranscript();
+			ChatbotMain.print("Ok, the Internet is down right now but I'll get it to you by the end of the day");
+			
 			response = ChatbotMain.getInput();
-		//}
+			reply(response);
+		
+		}
 		}
 	}
 	
 	private void recHonors(String response) {
-		/*if (isDouble(response))
+		if (isDouble(response))
 		{
 			double num = getDouble(response);
 			if(num < 3.0)
 			{
-			ChatbotMain.print("I don't recommend you take honors classes");
-			helpingOut();
+			ChatbotMain.print("I don't recommend you take honors classes. In fact, I'm worried about how you're doing, I really recommend you go to tutoring.");
 			response = ChatbotMain.getInput();
+			reply(response);
+			discussedGrades = true;
 			
 			}
 			
@@ -116,19 +129,12 @@ public class ChatbotAreej implements Topic{
 			discussHonorsAsNeeded();
 			response = ChatbotMain.getInput();
 			advanced= true;
+			discussedGrades = true;
 			}
 			}
-		discussedGrades = true;
+		
 		ChatbotMain.print("I need a number please");
 		response = ChatbotMain.getInput();
-		*/
-	}
-
-	private void helpingOut() {
-		
-		ChatbotMain.print("In fact, I'm worried about how you're doing, I really recommend you go to tutoring.");
-		response = ChatbotMain.getInput();
-		reply(response);
 		
 	}
 
@@ -140,8 +146,14 @@ public class ChatbotAreej implements Topic{
 		{
 			ChatbotMain.print("What would you like to change?");
 			response = ChatbotMain.getInput();
-			ChatbotMain.print("Ok I'll see what I can do");
-			response = ChatbotMain.getInput();
+			
+			ChatbotMain.print("Ok, I'll see what I can do. Now, let's talk about something else:"
+					+ "Do you want to continue talking about academics or do you want to"
+					+ "talk about something personal, colleges, or do you want to hear a joke?"); 
+					response = ChatbotMain.getInput();
+					triggerOtherClasses(response);
+				
+			
 		}
 		}
 		
@@ -149,8 +161,12 @@ public class ChatbotAreej implements Topic{
 			
 			if(r.substring(i, i + 8).equals("transfer"))
 			{
-				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP");
-				response = ChatbotMain.getInput();
+				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP. Now, let's talk about something else:"
+						+ "Do you want to continue talking about academics or do you want to"
+						+ "talk about something personal, colleges, or do you want to hear a joke?"); 
+						response = ChatbotMain.getInput();
+						triggerOtherClasses(response);
+					
 			}
 		}
 		
@@ -162,10 +178,64 @@ public class ChatbotAreej implements Topic{
 			//credentials for honors
 			//method for ji
 			//needs same method 
-			ChatbotMain.print("I see you're interested in taking honor classes");
+			ChatbotMain.print("I think you'll do very well in an advanced class if you choose to take one. Now, let's talk about something else:"
+					+ "Do you want to continue talking about academics or do you want to"
+					+ "talk about something personal, colleges, or do you want to hear a joke?");
+			response = ChatbotMain.getInput();
+			triggerOtherClasses(response);
+
 		}
 	}
 
+	
+	public void reply(String s) {
+		for(int i = 0; i < af.length; i ++) {
+			
+			if (ChatbotMain.findKeyword(s, af[i], 0) >= 0 )
+			{
+				ChatbotMain.print("No problem! I'm here if you need anything else. Now, let's talk about something else:"
+						+ "Do you want to continue talking about academics or do you want to "
+						+ "talk about something personal, colleges, or hear a joke?");
+				response = ChatbotMain.getInput();
+				triggerOtherClasses(response);
+				
+			}					
+		}
+		ChatbotMain.print("Up to you, I'm only trying to help. Now, let's talk about something else: "
+				+ "Do you want to continue talking about academics or do you want to"
+				+ "talk about something personal, colleges, or do you want to hear a joke?");
+		response = ChatbotMain.getInput();
+		triggerOtherClasses(response);
+
+		
+	}
+	public boolean isAdvanced() {
+		return advanced;
+		
+	}
+	
+	public boolean isDiscussed() {
+		return discussedGrades;
+	}
+	
+	private boolean isDouble(String response) {
+
+		 try { 
+		        Double.parseDouble(response); 
+		    } catch(NumberFormatException e) { 
+		        return false; 
+		    } catch(NullPointerException e) {
+		        return false;
+		    }
+		    return true;
+		
+}
+	public double getDouble(String response)
+	{
+		double rd;
+		rd = 0;
+		return rd = Double.parseDouble(response);
+	}	
 	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < tempW.length; i++)
@@ -179,60 +249,35 @@ public class ChatbotAreej implements Topic{
 		return false;
 
 }	
-	public boolean isAdvanced() {
-		return advanced;
-		
-	}
-	
-	public boolean isDiscussed() {
-		return discussedGrades;
-	}
-	
-	/*private boolean isDouble(String response) {
-
-		 try { 
-		        Double.parseDouble(response); 
-		    } catch(NumberFormatException e) { 
-		        return false; 
-		    } catch(NullPointerException e) {
-		        return false;
-		    }
-		    // only got here if we didn't return false
-		    return true;
-		
-}
-	public double getDouble(String response)
+	public void triggerOtherClasses(String response)
 	{
-		double rd;
-		rd = 0;
-		return rd = Double.parseDouble(response);
-	}	
-	*/
-	public void reply(String s) {
-		for(int i = 0; i < af.length; i ++) {
-			
-			if (ChatbotMain.findKeyword(s, af[i], 0) >= 0 )
-			{
-				ChatbotMain.print("Goodluck! I'm here if you need anything else.");
-				response = ChatbotMain.getInput();
-				
-			}					
+		if(jessica.isTriggered(response))
+		{
+			jessica.talk(response);
 		}
-		ChatbotMain.print("Up to you, I'm only trying to help");
-		response = ChatbotMain.getInput();
-		
+		else if(vickie.isTriggered(response))
+		{
+			vickie.talk(response);
+		}
+		else if(ji.isTriggered(response))
+		{
+			ji.talk(response);
+		}
+		else if(areej.isTriggered(response)) {
+			areej.talk(response);
+		}
 	}
+	/*public double divide(double dividend, double divisor) {
 
-/*	
+		int sum = 0, count = -1;
 
- 
-	public String space(String s, int length) {
-		 
-		 while(s.length() < length) {
-			 s += " ";
-		 }
-		 
-		 return s;
-	 }
-	 */
-}
+		while(sum <= dividend) {
+
+		sum += divisor;
+
+		count++;
+
+		}
+		return count;
+}*/
+	}

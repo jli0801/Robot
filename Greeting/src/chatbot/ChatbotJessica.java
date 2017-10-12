@@ -2,6 +2,24 @@
 
 public class ChatbotJessica implements Topic {
 
+	private ChatbotJessica jessica;
+	private ChatbotAreej areej;		
+	private ChatbotVickie vickie;
+	private ChatbotJi ji;
+	
+	public ChatbotAreej getAreej()
+	{
+		return areej;
+	}
+	public ChatbotVickie getVickie()
+	{
+		return vickie;
+	}
+	public ChatbotJi getJi()
+	{
+		return ji;
+	}
+	
 	boolean endOfJess;
 	
 	private String[] keywords;
@@ -39,6 +57,10 @@ public class ChatbotJessica implements Topic {
  	private boolean saidYesGame;
   	
   	public ChatbotJessica() {
+  		areej = new ChatbotAreej();
+	//	vickie = new ChatbotVickie();
+		ji = new ChatbotJi();
+		
  		String[] triggerM = {"joke", "game", "pun"};
  		
  		//in charge of entertainment
@@ -116,8 +138,7 @@ public class ChatbotJessica implements Topic {
 		
 						response = ChatbotMain.getInput();
 					}
-					else
-  				{
+					
   			
  							
  							if (ChatbotMain.findKeyword(response, keywords[0], 0) >= 0 || saidYesJoke) //saidYestJoke
@@ -167,8 +188,10 @@ public class ChatbotJessica implements Topic {
 		 									{
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
-	 											ChatbotMain.chatbot.startChatting(); 
+	 											
 	 											doneGame = false;
+	 											response = ChatbotMain.getInput();	
+	 											triggerOtherClasses(response);
 		 									}
 		 											
 		 									}
@@ -199,7 +222,7 @@ public class ChatbotJessica implements Topic {
 	 									}
 	 									
 	 								}
- 								}
+ 								
  								
  						/*	if (ChatbotMain.findKeyword(response, keywords[3], 0) >= 0 )
  							{
@@ -219,6 +242,7 @@ public class ChatbotJessica implements Topic {
  							
  				
 				endOfJess = true;
+				ChatbotMain.print("Come back when you have a great joke!");
 				ChatbotMain.chatbot.startChatting(); 
  }
 				
@@ -413,6 +437,28 @@ public class ChatbotJessica implements Topic {
 		}
 		
 		return false;
+	}
+	
+	public void triggerOtherClasses(String response)
+	{
+		if(vickie.isTriggered(response))
+		{
+			vickie.talk(response);
+		}
+		else if(areej.isTriggered(response))
+		{
+			areej.talk(response);
+		}
+		else if(ji.isTriggered(response))
+		{
+			ji.talk(response);
+		}
+		else 
+		{
+			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
+			response = ChatbotMain.getInput();
+			triggerOtherClasses(response);
+		}
 	}
 	
 	public boolean isTriggered(String response) {
