@@ -25,7 +25,8 @@ public class ChatbotAreej implements Topic{
 		tempW = temp;
 		String[] hardClasses = {"ap", "honors","ap's", "honor"};
 		hc = hardClasses;
-		String[] affirmative = {"ok", "k", "okay", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", "yes", "yeah", "okay thanks"};
+		String[] affirmative = {"ok", "k", "okay", "fine", "mhm", "thanks for the help", "thanks for the advice", "i think i will", "i'll go", "yes",
+				"thanks","yeah", "okay thanks","please"};
 		af = affirmative;
 		goodbyeKeyword = "bye";
 		response = "";
@@ -103,9 +104,9 @@ public class ChatbotAreej implements Topic{
 	}
 */
 	private void transcript(String res) {
-		
-		for(int i = 0; i < res.length(); i++) {
-		if(res.substring(i, i + 3).equals("yes")) {
+
+		for(int i = 0; i < af.length; i++) {
+		if(res.equals(af[i])) {
 			//these are too specific
 			//ChatbotMain.print("Here you go!");
 			//assignTranscript();
@@ -116,6 +117,10 @@ public class ChatbotAreej implements Topic{
 		
 		}
 		}
+		ChatbotMain.print("Ok, then how about let's talk about something else");
+		//+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
+		ChatbotMain.chatbot.omgTriggers();	
+
 	}
 	
 	private void recHonors(String response) {
@@ -244,7 +249,7 @@ public class ChatbotAreej implements Topic{
 		return false;
 
 }	
-	public void reaction() {
+/*	public void reaction(String response2) {
 		
 		if (annoyedNum <= 1) { 
 			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 3)]);
@@ -255,15 +260,15 @@ public class ChatbotAreej implements Topic{
 		}
 	}
 
-	public void annoyers() {
-		for(int i = 0; i < response.length(); i ++)
-		if (response.contains(annoyers[i])) {
+	public void annoyers(String pon) {
+		for(int i = 0; i < annoyers.length; i ++)
+		if (pon.equals(annoyers[i])) {
 			annoyedNum--;
-
 		} 
-		reaction();
+		reaction(pon);
+		
 	}
-	
+	*/
 }
 	/*public double divide(double dividend, double divisor) {
 
