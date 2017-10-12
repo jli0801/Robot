@@ -1,23 +1,16 @@
 package chatbot;
 
-import chatbot.ChatbotMain;
-import chatbot.Topic;
+//import chatbot.ChatbotMain;
+//import chatbot.Topic;
 
 public class ChatbotVickie implements Topic
 { //personal life
 
 	
-	private ChatbotJessica jessica;//////////////
-	private ChatbotAreej areej;		////////////////
-	private ChatbotVickie vickie;/////////////////
-	private ChatbotJi ji;///////////////////////
-	
-//ADDED THIS FROM CHATBOTT	
-	
-	
-	
-	
-	//
+	private ChatbotJessica jessica;
+	private ChatbotAreej areej;		
+	private ChatbotJi ji;
+
 	private String[] keywords;
 	private String[] negativeFeelings;
 	private String[] positiveFeelings;
@@ -172,7 +165,7 @@ public class ChatbotVickie implements Topic
 								{
 									ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because" + reasonWhy + ".");
 								
-									ChatbotMain.print("So lets talk about something else: Do you want to talk about your academics, colleges, or a joke?");
+									ChatbotMain.print("Instead, lets talk about something else: Do you want to talk about your academics, colleges, or hear a joke?");
 									respond = ChatbotMain.getInput();
 									//ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
 									triggerOtherClasses(respond);
@@ -344,7 +337,7 @@ public class ChatbotVickie implements Topic
 	}
 	
 	
-	public void triggerOtherClasses(String response)
+	public void  triggerOtherClasses(String response)
 	{
 		if(jessica.isTriggered(response))
 		{
