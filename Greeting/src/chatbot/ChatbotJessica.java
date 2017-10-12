@@ -195,6 +195,7 @@ public class ChatbotJessica implements Topic {
 	 											doneGame = false;
 	 											response = ChatbotMain.getInput();	
 	 											triggerOtherClasses(response);
+	 											ChatbotMain.chatbot.startChatting(); 
 		 									}
 		 											
 		 									}
@@ -214,7 +215,7 @@ public class ChatbotJessica implements Topic {
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
 		 										response = ChatbotMain.getInput();	
-	 										//	ChatbotMain.chatbot.startChatting(); 
+	 											ChatbotMain.chatbot.startChatting(); 
 	 											triggerOtherClasses(response);
 	 											doneGame = false;
 		 									}
@@ -479,6 +480,8 @@ public class ChatbotJessica implements Topic {
 			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
 			response = ChatbotMain.getInput();
 			triggerOtherClasses(response);
+			ChatbotMain.chatbot.startChatting(); 
+			
 		}
 	}
 	
