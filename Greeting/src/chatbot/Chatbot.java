@@ -67,7 +67,7 @@ public class Chatbot {
 			noRepeat = false; 
 			ChatbotMain.print("Hi, " + getUsername() + ". What would you like to talk about? Classes, colleges, any personal things, or a joke?");
 		}
-			
+			ChatbotMain.print("What would you like to talk about? Classes, college, personal things or a joke?");
 
 			while (chatting)
 			{
