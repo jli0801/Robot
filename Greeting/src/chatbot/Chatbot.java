@@ -49,7 +49,7 @@ public class Chatbot {
 		//ji.setVickie(vickie);
 		//ji.setAreej(areej);
 		//ji.setJi(ji);
-		
+		//
 		
 		trigger = 0;
 		

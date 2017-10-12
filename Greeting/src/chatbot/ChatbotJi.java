@@ -2,10 +2,10 @@ package chatbot;
 
 public class ChatbotJi implements Topic {
 	
-	private ChatbotJessica jessica = new ChatbotJessica();
-	private ChatbotAreej areej;		
-	private ChatbotVickie vickie;
-	private ChatbotJi ji;
+	private ChatbotJessica jessica; //= new ChatbotJessica();
+	private ChatbotAreej areej; //= new ChatbotAreej();		
+	private ChatbotVickie vickie; //= new ChatbotVickie();
+	private ChatbotJi ji; //= new ChatbotJi();
 	
 	private String[] keywords;
 	private String goodbyeKeyword;
@@ -222,9 +222,9 @@ public class ChatbotJi implements Topic {
 		}
 	}
 	
-	public void setJessica(ChatbotJessica jessica) {
-		this.jessica = jessica;
-	}
+	//public void setJessica(ChatbotJessica jessica) {
+	//	this.jessica = jessica;
+	//}
 	
 	//public void setVickie(ChatbotVickie vickie) {
 	//	this.vickie = vickie;
@@ -232,6 +232,10 @@ public class ChatbotJi implements Topic {
 	
 	//public void setAreej(ChatbotAreej areej) {
 	//	this.areej = areej;
+	//}
+	
+	//public void setJi(ChatbotJi ji) {
+	//	this.ji = ji;
 	//}
 
 	public boolean isTriggered(String response) {
