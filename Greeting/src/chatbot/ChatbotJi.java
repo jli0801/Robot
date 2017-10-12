@@ -1,6 +1,12 @@
 package chatbot;
 
 public class ChatbotJi implements Topic {
+	
+	private ChatbotJessica jessica;
+	private ChatbotAreej areej;		
+	private ChatbotVickie vickie;
+	private ChatbotJi ji;
+	
 	private String[] keywords;
 	private String goodbyeKeyword;
 	private String secretKeyword;
@@ -55,6 +61,18 @@ public class ChatbotJi implements Topic {
 				adviseEssay();
 			} else if (ChatbotMain.findKeyword(response, keywords[4], 0) >= 0) { //honors
 				adviseHonors();
+			} else if (ChatbotMain.findKeyword(response, "other", 0) >= 0) {
+				ChatbotMain.print("Do you want to talk about other stuff?");
+				response = ChatbotMain.getInput();
+				findNegWords();
+				if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
+					ChatbotMain.print("What do you want to talk about?");
+					response = ChatbotMain.getInput();
+					triggerOtherClasses(response);
+				} else {
+					ChatbotMain.print("Ok then let's keep talking about college.");
+				}
+				
 			} else {
 				ChatbotMain.print("I'm not quite sure what you need help with. Would you mind rephrasing your question?");
 			}
@@ -177,7 +195,44 @@ public class ChatbotJi implements Topic {
 		return discussedHonors;
 	}
 
-	// private void generateHappy {
+	public void triggerOtherClasses(String response) {
+		if(jessica.isTriggered(response))
+		{
+
+			jessica.talk(response);
+		}
+		else if(vickie.isTriggered(response))
+		{
+
+			vickie.talk(response);
+		}
+		else if(areej.isTriggered(response))
+		{
+
+			areej.talk(response);
+		}
+		else if(ji.isTriggered(response)) {
+
+			ji.talk(response);
+		} else
+		{
+			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
+			response = ChatbotMain.getInput();
+			triggerOtherClasses(response);
+		}
+	}
+	
+	//public void setJessica(ChatbotJessica jessica) {
+	//	this.jessica = jessica;
+	//}
+	
+	//public void setVickie(ChatbotVickie vickie) {
+	//	this.vickie = vickie;
+	//}
+	
+	//public void setAreej(ChatbotAreej areej) {
+	//	this.areej = areej;
+	//}
 
 	public boolean isTriggered(String response) {
 		for (int i = 0; i < keywords.length; i++) {
