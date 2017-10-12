@@ -1,12 +1,7 @@
 package chatbot;
 
 public class ChatbotJi implements Topic {
-	
-	//private ChatbotJessica jessica; //= new ChatbotJessica();
-	//private ChatbotAreej areej; //= new ChatbotAreej();		
-	//private ChatbotVickie vickie; //= new ChatbotVickie();
-	//private ChatbotJi ji; //= new ChatbotJi();
-	
+
 	private String[] keywords;
 	private String goodbyeKeyword;
 	private String secretKeyword;
@@ -66,10 +61,7 @@ public class ChatbotJi implements Topic {
 				response = ChatbotMain.getInput();
 				findNegWords();
 				if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
-					ChatbotMain.print("What do you want to talk about?");
-					response = ChatbotMain.getInput();
-					emotionTriggers(response);
-					//triggerOtherClasses(response);
+					ChatbotMain.chatbot.omgTriggers();
 				} else {
 					ChatbotMain.print("Ok then let's keep talking about college.");
 				}
@@ -84,7 +76,7 @@ public class ChatbotJi implements Topic {
 
 		ChatbotMain.print(ChatbotMain.chatbot.getUsername() + ", ask away if you have more questions!");
 		// ChatbotMain.chatbot.getJi().talk("");;
-		ChatbotMain.chatbot.startChatting();
+		ChatbotMain.chatbot.omgTriggers();
 	}
 
 	//
@@ -195,50 +187,7 @@ public class ChatbotJi implements Topic {
 		discussedHonors = true;
 		return discussedHonors;
 	}
-/*
-	public void triggerOtherClasses(String response) {
-		if(jessica.isTriggered(response))
-		{
-
-			jessica.talk(response);
-		}
-		else if(vickie.isTriggered(response))
-		{
-
-			vickie.talk(response);
-		}
-		else if(areej.isTriggered(response))
-		{
-
-			areej.talk(response);
-		}
-		else if(ji.isTriggered(response)) {
-
-			ji.talk(response);
-		} else
-		{
-			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
-			response = ChatbotMain.getInput();
-			triggerOtherClasses(response);
-		}
-	}
-*/	
-	//public void setJessica(ChatbotJessica jessica) {
-	//	this.jessica = jessica;
-	//}
 	
-	//public void setVickie(ChatbotVickie vickie) {
-	//	this.vickie = vickie;
-	//}
-	
-	//public void setAreej(ChatbotAreej areej) {
-	//	this.areej = areej;
-	//}
-	
-	//public void setJi(ChatbotJi ji) {
-	//	this.ji = ji;
-	//}
-
 	public boolean isTriggered(String response) {
 		for (int i = 0; i < keywords.length; i++) {
 			// IMPORTANT (one the rubric) only if keyword is used

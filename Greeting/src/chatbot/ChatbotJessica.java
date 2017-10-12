@@ -2,13 +2,6 @@
 
 public class ChatbotJessica implements Topic {
 
-	
-	private ChatbotAreej areej;		
-	private ChatbotVickie vickie;
-	private ChatbotJi ji;
-	
-	
-	
 //	boolean endOfJess;
 	
 	private String[] keywords;
@@ -46,24 +39,9 @@ public class ChatbotJessica implements Topic {
  	private boolean saidYesGame;
  	
  	int responseInt;
- 	
- 	public ChatbotAreej getAreej()
-	{
-		return areej;
-	}
-	public ChatbotVickie getVickie()
-	{
-		return vickie;
-	}
-	public ChatbotJi getJi()
-	{
-		return ji;
-	}
+
   	public ChatbotJessica() {
-  	//	areej = new ChatbotAreej();
-	//	vickie = new ChatbotVickie();
-	//	ji = new ChatbotJi();
-		
+
  		String[] triggerM = {"joke", "game", "pun"};
  		
  		//in charge of entertainment
@@ -192,11 +170,9 @@ public class ChatbotJessica implements Topic {
 		 									{
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
-	 											
+	 											ChatbotMain.chatbot.omgTriggers(); 
 	 											doneGame = false;
-	 											response = ChatbotMain.getInput();	
-	 											triggerOtherClasses(response);
-	 											ChatbotMain.chatbot.startChatting(); 
+	 											
 		 									}
 		 											
 		 									}
@@ -213,11 +189,11 @@ public class ChatbotJessica implements Topic {
 		 									}
 		 									else
 		 									{
+		 										
+		 										
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
-		 										response = ChatbotMain.getInput();	
-	 											ChatbotMain.chatbot.startChatting(); 
-	 											triggerOtherClasses(response);
+		 										ChatbotMain.chatbot.omgTriggers();
 	 											doneGame = false;
 		 									}
 		 									
@@ -249,7 +225,7 @@ public class ChatbotJessica implements Topic {
  				
 			//	endOfJess = true;
 				ChatbotMain.print("Come back when you have a great joke!");
-				ChatbotMain.chatbot.startChatting(); 
+				ChatbotMain.chatbot.omgTriggers();
  }
 				
   				
@@ -403,8 +379,7 @@ public class ChatbotJessica implements Topic {
 	 									{
 	 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
  													+ " boring stuff.");
-	 										response = ChatbotMain.getInput();	
- 											ChatbotMain.chatbot.startChatting(); 
+	 										ChatbotMain.chatbot.omgTriggers();
  											doneGame = false;
 	 									}
 									}
@@ -462,30 +437,6 @@ public class ChatbotJessica implements Topic {
 		return false;
 	}
 	
-	public void triggerOtherClasses(String response)
-	{
-		if(vickie.isTriggered(response))
-		{
-			vickie.talk(response);
-		}
-		else if(areej.isTriggered(response))
-		{
-			areej.talk(response);
-		}
-		else if(ji.isTriggered(response))
-		{
-			ji.talk(response);
-		}
-		else 
-		{
-			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
-			response = ChatbotMain.getInput();
-			triggerOtherClasses(response);
-			ChatbotMain.chatbot.startChatting(); 
-			
-		}
-	}
-	
 	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++)
 		{
@@ -496,9 +447,6 @@ public class ChatbotJessica implements Topic {
 			}
 		}
 		return false;
-  	
- 	
-  
 		}
 	
  }

@@ -2,11 +2,6 @@ package chatbot;
 
 public class ChatbotAreej implements Topic{
 
-	private ChatbotJessica jessica;
-	private ChatbotAreej areej;		
-	private ChatbotVickie vickie;
-	private ChatbotJi ji;
-	
 	private String[] tempW;
 	private String[] hc;
 	private String goodbyeKeyword;
@@ -23,19 +18,6 @@ public class ChatbotAreej implements Topic{
 	//private String[] clases;
 	//private double result;
 
-	public ChatbotJessica getJessica()
-	{
-		return jessica;
-	}
-	public ChatbotVickie getVickie()
-	{
-		return vickie;
-	}
-	public ChatbotJi getJi()
-	{
-		return ji;
-	}
-	
 	public ChatbotAreej() {
 		
 		
@@ -94,7 +76,7 @@ public class ChatbotAreej implements Topic{
 				}
 		ChatbotMain.print("Well it was nice talking to you, see you around " + ChatbotMain.chatbot.getUsername() + "!");
 		//ChatbotMain.chatbot.getAreej().talk("");;
-		ChatbotMain.chatbot.startChatting();
+		ChatbotMain.chatbot.omgTriggers();
 		}
 	}
 	
@@ -173,10 +155,9 @@ public class ChatbotAreej implements Topic{
 			ChatbotMain.print("What would you like to change?");
 			response = ChatbotMain.getInput();
 			
-			ChatbotMain.print("Ok, I'll see what I can do. Now, let's talk about something else:"
-					+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
-					response = ChatbotMain.getInput();
-					triggerOtherClasses(response);
+			ChatbotMain.print("Ok, I'll see what I can do. Now, let's talk about something else");
+					//+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
+			ChatbotMain.chatbot.omgTriggers();
 		}
 		}
 		
@@ -184,10 +165,9 @@ public class ChatbotAreej implements Topic{
 			
 			if(r.substring(i, i + 8).equals("transfer"))
 			{
-				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP. Now, let's talk about something else:"
-						+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
-						response = ChatbotMain.getInput();
-						triggerOtherClasses(response);	
+				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP. Now, let's talk about something else");
+						//+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
+						ChatbotMain.chatbot.omgTriggers();	
 			}
 		}
 		
@@ -199,10 +179,9 @@ public class ChatbotAreej implements Topic{
 			//credentials for honors
 			//method for ji
 			//needs same method 
-			ChatbotMain.print("I think you'll do very well in an advanced class if you choose to take one. Now, let's talk about something else:"
-					+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
-			response = ChatbotMain.getInput();
-			triggerOtherClasses(response);
+			ChatbotMain.print("I think you'll do very well in an advanced class if you choose to take one. Now, let's talk about something else");
+					//+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
+			ChatbotMain.chatbot.omgTriggers();
 
 		}
 	}
@@ -213,17 +192,15 @@ public class ChatbotAreej implements Topic{
 			
 			if (ChatbotMain.findKeyword(s, af[i], 0) >= 0 )
 			{
-				ChatbotMain.print("No problem! I'm here if you need anything else. Now, let's talk about something else:"
-						+ "Do you want to talk about something personal, colleges, or hear a joke?");
-				response = ChatbotMain.getInput();
-				triggerOtherClasses(response);
+				ChatbotMain.print("No problem! I'm here if you need anything else. Now, let's talk about something else");
+						//+ "Do you want to talk about something personal, colleges, or hear a joke?");
+				ChatbotMain.chatbot.omgTriggers();
 				
 			}					
 		}
-		ChatbotMain.print("Up to you, I'm only trying to help. Now, let's talk about something else: "
-				+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
-		response = ChatbotMain.getInput();
-		triggerOtherClasses(response);
+		ChatbotMain.print("Up to you, I'm only trying to help. Now, let's talk about something else");
+				//+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
+		ChatbotMain.chatbot.omgTriggers();
 
 		
 	}
@@ -287,26 +264,6 @@ public class ChatbotAreej implements Topic{
 		reaction();
 	}
 	
-public void triggerOtherClasses(String pon)
-{
-	if(jessica.isTriggered(pon))
-	{
-		jessica.talk(pon);
-	}
-	else if(vickie.isTriggered(pon))
-	{
-		vickie.talk(pon);
-	}
-	else if(ji.isTriggered(pon))
-	{
-		ji.talk(pon);
-	}else 
-	{
-		ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
-		response = ChatbotMain.getInput();
-		triggerOtherClasses(response);
-	}
-}
 }
 	/*public double divide(double dividend, double divisor) {
 
