@@ -2,24 +2,13 @@
 
 public class ChatbotJessica implements Topic {
 
-	private ChatbotJessica jessica;
+	
 	private ChatbotAreej areej;		
 	private ChatbotVickie vickie;
 	private ChatbotJi ji;
 	
-/*	public ChatbotAreej getAreej()
-	{
-		return areej;
-	}
-	public ChatbotVickie getVickie()
-	{
-		return vickie;
-	}
-	public ChatbotJi getJi()
-	{
-		return ji;
-	}
-	*/
+	
+	
 //	boolean endOfJess;
 	
 	private String[] keywords;
@@ -55,7 +44,19 @@ public class ChatbotJessica implements Topic {
  	private boolean doneGame;
  	private boolean saidYesJoke;
  	private boolean saidYesGame;
-  	
+ 	
+ 	public ChatbotAreej getAreej()
+	{
+		return areej;
+	}
+	public ChatbotVickie getVickie()
+	{
+		return vickie;
+	}
+	public ChatbotJi getJi()
+	{
+		return ji;
+	}
   	public ChatbotJessica() {
   	//	areej = new ChatbotAreej();
 	//	vickie = new ChatbotVickie();
