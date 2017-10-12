@@ -152,11 +152,11 @@ public class ChatbotJi implements Topic {
 
 	public void getBotReaction() {
 		if ((numAnnoyed > 1) && (numAnnoyed < 4)) { // mild
-			ChatbotMain.print(mild[(int) Math.floor(Math.random() * 2)]);
+			ChatbotMain.print(mild[(int) Math.floor(Math.random() * 3)]);
 		}
 
 		if (numAnnoyed <= 1) { // annoyed
-			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 2)]);
+			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 3)]);
 		}
 
 		// if -1 end discussion?
