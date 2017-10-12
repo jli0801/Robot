@@ -3,9 +3,9 @@ package chatbot;
 public class Chatbot {
 	private String username;
 	private boolean chatting;
-	private Topic jessica;
+	private ChatbotJessica jessica;
 	private ChatbotAreej areej;
-	private Topic vickie;
+	private ChatbotVickie vickie;
 	private ChatbotJi ji;
 	
 //	private boolean endOfJess;
@@ -22,7 +22,7 @@ public class Chatbot {
 	{
 		return username;
 	}
-	public Topic getJessica()
+	public ChatbotJessica getJessica()
 	{
 		return jessica;
 	}
@@ -30,7 +30,7 @@ public class Chatbot {
 	{
 		return areej;
 	}
-	public Topic getVickie()
+	public ChatbotVickie getVickie()
 	{
 		return vickie;
 	}

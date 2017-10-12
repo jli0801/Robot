@@ -14,6 +14,7 @@ public class ChatbotMain {
 	}
 
 
+	
 
 
 		//copied from class notes - utilities class
@@ -100,6 +101,7 @@ public static int findKeyword (String searchString, String keyword, int startPsn
 	//makes lowercase
 	searchString = searchString.toLowerCase();
 	keyword = keyword.toLowerCase();
+	
 	
 	int psn = searchString.indexOf(keyword, startPsn);
 	
