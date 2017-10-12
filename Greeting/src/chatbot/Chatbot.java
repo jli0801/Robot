@@ -44,11 +44,11 @@ public class Chatbot {
 		vickie = new ChatbotVickie();
 		ji = new ChatbotJi();
 		
-		ji.setJessica(jessica);
+		//ji.setJessica(jessica);
 		//ji.setVickie(vickie);
 		//ji.setAreej(areej);
 		//ji.setJi(ji);
-		
+		//
 		
 		
 		
