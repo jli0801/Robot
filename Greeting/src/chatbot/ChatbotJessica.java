@@ -7,7 +7,7 @@ public class ChatbotJessica implements Topic {
 	private ChatbotVickie vickie;
 	private ChatbotJi ji;
 	
-	public ChatbotAreej getAreej()
+/*	public ChatbotAreej getAreej()
 	{
 		return areej;
 	}
@@ -19,7 +19,7 @@ public class ChatbotJessica implements Topic {
 	{
 		return ji;
 	}
-	
+	*/
 //	boolean endOfJess;
 	
 	private String[] keywords;
@@ -57,9 +57,9 @@ public class ChatbotJessica implements Topic {
  	private boolean saidYesGame;
   	
   	public ChatbotJessica() {
-  		areej = new ChatbotAreej();
+  	//	areej = new ChatbotAreej();
 	//	vickie = new ChatbotVickie();
-		ji = new ChatbotJi();
+	//	ji = new ChatbotJi();
 		
  		String[] triggerM = {"joke", "game", "pun"};
  		
