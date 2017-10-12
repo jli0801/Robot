@@ -54,7 +54,7 @@ public class ChatbotVickie implements Topic
 			
 		//String[] shortResponsePlz = {"Sorry, can you shorten your response and identify the immediate problem? Being concise will also help in school and in communication", "Please 	
 		goodbyeKeyword = "bye";
-		secretKeyword = "family"; //death // died
+		secretKeyword = "died"; //death // died
 		respond = ""; //s
 		beginning = true;
 	}
@@ -82,7 +82,7 @@ public class ChatbotVickie implements Topic
 		{
 			if (ChatbotMain.findKeyword(respond, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
-				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
+				ChatbotMain.print("My condolences. Dealing with the death of someone close to you can be tough, but remember you have many friends you can rely on."); // death Sometimes family can be a pain, but communication is key to making it work out!
 				respond = ChatbotMain.getInput();
 				talk(respond);
 			}
@@ -239,9 +239,6 @@ public class ChatbotVickie implements Topic
 						}
 					}
 				}
-			
-		//add count everytime this is triggered
-		//if it reaches a certain count, then it will get increasingly annoyed
 			annoyed++;
 			if (annoyed > 5)
 			{
@@ -254,7 +251,14 @@ public class ChatbotVickie implements Topic
 			}
 			
 			respond = ChatbotMain.getInput();
-			conciseStr(respond);
+			if (respond.length() > 50)
+			{
+				conciseStr(respond);
+			}
+			else
+			{
+				talk(respond);
+			}
 		}
 			//talk(respond); //do i really need this?
 	}
