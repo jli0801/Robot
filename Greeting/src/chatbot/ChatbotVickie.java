@@ -6,6 +6,18 @@ import chatbot.Topic;
 public class ChatbotVickie implements Topic
 { //personal life
 
+	
+	private ChatbotJessica jessica;//////////////
+	private ChatbotAreej areej;		////////////////
+	private ChatbotVickie vickie;/////////////////
+	private ChatbotJi ji;///////////////////////
+	
+//ADDED THIS FROM CHATBOTT	
+	
+	
+	
+	
+	//
 	private String[] keywords;
 	private String[] negativeFeelings;
 	private String[] positiveFeelings;
@@ -30,8 +42,30 @@ public class ChatbotVickie implements Topic
 	private int posEmotions;
 	private int annoyed;
 	
+	public ChatbotJessica getJessica()//////////////////////////////////////////////////////////////////////////////
+	{
+		return jessica;
+	}
+	public ChatbotAreej getAreej()
+	{
+		return areej;
+	}
+	public ChatbotJi getJi()
+	{
+		return ji;
+	}
+	///////////////GOT THIS FROM CHATBOT
 	public ChatbotVickie() 
 	{
+		
+		jessica = new ChatbotJessica();
+		areej = new ChatbotAreej();//
+		ji = new ChatbotJi();
+		////////////////////////////// GOT THIS FROM CHATBOT
+		
+		
+		
+		
 		String[] trigger = {"home", "life", "me", "bullying", "safety", "family", "stress", "died", "death", "personal"};
 			keywords = trigger;
 			
@@ -139,8 +173,9 @@ public class ChatbotVickie implements Topic
 									ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because" + reasonWhy + ".");
 								
 									ChatbotMain.print("So lets talk about something else: Do you want to talk about your academics, colleges, or a joke?");
-									//respond = ChatbotMain.getInput();
-									ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
+									respond = ChatbotMain.getInput();
+									//ChatbotMain.chatbot.startChatting();//respond in parameter or even make my own function
+									triggerOtherClasses(respond);
 								}
 								else
 								{
@@ -305,6 +340,23 @@ public class ChatbotVickie implements Topic
 			{
 				 reasonWhy = response.substring(bec + 7, reasLength);
 			}
+		}
+	}
+	
+	
+	public void triggerOtherClasses(String response)
+	{
+		if(jessica.isTriggered(response))
+		{
+			jessica.talk(response);
+		}
+		else if(areej.isTriggered(response))
+		{
+			areej.talk(response);
+		}
+		else if(ji.isTriggered(response))
+		{
+			ji.talk(response);
 		}
 	}
 	
