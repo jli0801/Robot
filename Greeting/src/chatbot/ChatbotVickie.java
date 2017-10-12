@@ -203,13 +203,14 @@ public class ChatbotVickie implements Topic
 							{
 							
 								ChatbotMain.print("Sorry to hear that you are not happy!");
-							ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
-							//is there anything else you want to take off your chest?
-							respond = ChatbotMain.getInput();
-							conciseStr(respond);
-							//talk(respond);
+								ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
+								//is there anything else you want to take off your chest?
+								respond = ChatbotMain.getInput();
+								conciseStr(respond);
+								//talk(respond);
 							}
-						} else
+						} 
+						else
 						{
 							for(int n = 0; n < negativeFeelings.length; n++)
 							{
@@ -221,22 +222,23 @@ public class ChatbotVickie implements Topic
 									{
 										ChatbotMain.print("You don't seem to have many problems because you are " + reasonPos + " - let's talk about something else: grades, colleges, or maybe a joke? ");
 										ChatbotMain.chatbot.startChatting();
-									} else {
-									reasonBehindEmotion(response);
-									ChatbotMain.print("Good to hear that you are okay!");
-									ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
-									//is there anything else you want to take off your chest?
-									respond = ChatbotMain.getInput();
-									conciseStr(respond);
-									//reasonNeg = response;
-							
-									//talk(respond);}
+									} 
+									else 
+									{
+										reasonBehindEmotion(response);
+										ChatbotMain.print("Good to hear that you are okay!");
+										ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
+										//is there anything else you want to take off your chest?
+										respond = ChatbotMain.getInput();
+										conciseStr(respond);
+										//reasonNeg = response;
+										//talk(respond);}
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 			
 		//add count everytime this is triggered
 		//if it reaches a certain count, then it will get increasingly annoyed
@@ -244,14 +246,16 @@ public class ChatbotVickie implements Topic
 			if (annoyed > 5)
 			{
 				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
-			}else 
-			{
-			ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
-			ChatbotMain.print("Say what you feel and why you feel that way.");// CHECK SPELLING!
 			}
+			else 
+			{
+				ChatbotMain.print("Sorry, I don't understand - can you rephrase it?");
+				ChatbotMain.print("Say what you feel and why you feel that way.");// CHECK SPELLING!
+			}
+			
 			respond = ChatbotMain.getInput();
 			conciseStr(respond);
-			}
+		}
 			//talk(respond); //do i really need this?
 	}
 	
@@ -265,7 +269,6 @@ public class ChatbotVickie implements Topic
 			talk(respond);
 		}
 			//keep track of how often they trigger this function;
-		
 	}
 	
 	public void reasonBehindEmotion(String response)
@@ -281,8 +284,9 @@ public class ChatbotVickie implements Topic
 				ChatbotMain.print(annoyedComments[(int) Math.floor(Math.random() * 3)]);
 			}else
 			{
-			ChatbotMain.print("Why do u feel this way? What's your reason behind feeling this way?");
+				ChatbotMain.print("Why do u feel this way? What's your reason behind feeling this way?");
 			}
+			
 			 String reason = ChatbotMain.getInput();
 			 reasonBehindEmotion(reason);//fix
 		}else
