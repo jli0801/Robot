@@ -182,6 +182,7 @@ public class ChatbotJessica implements Topic {
 		 									response = ChatbotMain.getInput();	
 		 									if(saidYes(response))
 		 									{
+		 										numChancesG = 0;
 	 											level++;
 	 											firstPlayG = false; //so they can play again
 	 			 								tellAGame(response, level);
