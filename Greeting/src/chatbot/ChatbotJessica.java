@@ -71,10 +71,10 @@ public class ChatbotJessica implements Topic {
 		
   	
  		
- 		String[] answerWrongG = {"Nope! Try again!", "Are you even trying?", 
- 				"The answer is too low.", "Come on! You got to try harder than that.",
+ 		String[] answerWrongG = {"Too small! Try again.", "Larger number please!", 
+ 				"The answer is too low.", "You got to try harder than that. Give me a larger number.",
  				  "Your answer is too high.", "Try something lower than that." ,
-				 "Come on! The game can't last forever.", "Guess again!"};
+				 "Come on! It's too high.", "Guess again! Think something lower next time!"};
  		gamesWrong = answerWrongG;
  		
  	//	String[] puns = {"You came at an eggcellent time!", "Isn't this egglastic?", "Aren't you being a but eggtreme?"
@@ -150,42 +150,49 @@ public class ChatbotJessica implements Topic {
  								{
 	 								while(doneGame)
 	 								{
-	 									if(isInteger(response))
-	 									{
-	 										tellAGame(response, level);
-	 									}
-	 									else
-	 									{
-	 										ChatbotMain.print("You must enter an integer. Play the game correctly!");
-	 									}
-	 									
+	 									tellAGame(response, level);
 		 									if(gotCorrectG)
 		 									{
-		 									doneGame = false;
-		 									ChatbotMain.print("Do you want to play again with a harder level?");
-		 										
-		 										if(saidYes(response))
-		 										{
-		 											level++;
-		 											if(isInteger(response))
-		 		 									{
-		 			 									tellAGame(response, level);
-		 			 									
-		 		 									}
-		 		 									else
-		 		 									{
-		 		 										
-		 		 										ChatbotMain.print("You must enter an integer. Play the game correctly!");
-		 		 									}
-		 											
-		 										}		
-		 										else
-		 										{
-		 											ChatbotMain.print("Fine! We can talk about college, personal stuff, academics, or other"
-		 													+ " boring stuff.");
-		 											ChatbotMain.chatbot.startChatting(); 
-		 										}
+
+		 									ChatbotMain.print("Would you like to play the game in a harder level?");
+		 									response = ChatbotMain.getInput();	
+		 									if(saidYes(response))
+		 									{
+	 											level++;
+	 											firstPlayG = false; //so they can play again
+	 			 								tellAGame(response, level);
 		 									}
+		 									else
+		 									{
+		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
+	 													+ " boring stuff.");
+	 											ChatbotMain.chatbot.startChatting(); 
+	 											doneGame = false;
+		 									}
+		 											
+		 									}
+		 									else
+		 									{
+		 									ChatbotMain.print("Do you want to try again?");
+		 									response = ChatbotMain.getInput();	
+		 									
+		 									if(saidYes(response))
+		 									{
+	 											firstPlayG = false; //so they can play again
+	 			 								tellAGame(response, level);
+		 									}
+		 									else
+		 									{
+		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
+	 													+ " boring stuff.");
+	 											ChatbotMain.chatbot.startChatting(); 
+	 											doneGame = false;
+		 									}
+		 									
+		 									}
+		 										
+		 								}
+		 									
 	 									}
 	 									
 	 								}
@@ -207,11 +214,7 @@ public class ChatbotJessica implements Topic {
  								
  							}*/
  							
- 						}
- 					
- 						
-  						
-  					
+ 				
 				endOfJess = true;
 				ChatbotMain.chatbot.startChatting(); 
  }
@@ -219,8 +222,8 @@ public class ChatbotJessica implements Topic {
   				
   	public boolean saidYes(String response)
   	{
-  		return (ChatbotMain.findKeyword(response, "yes", 0) >= 0) || (ChatbotMain.findKeyword(response, "yeah", 0) >= 0 ||
-  				ChatbotMain.findKeyword(response, "sure", 0) >= 0);
+  		return ChatbotMain.findKeyword(response, "yes", 0) >= 0 || ChatbotMain.findKeyword(response, "yeah", 0) >= 0 ||
+  				ChatbotMain.findKeyword(response, "sure", 0) >= 0 || ChatbotMain.findKeyword(response, "okay", 0) >= 0;
   	}
 	public boolean isInteger(String response) {
 
@@ -246,13 +249,13 @@ public class ChatbotJessica implements Topic {
 	{
 		gotCorrectJ = false;
 		firstPlay = false;
+		
 		if(!firstPlay)
 		{
 			
 			ChatbotMain.print("Yes of course. I'll tell you a great joke!");
 			ChatbotMain.print(jokesArr[0]);
 		}
-		
 			while(!gotCorrectJ)
 			{
 				
@@ -271,9 +274,7 @@ public class ChatbotJessica implements Topic {
 					{
 						ChatbotMain.print("No, don't be silly! They can't wear a dress!");
 					}
-					
-				
-					
+	
 					numChancesJ++;
 					if(numChancesJ > 5 )
 					{
@@ -286,7 +287,7 @@ public class ChatbotJessica implements Topic {
 					}
 				}
 				
-				}
+			}
 				
 				
 	}
@@ -294,67 +295,84 @@ public class ChatbotJessica implements Topic {
 
 	public void tellAGame(String response , int level) //currently stuck after you give an integer
 	{
-		
-			int responseI = getInteger(response);
-			ChatbotMain.print("You are on level: " + level +"." + "Give me a number!");
-			gamesAns = (int) (Math.random()*(level*25)); //range increases
-			firstPlayG = false;
+	
 			
 			if(!firstPlayG)
 			{
-				ChatbotMain.print("Oh, I heard the word game! Would you like to play with me?" );
-					response = ChatbotMain.getInput();
-					if (saidYes(response)) //check
-					{
-						ChatbotMain.print("It's a number guessing game. Give me a random number!");
-						response = ChatbotMain.getInput();
-						
+				firstPlayG = true;
+				ChatbotMain.print("Oh, I heard the word game! Let's play, it'll be fun!" );
+			
+				ChatbotMain.print("It's a number guessing game. You're on level: " + level + ". Give me a random number!");
+				
+				response = ChatbotMain.getInput();
+				
+				tellAGame(response, level);
+				
+			}		
+			else
+			{
 						if(isInteger(response))
-						{
-							tellAGame(response, level);
+						{	
+							response = ChatbotMain.getInput();
+							int gamesAns = (int) (Math.random()*(level*25)); //range increases
+							int responseI = getInteger(response); 
+						
+							while(!gotCorrectG) 
+							{
+								
+						
+								if(responseI == gamesAns)
+								{
+								
+									gotCorrectG = true;
+									numChancesG++;
+									ChatbotMain.print("You did it! You answered within" + numChancesG + "tries!");
+								} 
+								else
+								{
+									if(responseI < gamesAns) //less than
+									{
+										
+										//doneGame = true;
+										numChancesG++;
+										//ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
+										ChatbotMain.print("needs to be higher" + gamesAns);
+										response = ChatbotMain.getInput();
+									}
+									
+									if(responseI > gamesAns) //more than
+									{
+										
+										numChancesG++;
+									//	ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four	
+										ChatbotMain.print("needs to be lower" + gamesAns);
+										response = ChatbotMain.getInput();
+									}
+								
+									
+									if(numChancesG > 5)
+									{
+										ChatbotMain.print("You couldn't get the answer! It was " + gamesAns +".");
+									}
+								}
+								
+							} //ends while loop
 						}
 						else
 						{
 							
 							ChatbotMain.print("You must enter an integer. Play the game correctly!");
+							response = ChatbotMain.getInput();
+							tellAGame(response, level);
 						}
-					}
-					else
-					{
-						ChatbotMain.chatbot.startChatting();
-					}
-			
 			}
-			
-			while(!gotCorrectG) 
-			{
-				firstPlayG = true;
-				if(responseI > gamesAns) //less than
-				{
-					gotCorrectG = false;
-					numChancesG++;
-					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)]); //first four
-				}
-				
-				if(responseI < gamesAns) //more than
-				{
-					gotCorrectG = false;
-					numChancesG++;
-					ChatbotMain.print(gamesWrong[(int) (Math.random()*4)+4]); //last four	
-				}
-				
-				if(responseI == gamesAns)
-				{
-					gotCorrectG = true;
-					
-					ChatbotMain.print("You did it! You answered within" + numChancesG + "tries!");
-				}
-				
-				
-			}
-				
-				
 	}
+					
+					
+			
+			
+
+	
 	
 /*	public void tellAPun(String response)
 	{
