@@ -45,6 +45,8 @@ public class ChatbotJessica implements Topic {
  	private boolean saidYesJoke;
  	private boolean saidYesGame;
  	
+ 	int responseInt;
+ 	
  	public ChatbotAreej getAreej()
 	{
 		return areej;
@@ -212,7 +214,8 @@ public class ChatbotJessica implements Topic {
 		 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
 	 													+ " boring stuff.");
 		 										response = ChatbotMain.getInput();	
-	 											ChatbotMain.chatbot.startChatting(); 
+	 										//	ChatbotMain.chatbot.startChatting(); 
+	 											triggerOtherClasses(response);
 	 											doneGame = false;
 		 									}
 		 									
@@ -268,7 +271,7 @@ public class ChatbotJessica implements Topic {
 	}
 	public int getInteger(String response)
 	{
-			int responseInt;
+	//		int responseInt;
 			responseInt = 0;
 			return responseInt = Integer.parseInt(response);
 	}	
@@ -307,7 +310,7 @@ public class ChatbotJessica implements Topic {
 					if(numChancesJ > 5 )
 					{
 					gotCorrectJ = true;	
-					ChatbotMain.print(jokesAns[(int) (Math.random()*3)]);
+					ChatbotMain.print("I'll tell you the answer then. " +jokesAns[(int) (Math.random()*3)]);
 					}
 					else
 					{
