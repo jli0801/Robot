@@ -1,11 +1,11 @@
 package chatbot;
 
 public class ChatbotAreej implements Topic{
+
 	private ChatbotJessica jessica;
 	private ChatbotAreej areej;		
 	private ChatbotVickie vickie;
 	private ChatbotJi ji;
-	
 	
 	private String[] tempW;
 	private String[] hc;
@@ -16,11 +16,29 @@ public class ChatbotAreej implements Topic{
 	private boolean advanced;
 	private boolean discussedGrades;
 	private int gpa;
+	private String[] annoyed;
+	private int annoyedNum;
+	private String[] annoyers;
 	//private String[] classes;
 	//private String[] clases;
 	//private double result;
+
+	public ChatbotJessica getJessica()
+	{
+		return jessica;
+	}
+	public ChatbotVickie getVickie()
+	{
+		return vickie;
+	}
+	public ChatbotJi getJi()
+	{
+		return ji;
+	}
 	
 	public ChatbotAreej() {
+		
+		
 		String[] temp = {"school stuff", "academic things", "classes", "transcript", "academics"};
 		tempW = temp;
 		String[] hardClasses = {"ap", "honors","ap's", "honor"};
@@ -30,9 +48,16 @@ public class ChatbotAreej implements Topic{
 		goodbyeKeyword = "bye";
 		response = "";
 		gpa = 0;
+		String[] isAnnoyed = {"Stop wasting my time", "You know, I have other people who need my help", "I'm not going to listen to you talk like this all day", "No need to be rude"};
+		annoyed = isAnnoyed;
+		annoyedNum = 3;
+		String[] annoyingThings = {"you're not very helpful","can you give me anything","why aren't you giving me a straight answer", "why can't you give me what i need"
+				, "why can't you give me what i want","unhelpful", "annoying"};
+		annoyers = annoyingThings;
 		//String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
 		//clases = classes;
 		//result = 0;
+	
 	}
 
 	public void talk(String response) {
@@ -135,6 +160,7 @@ public class ChatbotAreej implements Topic{
 		
 		ChatbotMain.print("I need a number please");
 		response = ChatbotMain.getInput();
+		recHonors(response);
 		
 	}
 
@@ -148,12 +174,9 @@ public class ChatbotAreej implements Topic{
 			response = ChatbotMain.getInput();
 			
 			ChatbotMain.print("Ok, I'll see what I can do. Now, let's talk about something else:"
-					+ "Do you want to continue talking about academics or do you want to"
-					+ "talk about something personal, colleges, or do you want to hear a joke?"); 
+					+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
 					response = ChatbotMain.getInput();
 					triggerOtherClasses(response);
-				
-			
 		}
 		}
 		
@@ -162,11 +185,9 @@ public class ChatbotAreej implements Topic{
 			if(r.substring(i, i + 8).equals("transfer"))
 			{
 				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP. Now, let's talk about something else:"
-						+ "Do you want to continue talking about academics or do you want to"
-						+ "talk about something personal, colleges, or do you want to hear a joke?"); 
+						+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?"); 
 						response = ChatbotMain.getInput();
-						triggerOtherClasses(response);
-					
+						triggerOtherClasses(response);	
 			}
 		}
 		
@@ -179,8 +200,7 @@ public class ChatbotAreej implements Topic{
 			//method for ji
 			//needs same method 
 			ChatbotMain.print("I think you'll do very well in an advanced class if you choose to take one. Now, let's talk about something else:"
-					+ "Do you want to continue talking about academics or do you want to"
-					+ "talk about something personal, colleges, or do you want to hear a joke?");
+					+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
 			response = ChatbotMain.getInput();
 			triggerOtherClasses(response);
 
@@ -194,16 +214,14 @@ public class ChatbotAreej implements Topic{
 			if (ChatbotMain.findKeyword(s, af[i], 0) >= 0 )
 			{
 				ChatbotMain.print("No problem! I'm here if you need anything else. Now, let's talk about something else:"
-						+ "Do you want to continue talking about academics or do you want to "
-						+ "talk about something personal, colleges, or hear a joke?");
+						+ "Do you want to talk about something personal, colleges, or hear a joke?");
 				response = ChatbotMain.getInput();
 				triggerOtherClasses(response);
 				
 			}					
 		}
 		ChatbotMain.print("Up to you, I'm only trying to help. Now, let's talk about something else: "
-				+ "Do you want to continue talking about academics or do you want to"
-				+ "talk about something personal, colleges, or do you want to hear a joke?");
+				+ "Do you want to talk about something personal, colleges, or do you want to hear a joke?");
 		response = ChatbotMain.getInput();
 		triggerOtherClasses(response);
 
@@ -249,24 +267,47 @@ public class ChatbotAreej implements Topic{
 		return false;
 
 }	
-	public void triggerOtherClasses(String response)
-	{
-		if(jessica.isTriggered(response))
-		{
-			jessica.talk(response);
+	public void reaction() {
+		
+		if (annoyedNum <= 1) { 
+			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 3)]);
 		}
-		else if(vickie.isTriggered(response))
-		{
-			vickie.talk(response);
-		}
-		else if(ji.isTriggered(response))
-		{
-			ji.talk(response);
-		}
-		else if(areej.isTriggered(response)) {
-			areej.talk(response);
+
+		if(annoyedNum == -1) {
+			ChatbotMain.print("You know what, come back later, I'm not dealing with this attitude.");
 		}
 	}
+
+	public void annoyers() {
+		for(int i = 0; i < response.length(); i ++)
+		if (response.contains(annoyers[i])) {
+			annoyedNum--;
+
+		} 
+		reaction();
+	}
+	
+public void triggerOtherClasses(String pon)
+{
+	if(jessica.isTriggered(pon))
+	{
+		jessica.talk(pon);
+	}
+	else if(vickie.isTriggered(pon))
+	{
+		vickie.talk(pon);
+	}
+	else if(ji.isTriggered(pon))
+	{
+		ji.talk(pon);
+	}else 
+	{
+		ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
+		response = ChatbotMain.getInput();
+		triggerOtherClasses(response);
+	}
+}
+}
 	/*public double divide(double dividend, double divisor) {
 
 		int sum = 0, count = -1;
@@ -280,4 +321,4 @@ public class ChatbotAreej implements Topic{
 		}
 		return count;
 }*/
-	}
+	
