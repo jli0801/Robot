@@ -2,7 +2,7 @@ package chatbot;
 
 public class ChatbotJi implements Topic {
 	
-	private ChatbotJessica jessica;
+	private ChatbotJessica jessica = new ChatbotJessica();
 	private ChatbotAreej areej;		
 	private ChatbotVickie vickie;
 	private ChatbotJi ji;
@@ -222,9 +222,9 @@ public class ChatbotJi implements Topic {
 		}
 	}
 	
-	//public void setJessica(ChatbotJessica jessica) {
-	//	this.jessica = jessica;
-	//}
+	public void setJessica(ChatbotJessica jessica) {
+		this.jessica = jessica;
+	}
 	
 	//public void setVickie(ChatbotVickie vickie) {
 	//	this.vickie = vickie;

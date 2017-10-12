@@ -3,7 +3,7 @@ package chatbot;
 public class Chatbot {
 	private String username;
 	private boolean chatting;
-	private ChatbotJessica jessica;
+	public static ChatbotJessica jessica;
 	private ChatbotAreej areej;
 	private ChatbotVickie vickie;
 	private ChatbotJi ji;
@@ -43,6 +43,10 @@ public class Chatbot {
 		areej = new ChatbotAreej();//
 		vickie = new ChatbotVickie();
 		ji = new ChatbotJi();
+		
+		ji.setJessica(jessica);
+		
+		
 		username = "Unknown User";
 		chatting = true;
 		noRepeat = true;
