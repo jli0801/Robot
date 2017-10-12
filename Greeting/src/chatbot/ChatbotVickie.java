@@ -62,7 +62,7 @@ public class ChatbotVickie implements Topic
 	public void talk(String response)
 	{
 		if(beginning == true)
-		{	ChatbotMain.print("What about it? How do you feel about it? "); //What about it?? Can you elaborate more on your problem?
+		{	ChatbotMain.print("What personal things do you want to talk about? How do you feel about it? "); //What about it?? Can you elaborate more on your problem?
 								//how do you feel about it and why do you feel this way?
 			respond = ChatbotMain.getInput();
 			conciseStr(respond);
@@ -96,10 +96,10 @@ public class ChatbotVickie implements Topic
 		}
 		while(ChatbotMain.findKeyword(respond, goodbyeKeyword, 0) != -1 && beginning == false);
 		{
-			if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0) // if the secret keyword is triggered
+			if (ChatbotMain.findKeyword(respond, secretKeyword, 0) >= 0) // if the secret keyword is triggered
 			{
 				ChatbotMain.print("Sometimes family can be a pain, but communication is key to making it work out!"); // death 
-				response = ChatbotMain.getInput();
+				respond = ChatbotMain.getInput();
 				talk(respond);
 			}
 			else//
@@ -119,15 +119,16 @@ public class ChatbotVickie implements Topic
 			{
 				if(ChatbotMain.findKeyword(response, positiveFeelings[i], 0) >= 0)
 				{
+					reasonPos = positiveFeelings[i];
+					reasonBehindEmotion(response);
 					posEmotions++;
-					reasonPos = positiveFeelings[1];
 					if (posEmotions >= 3)
 					{
 						ChatbotMain.print("You don't seem to have many problems - let's talk about something else: grades, colleges, or maybe a joke? ");
 						ChatbotMain.chatbot.startChatting();
 					}else
 					{
-					reasonBehindEmotion(response);
+					
 					ChatbotMain.print( positiveComments[(int) Math.floor(Math.random() * 3)] + "to hear that you are " + positiveFeelings[i] + "!");
 					ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
 					respond = ChatbotMain.getInput();
@@ -142,16 +143,15 @@ public class ChatbotVickie implements Topic
 					{
 						if(ChatbotMain.findKeyword(response, negativeFeelings[n], 0) >= 0)
 						{
-							negEmotions++;
 							reasonNeg = negativeFeelings[n];
 							reasonBehindEmotion(response);
+							negEmotions++;
 							if (negEmotions == 3)
 							{
 								ChatbotMain.print("I'm concerned " + ChatbotMain.chatbot.getUsername() + ". I am going to refer you to a therapist, since you are " + reasonNeg + " because " + reasonWhy + ".");
 								ChatbotMain.chatbot.startChatting();
 							}else
 							{
-								
 								System.out.println(negEmotions);
 								ChatbotMain.print("Sorry to hear that you are " + negativeFeelings[n] + "!");
 								ChatbotMain.print( anythingElse[(int) Math.floor(Math.random() * 3)]);
@@ -287,7 +287,6 @@ public class ChatbotVickie implements Topic
 	{
 		for(int i = 0; i < keywords.length; i++)
 		{
-			//IMPORTANT (one the rubric) only if keyword is used
 			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
 			{
 				return true;
