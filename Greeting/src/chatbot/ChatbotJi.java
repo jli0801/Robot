@@ -7,8 +7,11 @@ public class ChatbotJi implements Topic {
 	private String response;
 	// private String[] happy;
 	private boolean startedEssay = false;
-	private String[] mild;
-	private String[] annoyed;
+	private String[] mild = { "Be more specific.", "Something else you want to say?",
+	"What do you mean?" };
+	private String[] annoyed = { "If you aren't here for college help, might as well google it.",
+			"I have other students who need help, come back when you have prepared reasonable questions.",
+			"I don't have all day." };
 	public boolean discussedHonors = false;
 	private int numAnnoyed = 5;
 	
@@ -17,19 +20,13 @@ public class ChatbotJi implements Topic {
 	// else when reach to 1, will turn to annoyed reaction
 
 	// connect essay = true sat = true etc
-	private String[] negWords;
+	private String[] negWords = { "stop", "bad", "unhelpful" };
 
 	public ChatbotJi() {
 		String[] temp = { "college", "university", "school", "essay", "honors" }; // first three links to college
 
-		String[] negWords = { "stop", "bad", "unhelpful" };
 		// String[] happy = {"I'm glad you asked me for help.", "Thanks for showing your
-		// interest.", "Your future is bright.", "No problem."};
-		String[] mild = { "Be more specific.", "Something else you want to say?",
-				"What do you mean?" };
-		String[] annoyed = { "If you aren't here for college help, might as well google it.",
-				"I have other students who need help, come back when you have prepared reasonable questions.",
-				"I don't have all day." };
+		// interest.", "Your future is bright.", "No problem."}; 
 		keywords = temp;
 		goodbyeKeyword = "bye";
 		secretKeyword = "scholarship";
@@ -41,10 +38,12 @@ public class ChatbotJi implements Topic {
 			askedInitial = true;
 			ChatbotMain.print("By any chance, are you interested in applying for college? If so, what step in the application do you want help with?");
 			response = ChatbotMain.getInput();
+			findNegWords();
 		}
 		else {
 			ChatbotMain.print("What else do you want to know?");
 			response = ChatbotMain.getInput();
+			findNegWords();
 		}
 
 		while (ChatbotMain.findKeyword(response, goodbyeKeyword, 0) == -1) {
@@ -61,7 +60,7 @@ public class ChatbotJi implements Topic {
 			}
 
 			response = ChatbotMain.getInput();
-
+			findNegWords();
 		}
 
 		ChatbotMain.print(ChatbotMain.chatbot.getUsername() + ", ask away if you have more questions!");
@@ -74,7 +73,7 @@ public class ChatbotJi implements Topic {
 	public void adviseScholarship() {
 		ChatbotMain.print("Are you applying for scholarships? Applying for them may come in handy in your application process!!!");
 		response = ChatbotMain.getInput();
-		// findNegWords();
+		findNegWords();
 		if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 			if (ChatbotMain.chatbot.getAreej().isAdvanced()) {
 				ChatbotMain.print("Great! You are on your way to getting a scholarship due to your academic achievements!");
@@ -97,19 +96,22 @@ public class ChatbotJi implements Topic {
 		// findNegWords();
 		ChatbotMain.print("Have you started on your college essay?");
 		response = ChatbotMain.getInput();
+		findNegWords();
 		if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 			startedEssay = true;
 			ChatbotMain.print("Would you like to have advice on writing your essay?");
 			response = ChatbotMain.getInput();
-			// findNegWords();
+			findNegWords();
 			if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 				// findNegWords();
 				ChatbotMain.print("Great! What are you struggling with?");
 				response = ChatbotMain.getInput();
-				// findNegWords();
+				findNegWords();
 				if (ChatbotMain.findKeyword(response, "topic", 0) >= 0) {
 					// findNegWords();
 					ChatbotMain.print("Think about moments that impacted your personality or characteristic you highly value. If you are still stuck, try looking at the essay prompts. Hopefully an idea will spark!");
+					response = ChatbotMain.getInput();
+					findNegWords();
 					if (ChatbotMain.findKeyword(response, "thanks", 0) >= 0) {
 						// findNegWords();
 						ChatbotMain.print("No problem.");
@@ -129,6 +131,7 @@ public class ChatbotJi implements Topic {
 		// findNegWords();
 			ChatbotMain.print("Are you taking honors or AP classes?");
 			response = ChatbotMain.getInput();
+			findNegWords();
 			if (ChatbotMain.findKeyword(response, "yes", 0) >= 0) {
 				ChatbotMain.print("That's good. You are taking a big step towards college.");
 				hasDiscussedHonors();
@@ -144,11 +147,11 @@ public class ChatbotJi implements Topic {
 
 	public void getBotReaction() {
 		if ((numAnnoyed > 1) && (numAnnoyed < 4)) { // mild
-			ChatbotMain.print(mild[(int) Math.floor(Math.random() * 4)]);
+			ChatbotMain.print(mild[(int) Math.floor(Math.random() * 3)]);
 		}
 
 		if (numAnnoyed <= 1) { // annoyed
-			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 3)]);
+			ChatbotMain.print(annoyed[(int) Math.floor(Math.random() * 4)]);
 		}
 
 		// if -1 end discussion?
@@ -158,10 +161,12 @@ public class ChatbotJi implements Topic {
 		if (response.contains(negWords[0])) {
 			numAnnoyed--;
 
-		} else if (response.contains(negWords[1])) {
+		} 
+		else if (response.contains(negWords[1])) {
 			numAnnoyed--;
 
-		} else if (response.contains(negWords[2])) {
+		} 
+		else if (response.contains(negWords[2])) {
 			numAnnoyed--;
 		}
 		getBotReaction();
