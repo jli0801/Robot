@@ -1,6 +1,9 @@
 package chatbot;
 
 public class ChatbotAreej implements Topic{
+	
+	
+	
 	private String[] tempW;
 	private String[] hc;
 	private String goodbyeKeyword;
@@ -149,7 +152,7 @@ public class ChatbotAreej implements Topic{
 			
 			if(r.substring(i, i + 8).equals("transfer"))
 			{
-				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP");
+				ChatbotMain.print("I'm not sure, but I'll get back to you ASAP.");
 				response = ChatbotMain.getInput();
 			}
 		}
