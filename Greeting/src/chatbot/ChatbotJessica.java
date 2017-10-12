@@ -20,7 +20,7 @@ public class ChatbotJessica implements Topic {
 		return ji;
 	}
 	
-	boolean endOfJess;
+//	boolean endOfJess;
 	
 	private String[] keywords;
 	private String goodbyeKeyword;
@@ -114,7 +114,7 @@ public class ChatbotJessica implements Topic {
  		firstPlay = false;
  		firstPlayG= false;
  		
- 		endOfJess = false;
+ 	//	endOfJess = false;
  		
  		saidYesJoke = false;
  		saidYesGame = false;
@@ -134,7 +134,7 @@ public class ChatbotJessica implements Topic {
 					if (ChatbotMain.findKeyword(response, secretKeyword, 0) >= 0)
 					{
 						ChatbotMain.print("I'm glad you find me funny! What else would you like to hear? We can play a game, " +
-								 "tell puns or jokes?");
+								 "tell jokes?");
 		
 						response = ChatbotMain.getInput();
 					}
@@ -241,7 +241,7 @@ public class ChatbotJessica implements Topic {
  							}*/
  							
  				
-				endOfJess = true;
+			//	endOfJess = true;
 				ChatbotMain.print("Come back when you have a great joke!");
 				ChatbotMain.chatbot.startChatting(); 
  }
@@ -384,6 +384,23 @@ public class ChatbotJessica implements Topic {
 									if(numChancesG > 5)
 									{
 										ChatbotMain.print("You couldn't get the answer! It was " + gamesAns +".");
+										ChatbotMain.print("Do you want to try again?");
+	 									response = ChatbotMain.getInput();	
+	 									
+	 									if(saidYes(response))
+	 									{
+ 											firstPlayG = false; //so they can play again
+ 											gotCorrectG = false;
+ 			 								tellAGame(response, level);
+	 									}
+	 									else
+	 									{
+	 										ChatbotMain.print("We can talk about college, personal stuff, academics, or other"
+ 													+ " boring stuff.");
+	 										response = ChatbotMain.getInput();	
+ 											ChatbotMain.chatbot.startChatting(); 
+ 											doneGame = false;
+	 									}
 									}
 								}
 								
