@@ -7,7 +7,7 @@ public class Chatbot {
 	public static ChatbotAreej areej;
 	public static ChatbotVickie vickie;
 	public static ChatbotJi ji;
-	private int trigger;
+	private boolean trigger;
 	
 //	private boolean endOfJess;
 //	private boolean endOfVickie;
@@ -44,23 +44,13 @@ public class Chatbot {
 		areej = new ChatbotAreej();//
 		vickie = new ChatbotVickie();
 		ji = new ChatbotJi();
-		
-		//ji.setJessica(jessica);
-		//ji.setVickie(vickie);
-		//ji.setAreej(areej);
-		//ji.setJi(ji);
-		//
-		
-		trigger = 0;
+
+		trigger = true;
 		
 		username = "Unknown User";
 		chatting = true;
 		noRepeat = true;
 	
-	//	endOfJess = false;
-//		endOfVickie = false;
-//		endOfAreej = false;
-//		endOfJi = false;
 		String[] upsetRes = {"We already said Hi.", "Let's move on. What do you want to speak about?" 
 				,"Please stop saying hi. ", "Do you really understand? ", "You have to say something else!"};
 		upsetResArr = upsetRes;
@@ -88,30 +78,34 @@ public class Chatbot {
 		while (chatting)
 		{
 			
-			if(trigger > 0)
+			if(trigger == false)
 			{
 				ChatbotMain.print("What would you like to talk about? Classes, college, personal things or a joke?");
 			}
 				String response = ChatbotMain.getInput();
-				trigger++;
 					
 				if(jessica.isTriggered(response))
 				{
+					trigger = false;
 					chatting = false; //exits the while loop IMPORTANT
 					jessica.talk(response);
+					
 				}
 				else if(areej.isTriggered(response))
 				{
+					trigger = false;
 					chatting = false; //exits the while loop IMPORTANT.
 					areej.talk(response);
 				}
 				else if(vickie.isTriggered(response))
 				{
+					trigger = false;
 					chatting = false; //exits the while loop IMPORTANT
 					vickie.talk(response);
 				}
 				else if(ji.isTriggered(response))
 				{
+					trigger = false;
 					chatting = false; //exits the while loop IMPORTANT
 					ji.talk(response);
 				}
@@ -128,6 +122,7 @@ public class Chatbot {
 					{
 						ChatbotMain.print("I'm sorry. I don't understand. Do you want to talk about classes, colleges, any personal things, "
 						+ "or maybe even a joke?");
+						trigger = true;
 					}
 				}
 			}
