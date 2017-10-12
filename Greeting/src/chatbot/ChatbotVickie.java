@@ -357,6 +357,11 @@ public class ChatbotVickie implements Topic
 		else if(ji.isTriggered(response))
 		{
 			ji.talk(response);
+		}else 
+		{
+			ChatbotMain.print("Pick one: Classes, colleges, or a joke?");
+			respond = ChatbotMain.getInput();
+			triggerOtherClasses(respond);
 		}
 	}
 	
