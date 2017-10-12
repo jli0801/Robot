@@ -17,7 +17,7 @@ public class ChatbotAreej implements Topic{
 	private boolean discussedGrades;
 	private int gpa;
 	//private String[] classes;
-	//private String[] classe;
+	//private String[] clas;
 	//private double result;
 	
 	public ChatbotAreej() {
@@ -31,7 +31,7 @@ public class ChatbotAreej implements Topic{
 		response = "";
 		gpa = 0;
 		//String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
-		//classe = classes;
+		//clas = classes;
 		//result = 0;
 	}
 
