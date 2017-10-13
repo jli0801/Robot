@@ -11,9 +11,9 @@ public class ChatbotAreej implements Topic{
 	private boolean advanced;
 	private boolean discussedGrades;
 	private int gpa;
-	private String[] annoyed;
-	private int annoyedNum;
-	private String[] annoyers;
+	//private String[] annoyed;
+	//private int annoyedNum;
+	//private String[] annoyers;
 	//private String[] classes;
 	//private String[] clases;
 	//private double result;
@@ -31,12 +31,12 @@ public class ChatbotAreej implements Topic{
 		goodbyeKeyword = "bye";
 		response = "";
 		gpa = 0;
-		String[] isAnnoyed = {"Stop wasting my time", "You know, I have other people who need my help", "I'm not going to listen to you talk like this all day", "No need to be rude"};
-		annoyed = isAnnoyed;
-		annoyedNum = 3;
-		String[] annoyingThings = {"you're not very helpful","can you give me anything","why aren't you giving me a straight answer", "why can't you give me what i need"
-				, "why can't you give me what i want","unhelpful", "annoying"};
-		annoyers = annoyingThings;
+		//String[] isAnnoyed = {"Stop wasting my time", "You know, I have other people who need my help", "I'm not going to listen to you talk like this all day", "No need to be rude"};
+		//annoyed = isAnnoyed;
+		//annoyedNum = 3;
+		//String[] annoyingThings = {"you're not very helpful","can you give me anything","why aren't you giving me a straight answer", "why can't you give me what i need"
+		//		, "why can't you give me what i want","unhelpful", "annoying"};
+		//annoyers = annoyingThings;
 		//String[] classes = {"Calculus", "English", "Oracle", "AP Java", "Physics"};
 		//clases = classes;
 		//result = 0;
@@ -44,7 +44,7 @@ public class ChatbotAreej implements Topic{
 	}
 
 	public void talk(String response) {
-		ChatbotMain.print("I see, what would you like to know? ");
+		ChatbotMain.print("I see, what would you like to know about: your transcript or ap's? ");
 		response = ChatbotMain.getInput();
 	
 		while(ChatbotMain.findKeyword(response, goodbyeKeyword, 0) != -1);
